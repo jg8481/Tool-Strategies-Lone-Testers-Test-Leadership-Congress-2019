@@ -87,10 +87,6 @@ if [ "$1" == "Python-Library-Part-One-Serial-And-Parallel-Run" ]; then
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
   echo
-  echo
-  echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
-  echo 'URL='$URL
-  echo
   cd /rfw
   echo
   echo
@@ -119,10 +115,6 @@ if [ "$1" == "Part-One-Serial-And-Parallel-Run-All-Robot-Files" ]; then
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
-  echo
-  echo
-  echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
-  echo 'URL='$URL
   echo
   cd /rfw
   echo
