@@ -1,0 +1,7 @@
+webhook_url=${webhook_url}
+upload_token=${upload_token}
+tmp_dir="/rfw"
+channel=${channel}
+username="Robot-Framework-Bot"
+icon=":exclamation:"
+attachment="blue"

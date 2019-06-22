@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+
+  docker-test-runner:
+    build:
+      context: .
+      dockerfile: "Dockerfile.Local"
+    volumes:
+      - "./Workshop-Examples:/rfw"
+    environment:
+      - TEST_ENVIRONMENT=${TEST_ENVIRONMENT}
+      - URL1=${URL1}
+      - URL2=${URL2}
+      - URL3=${URL3}
+      - BASE_URL=${BASE_URL}
+      - webhook_url=${webhook_url}
+      - upload_token=${upload_token}
+      - channel=${channel}
+      #Environment can also be hardcoded on the docker-compose.yml file cloned to your local machine if you are not using .env files
+      #- TEST_ENVIRONMENT=QA
+      #- URL=your-url.com
+    ports:
+      - "9000:9000"
+    command: -inMemory
+    network_mode: "bridge"
+
+  docker-test-runner-webhook:
+    build:
+      context: .
+      dockerfile: "Dockerfile.RemoteTestWebhook"
+    volumes:
+      - "./Workshop-Examples:/rfw"
+    environment:
+      - TEST_ENVIRONMENT=${TEST_ENVIRONMENT}
+      - URL1=${URL1}
+      - URL2=${URL2}
+      - URL3=${URL3}
+      - BASE_URL=${BASE_URL}
+      - webhook_url=${webhook_url}
+      - upload_token=${upload_token}
+      - channel=${channel}
+      #Environment can also be hardcoded on the docker-compose.yml file cloned to your local machine if you are not using .env files
+      #- TEST_ENVIRONMENT=QA
+      #- URL=your-url.com
+    ports:
+      - "9080:9080"
+    network_mode: "bridge"

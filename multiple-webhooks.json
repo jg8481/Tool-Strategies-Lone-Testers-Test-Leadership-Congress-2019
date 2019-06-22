@@ -1,0 +1,10 @@
+[
+  {
+    "id": "robot-framework-remote-test-process-webhook",
+    "response-message": "Test process successfully triggered.",
+    "include-command-output-in-response": true,
+    "include-command-output-in-response-on-error": true,
+    "execute-command": "/usr/local/bin/commands-running-inside-a-docker-container-webhook.sh",
+    "command-working-directory": "/rfw"
+  }
+]

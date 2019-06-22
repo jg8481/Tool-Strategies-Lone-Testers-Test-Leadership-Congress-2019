@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generated="20190617 21:46:25.774" generator="Robot 3.1.1 (Python 2.7.15 on darwin)">
+<suite source="/Users/jgorospe/Downloads/Test-Tool-Lone-Tester-Strategies-TLC-2019/Workshop-Examples/Tests/Workshop-Part-Two/Hyrid-Session-Based-Test-Example-For-Desktop.robot" id="s1" name="Josh tested Jira Task Number 43 in the QA environment -- GitHub Pull Rquest Number 378 was deployed to that environment -- Session-Based Test number 1 for 06-17-2019 09:46 PM on Desktop -- ">
+<test id="s1-t1" name="SESSION-BASED TEST SETUP - DESKTOP (OR LAPTOP) : Set up this testing session and collect some information from the tester.">
+<kw name="Setup Session Based Test And Gather Information">
+<kw name="Take Screenshot" library="Screenshot">
+<doc>Takes a screenshot in JPEG format and embeds it into the log file.</doc>
+<msg timestamp="20190617 21:46:26.149" html="yes" level="INFO">&lt;a href="screenshot_1.jpg"&gt;&lt;img src="screenshot_1.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190617 21:46:26.149" starttime="20190617 21:46:25.867"></status>
+</kw>
+<kw name="Pause Execution" library="Dialogs">
+<doc>Pauses test execution until user clicks ``Ok`` button.</doc>
+<arguments>
+<arg>SESSION-BASED TEST SETUP - DESKTOP (OR LAPTOP) :\n\n\n\n This is session number ${SESSION_NUMBER}. ${TESTER_NAME}, please use this time to set up your Session-based Test for GitHub PR number ${PULL_REQUEST_NUMBER}, for Jira Task Number ${JIRA_TASK_NUMBER}. Also please be aware of any time restrictions for this session.\n\n\n\n For example, maybe you could git clone the repo of the system-under-test. \n\n After cloning the repo, here are some interesting approaches that could possibly assist you... http://google-engtools.blogspot.com/2011/12/bug-prediction-at-google.html \n\n There is also a machine learning bug prediction tool called gitrisky... https://github.com/hinnefe2/gitrisky\n\n ^ Bug hotspot detection and prediction are only suggestions, and you should not limit yourself. Read the following "A Context-Driven Approach to Automation in Testing" article for more information... http://www.satisfice.com/articles/cdt-automation.pdf \n\n\n\n When you are ready to continue press OK. \n\n There will be additional dialog boxes with required fields that will ask for more information.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:47:24.192" starttime="20190617 21:46:26.149"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>SESSION CHARTER - DESKTOP (OR LAPTOP) :\n\n\n\n Please provide a detailed but brief description of the mission statement for this test. \n\n\n\n If you are not sure how to do this, specific information can be found here... http://www.satisfice.com/sbtm/</arg>
+<arg>Please fill out this required field.</arg>
+</arguments>
+<assign>
+<var>${SESSION_CHARTER}</var>
+</assign>
+<msg timestamp="20190617 21:48:08.993" level="INFO">${SESSION_CHARTER} = Try to break the system and capture it using Robot Framework's logs.</msg>
+<status status="PASS" endtime="20190617 21:48:08.993" starttime="20190617 21:47:24.193"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>FUNCTIONAL AREAS COVERED - DESKTOP (OR LAPTOP) :\n\n\n\n Please provide a specific list of the areas that will be covered in this testing session.\n\n\n\n If you are not sure how to do this, specific information can be found here... http://www.satisfice.com/sbtm/</arg>
+<arg>Please fill out this required field.</arg>
+</arguments>
+<assign>
+<var>${FUNCTIONAL_AREAS_COVERED}</var>
+</assign>
+<msg timestamp="20190617 21:48:22.759" level="INFO">${FUNCTIONAL_AREAS_COVERED} = API and CMS</msg>
+<status status="PASS" endtime="20190617 21:48:22.759" starttime="20190617 21:48:08.993"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>TASK BREAKDOWN - DESKTOP (OR LAPTOP) :\n\n\n\n Please follow the given example to provide metrics and information about...\n\n DURATION\n\n TEST DESIGN AND EXECUTION\n\n BUG INVESTIGATION AND REPORTING\n\n SESSION SETUP\n\n CHARTER VS. OPPORTUNITY\n\n DATA FILES\n\n\n\n If you are not sure how to do this, specific information can be found here... http://www.satisfice.com/sbtm/</arg>
+<arg>Please fill out this required field, using the following example... DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 100, BUG INVESTIGATION AND REPORTING -&gt; 0, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</arg>
+</arguments>
+<assign>
+<var>${TASK_BREAKDOWN}</var>
+</assign>
+<msg timestamp="20190617 21:48:29.888" level="INFO">${TASK_BREAKDOWN} = DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 100, BUG INVESTIGATION AND REPORTING -&gt; 0, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</msg>
+<status status="PASS" endtime="20190617 21:48:29.888" starttime="20190617 21:48:22.759"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.889" level="INFO">${SESSION_CHARTER} = Try to break the system and capture it using Robot Framework's logs.</msg>
+<status status="PASS" endtime="20190617 21:48:29.889" starttime="20190617 21:48:29.888"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.890" level="INFO">${FUNCTIONAL_AREAS_COVERED} = API and CMS</msg>
+<status status="PASS" endtime="20190617 21:48:29.890" starttime="20190617 21:48:29.890"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.890" level="INFO">${TASK_BREAKDOWN} = DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 100, BUG INVESTIGATION AND REPORTING -&gt; 0, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</msg>
+<status status="PASS" endtime="20190617 21:48:29.891" starttime="20190617 21:48:29.890"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.891" level="INFO">Length is 68</msg>
+<status status="PASS" endtime="20190617 21:48:29.891" starttime="20190617 21:48:29.891"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.892" level="INFO">Length is 11</msg>
+<status status="PASS" endtime="20190617 21:48:29.892" starttime="20190617 21:48:29.891"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.892" level="INFO">Length is 184</msg>
+<status status="PASS" endtime="20190617 21:48:29.892" starttime="20190617 21:48:29.892"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.893" level="INFO">Try to break the system and capture it using Robot Framework's logs.</msg>
+<status status="PASS" endtime="20190617 21:48:29.893" starttime="20190617 21:48:29.892"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.893" level="INFO">API and CMS</msg>
+<status status="PASS" endtime="20190617 21:48:29.894" starttime="20190617 21:48:29.893"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<msg timestamp="20190617 21:48:29.894" level="INFO">DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 100, BUG INVESTIGATION AND REPORTING -&gt; 0, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</msg>
+<status status="PASS" endtime="20190617 21:48:29.894" starttime="20190617 21:48:29.894"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.895" starttime="20190617 21:48:29.894"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.895" starttime="20190617 21:48:29.895"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.895" starttime="20190617 21:48:29.895"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>SESSION CHARTER...</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.896" starttime="20190617 21:48:29.895"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.896" starttime="20190617 21:48:29.896"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.896" starttime="20190617 21:48:29.896"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.897" starttime="20190617 21:48:29.896"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.897" starttime="20190617 21:48:29.897"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>FUNCTIONAL AREAS COVERED...</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.897" starttime="20190617 21:48:29.897"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.898" starttime="20190617 21:48:29.897"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.898" starttime="20190617 21:48:29.898"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.899" starttime="20190617 21:48:29.898"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.899" starttime="20190617 21:48:29.899"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>TASK BREAKDOWN...</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.899" starttime="20190617 21:48:29.899"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.900" starttime="20190617 21:48:29.899"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.900" starttime="20190617 21:48:29.900"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.900" starttime="20190617 21:48:29.900"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:29.901" starttime="20190617 21:48:29.900"></status>
+</kw>
+<kw name="Take Screenshot" library="Screenshot">
+<doc>Takes a screenshot in JPEG format and embeds it into the log file.</doc>
+<msg timestamp="20190617 21:48:30.136" html="yes" level="INFO">&lt;a href="screenshot_2.jpg"&gt;&lt;img src="screenshot_2.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190617 21:48:30.137" starttime="20190617 21:48:29.901"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:48:30.137" starttime="20190617 21:46:25.867"></status>
+</kw>
+<kw type="teardown" name="Trigger Only After Failure">
+<kw name="Run Keyword If Test Failed" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Failure Detected Take Screenshot And Notify Team</arg>
+</arguments>
+<status status="PASS" endtime="20190617 21:48:30.139" starttime="20190617 21:48:30.138"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:48:30.139" starttime="20190617 21:48:30.138"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:48:30.139" critical="yes" starttime="20190617 21:46:25.866"></status>
+</test>
+<test id="s1-t2" name="SESSION-BASED TEST NOTES - DESKTOP (OR LAPTOP) : Perform a time boxed deep investigation of the given GitHub PR and check it against the Jira Task. From a desktop (or laptop).">
+<kw name="Perform Session Based Test And Gather Notes">
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<kw name="Take Screenshot" library="Screenshot">
+<doc>Takes a screenshot in JPEG format and embeds it into the log file.</doc>
+<msg timestamp="20190617 21:48:30.392" html="yes" level="INFO">&lt;a href="screenshot_3.jpg"&gt;&lt;img src="screenshot_3.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190617 21:48:30.393" starttime="20190617 21:48:30.146"></status>
+</kw>
+<kw name="Gather Detailed Session Notes">
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>DETAILED TEST SESSION NOTES - GITHUB PR NUMBER ${PULL_REQUEST_NUMBER} - JIRA TASK NUMBER ${JIRA_TASK_NUMBER} - DESKTOP (OR LAPTOP) :\n\n\n\n Please describe everything you did while performing the test and anything you noticed while you were testing.\n\n\n\nAs a reminder, this is the SESSION CHARTER... ${SESSION_CHARTER}\n\n As a reminder, these are the FUNCTIONAL_AREAS_COVERED... ${FUNCTIONAL_AREAS_COVERED}\n\n As a reminder, these are the TASK_BREAKDOWN... ${TASK_BREAKDOWN}\n\n\n\n Follow the example, then press OK.\n\n\n\n</arg>
+<arg>Please fill out this required field, using the following example... I tested _ and _ I noticed _ while I was testing &lt;enter the develper's name here&gt; helped me.</arg>
+</arguments>
+<assign>
+<var>${DETAILED_SESSION_NOTES}</var>
+</assign>
+<msg timestamp="20190617 21:49:02.608" level="INFO">${DETAILED_SESSION_NOTES} = I tested it and noticed error code 500.</msg>
+<status status="PASS" endtime="20190617 21:49:02.608" starttime="20190617 21:48:30.394"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+</arguments>
+<msg timestamp="20190617 21:49:02.610" level="INFO">Length is 39</msg>
+<status status="PASS" endtime="20190617 21:49:02.610" starttime="20190617 21:49:02.608"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+</arguments>
+<msg timestamp="20190617 21:49:02.611" level="INFO">${DETAILED_SESSION_NOTES} = I tested it and noticed error code 500.</msg>
+<status status="PASS" endtime="20190617 21:49:02.611" starttime="20190617 21:49:02.610"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+</arguments>
+<msg timestamp="20190617 21:49:02.611" level="INFO">I tested it and noticed error code 500.</msg>
+<status status="PASS" endtime="20190617 21:49:02.611" starttime="20190617 21:49:02.611"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:49:02.611" starttime="20190617 21:48:30.393"></status>
+</kw>
+<kw name="Execute Manual Step" library="Dialogs">
+<doc>Pauses test execution until user sets the keyword status.</doc>
+<arguments>
+<arg>TEST RESULT FOR GITHUB PR NUMBER ${PULL_REQUEST_NUMBER} - JIRA TASK NUMBER ${JIRA_TASK_NUMBER} - DESKTOP (OR LAPTOP) :\n\n\n\n Please make sure you read and understand all of the information in the GitHub PR and the Jira Task before continuing. If needed, pair with the developer who worked on it to make sure you understand what was done. \n\n\n\n When you are ready to move on, please press PASS or FAIL and be prepared to enter notes into the Robot Framework Dialog Box.\n\n</arg>
+<arg>Please provide precise details about all of the issues you found. If necessary, you should take additional screenshots and upload them somewhere accessible (S3, Google Drive, etc.)...</arg>
+</arguments>
+<msg timestamp="20190617 21:49:28.042" level="FAIL">Error code 500 displayed frequently from the API.</msg>
+<status status="FAIL" endtime="20190617 21:49:28.043" starttime="20190617 21:49:02.612"></status>
+</kw>
+<status status="FAIL" endtime="20190617 21:49:28.043" starttime="20190617 21:48:30.144"></status>
+</kw>
+<kw type="teardown" name="Trigger Only After Failure">
+<kw name="Run Keyword If Test Failed" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Failure Detected Take Screenshot And Notify Team</arg>
+</arguments>
+<kw name="Failure Detected Take Screenshot And Notify Team">
+<kw name="Take Screenshot" library="Screenshot">
+<doc>Takes a screenshot in JPEG format and embeds it into the log file.</doc>
+<msg timestamp="20190617 21:49:28.246" html="yes" level="INFO">&lt;a href="screenshot_4.jpg"&gt;&lt;img src="screenshot_4.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190617 21:49:28.247" starttime="20190617 21:49:28.045"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>AMOUNT OF ISSUES FOUND:\n\n\n\n Please provide the exact number of issues found during this testing session.</arg>
+<arg>Please enter a number in here.</arg>
+</arguments>
+<assign>
+<var>${AMOUNT_OF_ISSUES}</var>
+</assign>
+<msg timestamp="20190617 21:49:35.582" level="INFO">${AMOUNT_OF_ISSUES} = 10</msg>
+<status status="PASS" endtime="20190617 21:49:35.582" starttime="20190617 21:49:28.248"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${AMOUNT_OF_ISSUES}</arg>
+</arguments>
+<msg timestamp="20190617 21:49:35.583" level="INFO">Length is 2</msg>
+<status status="PASS" endtime="20190617 21:49:35.583" starttime="20190617 21:49:35.583"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${AMOUNT_OF_ISSUES}</arg>
+</arguments>
+<msg timestamp="20190617 21:49:35.584" level="INFO">${AMOUNT_OF_ISSUES} = 10</msg>
+<status status="PASS" endtime="20190617 21:49:35.584" starttime="20190617 21:49:35.584"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>FAILED TEST RESULT NOTES FOR SLACK AND EMAIL NOTIFICATIONS:\n\n\n\n Please give a brief summary of the issues you found. This will be turned into Slack and email notifications.</arg>
+<arg>Please fill out this required field.</arg>
+</arguments>
+<assign>
+<var>${FAILED_TEST_RESULT_NOTES}</var>
+</assign>
+<msg timestamp="20190617 21:50:21.104" level="INFO">${FAILED_TEST_RESULT_NOTES} = The API tests failed numerous times with error code 500.</msg>
+<status status="PASS" endtime="20190617 21:50:21.105" starttime="20190617 21:49:35.584"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${FAILED_TEST_RESULT_NOTES}</arg>
+</arguments>
+<msg timestamp="20190617 21:50:21.109" level="INFO">Length is 56</msg>
+<status status="PASS" endtime="20190617 21:50:21.109" starttime="20190617 21:50:21.107"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${FAILED_TEST_RESULT_NOTES}</arg>
+</arguments>
+<msg timestamp="20190617 21:50:21.110" level="INFO">${FAILED_TEST_RESULT_NOTES} = The API tests failed numerous times with error code 500.</msg>
+<status status="PASS" endtime="20190617 21:50:21.110" starttime="20190617 21:50:21.109"></status>
+</kw>
+<kw name="Send Detailed Message Through Slack And Email For Session Based Test">
+<arguments>
+<arg>${PULL_REQUEST_NUMBER}</arg>
+<arg>${JIRA_TASK_NUMBER}</arg>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+<arg>${AMOUNT_OF_ISSUES}</arg>
+<arg>${TESTER_NAME}</arg>
+<arg>${FAILED_TEST_RESULT_NOTES}</arg>
+<arg>${TEST_ENVIRONMENT}</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>echo "${TESTER_NAME} found ${AMOUNT_OF_ISSUES} issue(s) during a testing session for GitHub PR number ${PULL_REQUEST_NUMBER}, for Jira Task Number ${JIRA_TASK_NUMBER} in the ${TEST_ENVIRONMENT} environment on a desktop (or laptop) computer. Here are the details..." | slacktee.sh -i :nerd_face: --plain-text --config ${EXECDIR}/Workshop-Examples/Shared-Resources/.slacktee</arg>
+<arg>shell=True</arg>
+<arg>timeout=20s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20190617 21:50:21.132" level="INFO">Starting process:
+echo "Josh found 10 issue(s) during a testing session for GitHub PR number 378, for Jira Task Number 43 in the QA environment on a desktop (or laptop) computer. Here are the details..." | slacktee.sh -i :nerd_face: --plain-text --config /Users/jgorospe/Downloads/Test-Tool-Lone-Tester-Strategies-TLC-2019/Workshop-Examples/Shared-Resources/.slacktee</msg>
+<msg timestamp="20190617 21:50:21.148" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20190617 21:50:21.754" level="INFO">Process completed.</msg>
+<status status="PASS" endtime="20190617 21:50:21.754" starttime="20190617 21:50:21.129"></status>
+</kw>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>echo "These are the testing session notes: ${DETAILED_SESSION_NOTES}" | slacktee.sh -i :nerd_face: --plain-text --config ${EXECDIR}/Workshop-Examples/Shared-Resources/.slacktee</arg>
+<arg>shell=True</arg>
+<arg>timeout=20s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20190617 21:50:21.755" level="INFO">Starting process:
+echo "These are the testing session notes: I tested it and noticed error code 500." | slacktee.sh -i :nerd_face: --plain-text --config /Users/jgorospe/Downloads/Test-Tool-Lone-Tester-Strategies-TLC-2019/Workshop-Examples/Shared-Resources/.slacktee</msg>
+<msg timestamp="20190617 21:50:21.765" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20190617 21:50:21.966" level="INFO">Process completed.</msg>
+<status status="PASS" endtime="20190617 21:50:21.967" starttime="20190617 21:50:21.754"></status>
+</kw>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>echo "This is a detailed description of the issue(s): ${FAILED_TEST_RESULT_NOTES}" | slacktee.sh -i :nerd_face: --plain-text --config ${EXECDIR}/Workshop-Examples/Shared-Resources/.slacktee</arg>
+<arg>shell=True</arg>
+<arg>timeout=20s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20190617 21:50:21.969" level="INFO">Starting process:
+echo "This is a detailed description of the issue(s): The API tests failed numerous times with error code 500." | slacktee.sh -i :nerd_face: --plain-text --config /Users/jgorospe/Downloads/Test-Tool-Lone-Tester-Strategies-TLC-2019/Workshop-Examples/Shared-Resources/.slacktee</msg>
+<msg timestamp="20190617 21:50:21.978" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20190617 21:50:22.280" level="INFO">Process completed.</msg>
+<status status="PASS" endtime="20190617 21:50:22.280" starttime="20190617 21:50:21.968"></status>
+</kw>
+<kw name="Send Email Notification" library="TestFailureEmailNotification">
+<doc>When a test fails you can send an email. Here are some examples that could work...</doc>
+<status status="PASS" endtime="20190617 21:50:22.280" starttime="20190617 21:50:22.280"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:50:22.281" starttime="20190617 21:50:21.114"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:50:22.281" starttime="20190617 21:49:28.044"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:50:22.281" starttime="20190617 21:49:28.044"></status>
+</kw>
+<status status="PASS" endtime="20190617 21:50:22.281" starttime="20190617 21:49:28.044"></status>
+</kw>
+<doc>Additional screenshots can be found in... s3://an-s3-bucket-with-more-screenshots-of-your-testing-session/ or maybe https://drive.google.com/drive/folders/google-drive-with-more-screenshots-of-your-testing-session
+The GitHub PR that was tested is... https://github.com/your_github/repo/pull/378
+The Jira Task that was tested is... https://your-organization.atlassian.net/browse/43</doc>
+<tags>
+<tag>Hybrid_Manual_Automated_Desktop_SBTM_Test</tag>
+</tags>
+<status status="FAIL" endtime="20190617 21:50:22.281" critical="yes" starttime="20190617 21:48:30.142">Error code 500 displayed frequently from the API.</status>
+</test>
+<doc>This working test example and prototype is still in progress. It tries to get close to the approach that James and Jonathon Bach mention here... http://www.satisfice.com/sbtm/</doc>
+<status status="FAIL" endtime="20190617 21:50:22.284" starttime="20190617 21:46:25.777"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="1">Critical Tests</stat>
+<stat fail="1" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat fail="1" pass="0">Hybrid_Manual_Automated_Desktop_SBTM_Test</stat>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="Josh tested Jira Task Number 43 in the QA environment -- GitHub Pull Rquest Number 378 was deployed to that environment -- Session-Based Test number 1 for 06-17-2019 09:46 PM on Desktop -- " pass="1">Josh tested Jira Task Number 43 in the QA environment -- GitHub Pull Rquest Number 378 was deployed to that environment -- Session-Based Test number 1 for 06-17-2019 09:46 PM on Desktop -- </stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

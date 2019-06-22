@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20190113 18:59:57.929" generator="Robot 3.0.4 (Python 2.7.10 on darwin)">
+<suite source="/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Workshop-Examples/Tests/Part-Two--RFW-Strategies-For-Enhancing-Existing-Tests-And-Taking-Your-Test-Process-Further/Hyrid-Session-Based-Test-Example-For-Android.robot" id="s1" name="Josh tested Jira Task Number 6798 in the QA environment -- GitHub Pull Rquest Number 3456 was deployed to that environment -- Session-Based Test number 1 for 01-13-2019 06:59 PM on Android -- ">
+<kw type="setup" name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Clear Old Log Files</arg>
+</arguments>
+<kw name="Clear Old Log Files">
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//adb_log1.txt</arg>
+</arguments>
+<msg timestamp="20190113 18:59:58.208" html="yes" level="INFO">File '&lt;a href="file:///Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log1.txt"&gt;/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log1.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" endtime="20190113 18:59:58.208" starttime="20190113 18:59:58.207"></status>
+</kw>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//adb_log2.txt</arg>
+</arguments>
+<msg timestamp="20190113 18:59:58.209" html="yes" level="INFO">File '&lt;a href="file:///Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log2.txt"&gt;/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log2.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" endtime="20190113 18:59:58.209" starttime="20190113 18:59:58.208"></status>
+</kw>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//adb_log3.txt</arg>
+</arguments>
+<msg timestamp="20190113 18:59:58.209" html="yes" level="INFO">File '&lt;a href="file:///Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log3.txt"&gt;/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log3.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" endtime="20190113 18:59:58.209" starttime="20190113 18:59:58.209"></status>
+</kw>
+<status status="PASS" endtime="20190113 18:59:58.209" starttime="20190113 18:59:58.207"></status>
+</kw>
+<status status="PASS" endtime="20190113 18:59:58.210" starttime="20190113 18:59:58.207"></status>
+</kw>
+<test id="s1-t1" name="SESSION-BASED TEST SETUP - ANDROID DEVICE : Set up this testing session and collect some information from the tester.">
+<kw name="Setup Session Based Test And Gather Information">
+<kw name="Go To Website On Android Device">
+<kw name="Open Application" library="AppiumLibrary">
+<doc>Opens a new application to given Appium server.</doc>
+<arguments>
+<arg>${REMOTE_URL}</arg>
+<arg>platformName=${PLATFORM_NAME}</arg>
+<arg>platformVersion=${PLATFORM_VERSION}</arg>
+<arg>deviceName=${DEVICE_NAME}</arg>
+<arg>browserName=Chrome</arg>
+<arg>newCommandTimeout=600</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:00:07.443" starttime="20190113 18:59:58.211"></status>
+</kw>
+<kw name="Go To Url" library="AppiumLibrary">
+<doc>Opens URL in default web browser.</doc>
+<arguments>
+<arg>https://www.intersection.com</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:00:13.579" starttime="20190113 19:00:07.443"></status>
+</kw>
+<kw name="Page Should Contain Text" library="AppiumLibrary">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Intersection</arg>
+</arguments>
+<msg timestamp="20190113 19:00:13.686" level="INFO">Current page contains text 'Intersection'.</msg>
+<status status="PASS" endtime="20190113 19:00:13.687" starttime="20190113 19:00:13.579"></status>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=.//h6[contains(., 'Newsletter')]</arg>
+</arguments>
+<msg timestamp="20190113 19:00:13.687" level="INFO">Clicking element 'xpath=.//h6[contains(., 'Newsletter')]'.</msg>
+<status status="PASS" endtime="20190113 19:00:14.032" starttime="20190113 19:00:13.687"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20190113 19:00:14.669" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="appium-screenshot-1.png"&gt;&lt;img src="appium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190113 19:00:14.669" starttime="20190113 19:00:14.033"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:00:14.670" starttime="20190113 18:59:58.211"></status>
+</kw>
+<kw name="Pause Execution" library="Dialogs">
+<doc>Pauses test execution until user clicks ``Ok`` button.</doc>
+<arguments>
+<arg>SESSION-BASED TEST SETUP - ANDROID DEVICE :\n\n\n\n This is session number ${SESSION_NUMBER}. ${TESTER_NAME}, please use this time to set up your Session-based Test for GitHub PR number ${PULL_REQUEST_NUMBER}, for Jira Task Number ${JIRA_TASK_NUMBER}. Also please be aware of any time restrictions for this session.\n\n\n\n For example, maybe you could git clone the repo of the system-under-test. \n\n After cloning the repo, here are some interesting approaches that could possibly assist you... http://google-engtools.blogspot.com/2011/12/bug-prediction-at-google.html \n\n There is also a machine learning bug prediction tool called gitrisky... https://github.com/hinnefe2/gitrisky\n\n ^ Bug hotspot detection and prediction are only suggestions, and you should not limit yourself. Read the following "A Context-Driven Approach to Automation in Testing" article for more information... http://www.satisfice.com/articles/cdt-automation.pdf \n\n\n\n When you are ready to continue press OK. \n\n There will be additional dialog boxes with required fields that will ask for more information.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:00:18.701" starttime="20190113 19:00:14.670"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>SESSION CHARTER - ANDROID DEVICE :\n\n\n\n Please provide a detailed but brief description of the mission statement for this test. \n\n\n\n If you are not sure how to do this, specific information can be found here... http://www.satisfice.com/sbtm/</arg>
+<arg>Please fill out this required field.</arg>
+</arguments>
+<assign>
+<var>${SESSION_CHARTER}</var>
+</assign>
+<msg timestamp="20190113 19:00:54.638" level="INFO">${SESSION_CHARTER} = Test the space reservation form</msg>
+<status status="PASS" endtime="20190113 19:00:54.638" starttime="20190113 19:00:18.701"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>FUNCTIONAL AREAS COVERED - ANDROID DEVICE :\n\n\n\n Please provide a specific list of the areas that will be covered in this testing session.\n\n\n\n If you are not sure how to do this, specific information can be found here... http://www.satisfice.com/sbtm/</arg>
+<arg>Please fill out this required field.</arg>
+</arguments>
+<assign>
+<var>${FUNCTIONAL_AREAS_COVERED}</var>
+</assign>
+<msg timestamp="20190113 19:01:04.555" level="INFO">${FUNCTIONAL_AREAS_COVERED} = Space Reservation</msg>
+<status status="PASS" endtime="20190113 19:01:04.555" starttime="20190113 19:00:54.639"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>TASK BREAKDOWN - ANDROID DEVICE :\n\n\n\n Please follow the given example to provide metrics and information about...\n\n DURATION\n\n TEST DESIGN AND EXECUTION\n\n BUG INVESTIGATION AND REPORTING\n\n SESSION SETUP\n\n CHARTER VS. OPPORTUNITY\n\n DATA FILES\n\n\n\n If you are not sure how to do this, specific information can be found here... http://www.satisfice.com/sbtm/</arg>
+<arg>Please fill out this required field, using the following example... DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 100, BUG INVESTIGATION AND REPORTING -&gt; 0, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</arg>
+</arguments>
+<assign>
+<var>${TASK_BREAKDOWN}</var>
+</assign>
+<msg timestamp="20190113 19:01:19.540" level="INFO">${TASK_BREAKDOWN} = DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 80, BUG INVESTIGATION AND REPORTING -&gt; 20, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</msg>
+<status status="PASS" endtime="20190113 19:01:19.540" starttime="20190113 19:01:04.556"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.541" level="INFO">${SESSION_CHARTER} = Test the space reservation form</msg>
+<status status="PASS" endtime="20190113 19:01:19.541" starttime="20190113 19:01:19.541"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.542" level="INFO">${FUNCTIONAL_AREAS_COVERED} = Space Reservation</msg>
+<status status="PASS" endtime="20190113 19:01:19.542" starttime="20190113 19:01:19.541"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.542" level="INFO">${TASK_BREAKDOWN} = DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 80, BUG INVESTIGATION AND REPORTING -&gt; 20, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</msg>
+<status status="PASS" endtime="20190113 19:01:19.543" starttime="20190113 19:01:19.542"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.543" level="INFO">Length is 31</msg>
+<status status="PASS" endtime="20190113 19:01:19.543" starttime="20190113 19:01:19.543"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.544" level="INFO">Length is 17</msg>
+<status status="PASS" endtime="20190113 19:01:19.544" starttime="20190113 19:01:19.543"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.544" level="INFO">Length is 184</msg>
+<status status="PASS" endtime="20190113 19:01:19.544" starttime="20190113 19:01:19.544"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.545" level="INFO">Test the space reservation form</msg>
+<status status="PASS" endtime="20190113 19:01:19.545" starttime="20190113 19:01:19.544"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.545" level="INFO">Space Reservation</msg>
+<status status="PASS" endtime="20190113 19:01:19.545" starttime="20190113 19:01:19.545"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:19.546" level="INFO">DURATION -&gt; short, TEST DESIGN AND EXECUTION -&gt; 80, BUG INVESTIGATION AND REPORTING -&gt; 20, SESSION SETUP -&gt; 0, CHARTER VS. OPPORTUNITY -&gt; 100/0, DATA FILES -&gt; staging-user-profiles.csv</msg>
+<status status="PASS" endtime="20190113 19:01:19.546" starttime="20190113 19:01:19.545"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.546" starttime="20190113 19:01:19.546"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.546" starttime="20190113 19:01:19.546"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.547" starttime="20190113 19:01:19.547"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>SESSION CHARTER...</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.547" starttime="20190113 19:01:19.547"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.548" starttime="20190113 19:01:19.547"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.548" starttime="20190113 19:01:19.548"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.548" starttime="20190113 19:01:19.548"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.549" starttime="20190113 19:01:19.549"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>FUNCTIONAL AREAS COVERED...</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.549" starttime="20190113 19:01:19.549"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.550" starttime="20190113 19:01:19.549"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.550" starttime="20190113 19:01:19.550"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.550" starttime="20190113 19:01:19.550"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.551" starttime="20190113 19:01:19.550"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>TASK BREAKDOWN...</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.551" starttime="20190113 19:01:19.551"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.551" starttime="20190113 19:01:19.551"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.552" starttime="20190113 19:01:19.551"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.552" starttime="20190113 19:01:19.552"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>.</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.552" starttime="20190113 19:01:19.552"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:01:19.552" starttime="20190113 18:59:58.210"></status>
+</kw>
+<kw type="teardown" name="Trigger Only After Failure">
+<kw name="Run Keyword If Test Failed" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Capture Test Failure</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:01:19.553" starttime="20190113 19:01:19.553"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:01:19.553" starttime="20190113 19:01:19.553"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:01:19.553" critical="yes" starttime="20190113 18:59:58.210"></status>
+</test>
+<test id="s1-t2" name="SESSION-BASED TEST NOTES - ANDROID DEVICE : Perform a time boxed deep investigation of the given GitHub PR and check it against the Jira Task. From an Android device.">
+<kw name="Perform Session Based Test And Gather Notes">
+<arguments>
+<arg>${SESSION_CHARTER}</arg>
+<arg>${FUNCTIONAL_AREAS_COVERED}</arg>
+<arg>${TASK_BREAKDOWN}</arg>
+</arguments>
+<kw name="Gather Detailed Session Notes">
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>DETAILED TEST SESSION NOTES - GITHUB PR NUMBER ${PULL_REQUEST_NUMBER} - JIRA TASK NUMBER ${JIRA_TASK_NUMBER} - ANDROID DEVICE :\n\n\n\n Please describe everything you did while performing the test and anything you noticed while you were testing.\n\n\n\nAs a reminder, this is the SESSION CHARTER... ${SESSION_CHARTER}\n\n As a reminder, these are the FUNCTIONAL_AREAS_COVERED... ${FUNCTIONAL_AREAS_COVERED}\n\n As a reminder, these are the TASK_BREAKDOWN... ${TASK_BREAKDOWN}\n\n\n\n Follow the example, then press OK.\n\n\n\n</arg>
+<arg>Please fill out this required field, using the following example... I tested _ and _ I noticed _ while I was testing &lt;enter the develper's name here&gt; helped me.</arg>
+</arguments>
+<assign>
+<var>${DETAILED_SESSION_NOTES}</var>
+</assign>
+<msg timestamp="20190113 19:01:30.593" level="INFO">${DETAILED_SESSION_NOTES} = No new issues were found.</msg>
+<status status="PASS" endtime="20190113 19:01:30.593" starttime="20190113 19:01:19.560"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:30.593" level="INFO">Length is 25</msg>
+<status status="PASS" endtime="20190113 19:01:30.593" starttime="20190113 19:01:30.593"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:30.594" level="INFO">${DETAILED_SESSION_NOTES} = No new issues were found.</msg>
+<status status="PASS" endtime="20190113 19:01:30.594" starttime="20190113 19:01:30.594"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${DETAILED_SESSION_NOTES}</arg>
+</arguments>
+<msg timestamp="20190113 19:01:30.595" level="INFO">No new issues were found.</msg>
+<status status="PASS" endtime="20190113 19:01:30.595" starttime="20190113 19:01:30.594"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:01:30.595" starttime="20190113 19:01:19.560"></status>
+</kw>
+<kw name="Execute Manual Step" library="Dialogs">
+<doc>Pauses test execution until user sets the keyword status.</doc>
+<arguments>
+<arg>TEST RESULT FOR GITHUB PR NUMBER ${PULL_REQUEST_NUMBER} - JIRA TASK NUMBER ${JIRA_TASK_NUMBER} - ANDROID DEVICE :\n\n\n\n Please make sure you read and understand all of the information in the GitHub PR and the Jira Task before continuing. If needed, pair with the developer who worked on it to make sure you understand what was done. \n\n\n\n When you are ready to move on, please press PASS or FAIL and be prepared to enter notes into the Robot Framework Dialog Box.\n\n</arg>
+<arg>Please provide precise details about all of the issues you found. If necessary, you should take additional screenshots and upload them somewhere accessible (S3, Google Drive, etc.)...</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:05:54.160" starttime="20190113 19:01:30.595"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:54.161" starttime="20190113 19:01:19.559"></status>
+</kw>
+<kw type="teardown" name="Trigger Only After Failure">
+<kw name="Run Keyword If Test Failed" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Capture Test Failure</arg>
+</arguments>
+<status status="PASS" endtime="20190113 19:05:54.162" starttime="20190113 19:05:54.162"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:54.163" starttime="20190113 19:05:54.161"></status>
+</kw>
+<doc>Additional screenshots can be found in... s3://an-s3-bucket-with-more-screenshots-of-your-testing-session/ or maybe https://drive.google.com/drive/folders/google-drive-with-more-screenshots-of-your-testing-session
+The GitHub PR that was tested is... https://github.com/your_github/repo/pull/3456
+The Jira Task that was tested is... https://your-organization.atlassian.net/browse/6798</doc>
+<tags>
+<tag>Hybrid_Manual_Automated_Android_SBTM_Test</tag>
+</tags>
+<status status="PASS" endtime="20190113 19:05:54.163" critical="yes" starttime="20190113 19:01:19.556"></status>
+</test>
+<kw type="teardown" name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Close All Apps</arg>
+</arguments>
+<kw name="Close All Apps">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Close All Applications</arg>
+</arguments>
+<kw name="Close All Applications" library="AppiumLibrary">
+<doc>Closes all open applications.</doc>
+<status status="PASS" endtime="20190113 19:05:55.471" starttime="20190113 19:05:54.165"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:55.471" starttime="20190113 19:05:54.165"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Clear Old Log Files</arg>
+</arguments>
+<kw name="Clear Old Log Files">
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//adb_log1.txt</arg>
+</arguments>
+<msg timestamp="20190113 19:05:55.473" html="yes" level="INFO">File '&lt;a href="file:///Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log1.txt"&gt;/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log1.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" endtime="20190113 19:05:55.473" starttime="20190113 19:05:55.472"></status>
+</kw>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//adb_log2.txt</arg>
+</arguments>
+<msg timestamp="20190113 19:05:55.473" html="yes" level="INFO">File '&lt;a href="file:///Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log2.txt"&gt;/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log2.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" endtime="20190113 19:05:55.473" starttime="20190113 19:05:55.473"></status>
+</kw>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//adb_log3.txt</arg>
+</arguments>
+<msg timestamp="20190113 19:05:55.474" html="yes" level="INFO">File '&lt;a href="file:///Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log3.txt"&gt;/Users/joshuagorospe/Yardarm/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/Tests/Part-Two--RFW-Strategies-For-Taking-Your-Test-Process-Further/adb_log3.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" endtime="20190113 19:05:55.474" starttime="20190113 19:05:55.474"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:55.474" starttime="20190113 19:05:55.471"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:55.474" starttime="20190113 19:05:55.471"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:55.474" starttime="20190113 19:05:54.165"></status>
+</kw>
+<status status="PASS" endtime="20190113 19:05:55.474" starttime="20190113 19:05:54.164"></status>
+</kw>
+<doc>This working test example and prototype is still in progress. It tries to get close to the approach that James and Jonathon Bach mention here... http://www.satisfice.com/sbtm/</doc>
+<status status="PASS" endtime="20190113 19:05:55.474" starttime="20190113 18:59:57.931"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">Hybrid_Manual_Automated_Android_SBTM_Test</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Josh tested Jira Task Number 6798 in the QA environment -- GitHub Pull Rquest Number 3456 was deployed to that environment -- Session-Based Test number 1 for 01-13-2019 06:59 PM on Android -- " pass="2">Josh tested Jira Task Number 6798 in the QA environment -- GitHub Pull Rquest Number 3456 was deployed to that environment -- Session-Based Test number 1 for 01-13-2019 06:59 PM on Android -- </stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
