@@ -309,9 +309,9 @@ usage_explanation() {
   echo
   echo "Please read the following to get a full explanation about how this works."
   echo
-  echo "https://github.com/jg8481/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/blob/master/README.md"
+  echo "https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/README.md"
   echo
-  echo "https://github.com/jg8481/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019/blob/master/Robot_Framework_strategies_for_the_lone_tester_RoboCon-2019-Workshop-Slides.pdf"
+  echo "https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/_.pdf"
   echo
   echo
 }
