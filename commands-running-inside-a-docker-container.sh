@@ -3,11 +3,13 @@
 
 if [ "$1" == "Postman-Newman-Part-One-Serial-Run" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   echo
@@ -23,11 +25,13 @@ fi
 
 if [ "$1" == "cURL-Part-One-Serial-And-Parallel-Run" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   echo
@@ -52,11 +56,13 @@ fi
 
 if [ "$1" == "Requests-Library-Part-One-Serial-And-Parallel-Run" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   echo
@@ -81,11 +87,13 @@ fi
 
 if [ "$1" == "Python-Library-Part-One-Serial-And-Parallel-Run" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   echo
@@ -110,11 +118,13 @@ fi
 
 if [ "$1" == "Part-One-Serial-And-Parallel-Run-All-Robot-Files" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   echo
@@ -139,11 +149,13 @@ fi
 
 if [ "$1" == "Postman-Newman-Part-Two-Listeners-Randomized-Test-Execution-Failure-Notifications" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
@@ -169,11 +181,13 @@ fi
 
 if [ "$1" == "Python-Library-Part-Two-Listeners-Randomized-Test-And-Suite-Execution-Failure-Notifications" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
@@ -231,11 +245,13 @@ fi
 
 if [ "$1" == "Requests-Library-Part-Two-Random-String-Test-Data-Generation-For-API-Fuzz-Tests" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
@@ -259,11 +275,13 @@ fi
 
 if [ "$1" == "cURL-Part-Two-Random-Malformed-Test-Data-Generation-For-API-Fuzz-Tests" ]; then
   echo
+  echo
   echo 'TEST_ENVIRONMENT='$TEST_ENVIRONMENT
   echo 'URL1='$URL1
   echo 'URL2='$URL2
   echo 'URL3='$URL3
   echo 'BASE_URL='$BASE_URL
+  echo
   echo
   cd /rfw
   envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
