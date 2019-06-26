@@ -17,13 +17,16 @@ The following are the basic technical requirements to run the examples during th
 
 The following are optional requirements that you can install on your machine. They will be explained in the presentation and demonstrations.
 
+- cURL -> https://curl.haxx.se
 - yEd Graph Editor -> https://www.yworks.com/products/yed
 - a Slack account (preferably one under your control)
 - RobotFramework-Metrics -> https://github.com/adiralashiva8/robotframework-metrics
+- Charles Proxy -> https://www.charlesproxy.com/documentation/proxying
+- Appium Desktop -> https://github.com/appium/appium-desktop
 
 Here is a brief summary of some of the tools used in this presentation.
 
-- Dockerized parallel and serial randomized tests, with results merging.
+- Dockerized parallel and serial randomized tests, with results merging using Robot Framework.
 - Options for generating randomized test data using builtin keywords or malformed test data with the well known Radamsa general purpose fuzzing tool, https://gitlab.com/akihe/radamsa
 - Several examples of Slack notification keywords using a hybrid-manual-automated approach and Dockerized tests
 - Robot Framework + Graphwalker (a model-based testing tool) examples with replayable test runs while running a slow internet connection proxy called "Crapify", https://github.com/bcoe/crapify
@@ -31,14 +34,14 @@ Here is a brief summary of some of the tools used in this presentation.
 - Dashboard of Session Based Test Management using Shiva Prasad Adirala's excellent RobotFramework-Metrics project, https://github.com/adiralashiva8/robotframework-metrics
 
 The examples in the presentation use a lot of Shell scripting. If you have a Windows operating system, the following options may work for you.
-- Consider downloading Git for Windows -> https://git-scm.com/download/win and https://gitforwindows.org/
-- Windows 10 users may already have Bash -> http://techgenix.com/bash-on-windows-10/
+- Consider downloading Git for Windows -> https://git-scm.com/download/win and https://gitforwindows.org
+- Windows 10 users may already have Bash -> http://techgenix.com/bash-on-windows-10
 - Since you will probably already have docker-compose installed you can copy the commands and run them individually.
 
 Before the presentation, please run the following on your machine.
 ```
-git clone https://github.com/jg8481/
-cd ./Test-Tool-Lone-Tester-Strategies-TLC-2019
+git clone https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019.git
+cd ./Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019
 ```
 Set up an `.env` file using the provided `template.env` file. After setting up your `.env` file you can run the following, but it will require Docker on your machine.
 ```
