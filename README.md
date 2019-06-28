@@ -31,7 +31,7 @@ Here is a brief summary of some of the tools used in this presentation.
 - Several examples of Slack notification keywords using a hybrid-manual-automated approach and Dockerized tests
 - Robot Framework + Graphwalker (a model-based testing tool) examples with replayable test runs while running a slow internet connection proxy called "Crapify", https://github.com/bcoe/crapify
 - Webhook mechanism that can trigger remote test processes with cURL commands, https://github.com/adnanh/webhook
-- Dashboard of Session Based Test Management using Shiva Prasad Adirala's excellent RobotFramework-Metrics project, https://github.com/adiralashiva8/robotframework-metrics
+- Dashboard of Session-based Test Management using Shiva Prasad Adirala's excellent RobotFramework-Metrics project, https://github.com/adiralashiva8/robotframework-metrics
 
 The examples in the presentation use a lot of Shell scripting. If you have a Windows operating system, the following options may work for you.
 - Consider downloading Git for Windows -> https://git-scm.com/download/win and https://gitforwindows.org
@@ -88,6 +88,11 @@ Part Three of the presentations covers the following dashboards.
 - https://joshua-gorospe-qa-dashboard2.herokuapp.com/
 
 ***
+
+Slides for the presentation and additional videos of content that was not covered in the Test Leadership Congress 2019 conference recordings can be found in this repo.
+- [Test_Tool_Strategies_For_Lone_Testers.pdf](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Test_Tool_Strategies_For_Lone_Testers.pdf)
+- [Demonstration_Of_Appium_Desktop_Code_Generator_Robot_Framework_Example.mp4](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Demonstration_Of_Appium_Desktop_Code_Generator_Robot_Framework_Example.mp4)
+- [Demonstration_Of_Charles_Proxy_With_Appium_Desktop_SBTM_Robot_Framework.mp4](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Demonstration_Of_Charles_Proxy_With_Appium_Desktop_SBTM_Robot_Framework.mp4)
 
 This presentation is based on a workshop that was done at RoboCon 2019 in Finland. More information can be found in the following.
 - https://robocon.io/#workshops
