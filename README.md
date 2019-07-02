@@ -45,7 +45,7 @@ cd ./Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019
 ```
 Set up an `.env` file using the provided `template.env` file. After setting up your `.env` file you can run the following, but it will require Docker on your machine.
 ```
-sh ./start-specific-docker-example-workflows-for-workshop.sh Build-Images-Teardown-Old-Docker-Containers
+./start-specific-docker-example-workflows-for-workshop.sh Build-Images-Teardown-Old-Docker-Containers
 ```
 
 ## Presentation Examples
