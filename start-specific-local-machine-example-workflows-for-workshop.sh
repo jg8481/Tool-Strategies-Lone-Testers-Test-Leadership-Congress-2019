@@ -184,7 +184,7 @@ usage_explanation() {
   echo
   echo "https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/README.md"
   echo
-  echo "https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/_.pdf"
+  echo "https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Test_Tool_Strategies_For_Lone_Testers.pdf"
   echo
   echo
 }
