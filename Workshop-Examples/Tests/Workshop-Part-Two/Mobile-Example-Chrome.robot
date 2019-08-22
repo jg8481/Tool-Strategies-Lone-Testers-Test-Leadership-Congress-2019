@@ -8,7 +8,6 @@ Suite Setup    Open The Chrome Browser In Android
 Suite Teardown    Close All Applications
 
 *** Variables ***
-${URL}      https://nodegoat.herokuapp.com
 ${TEST_SUITE_TIMEOUT}     2
 
 *** Test Cases ***
