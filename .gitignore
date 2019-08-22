@@ -21,6 +21,7 @@ combined_results_log.html
 parallel_run_output.xml
 serial_run_output.xml
 .env
+local.env
 testlog*.txt
 malformed*.txt
 /_pycache_

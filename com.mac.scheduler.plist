@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.mac.scheduler</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>bash /Users/yardarmmacpro/Desktop/robotframework_workspace/Functional_Test_Automation_Package/Dev_Environment/Dev_Environment_Docker/Functional_Test_Docker_Container/start_functional_test_container.sh > /Users/yardarmmacpro/Desktop/robotframework_workspace/Mac_OSX_LaunchAgent_Scheduled_Scripts/Dev_Environment_LaunchAgent_Scheduler_Output/Standard_Out/launchagent_docker_results.txt; sleep 2; bash /Users/yardarmmacpro/Desktop/robotframework_workspace/Functional_Test_Automation_Package/Dev_Environment/Dev_Environment_Docker/Functional_Test_Docker_Container/test_analysis_failure_notification.sh; sleep 2; bash /Users/yardarmmacpro/Desktop/robotframework_workspace/Robot_Framework_Results_TestRail_Integration/start_robot_framework_and_upload_results_to_testrail.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+    <dict>
+        <key>Hour</key>
+        <integer>16</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+    <dict>
+        <key>Hour</key>
+        <integer>22</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/replace_with_full_path_to_errors_file/errors.err</string>
+
+  <key>StandardOutPath</key>
+  <string>/Users/replace_with_full_path_to_output_file/output.out</string>
+</dict>
+</plist>

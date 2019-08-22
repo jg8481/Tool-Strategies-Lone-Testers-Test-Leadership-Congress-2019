@@ -1,0 +1,5 @@
+robotframework>=3.0
+robotframework-appiumlibrary>=1.3.5
+robotframework-pabot>=0.56
+robotframework-requests>=0.5.0 
+six>=1.11.0

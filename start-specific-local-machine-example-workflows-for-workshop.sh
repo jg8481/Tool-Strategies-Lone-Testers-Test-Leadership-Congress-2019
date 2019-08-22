@@ -174,6 +174,91 @@ if [ "$1" == "Hybrid-Tool-Desktop-Charles-Proxy-Workshop-Example" ]; then
   rm -rf ./Workshop-Examples/Workshop-Part-Three/RobotFramework-Metrics-Results/*_test_output.xml
 fi
 
+if [ "$1" == "Robot-Framework-Desktop-Web-Test-Example" ]; then
+  # Before running this step you need to manually create your own "local.env" file using the provided "template.local.env" file.
+  source ./local.env
+  echo
+  echo "------------------------------------[[[[ Robot Framework Desktop Web Test Example ]]]]------------------------------------"
+  echo
+  echo "This will run three different desktop browsers in parallel."
+  echo
+  rm -rf ./RobotFramework/.pabotsuitenames
+  rm -rf ./RobotFramework/Workshop-Part-Three/pabot_results
+  pip install webdrivermanager > /dev/null 2>&1
+  webdrivermanager firefox chrome --linkpath /usr/local/bin > /dev/null 2>&1
+  pabot --verbose --processes 3 --report NONE --log desktop-web-browser-log.html --output desktop-web-browser-output.xml -N "Robot Framework Desktop Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Firefox* ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Safari*
+  #pabot --verbose --processes 3 --dryrun --report NONE --log desktop-web-browser-log.html --output desktop-web-browser-output.xml -N "Robot Framework Desktop Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Firefox* ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Safari*
+fi
+
+if [ "$1" == "Robot-Framework-Mobile-Web-Test-Example" ]; then
+  # Before running this step you need to manually create your own "local.env" file using the provided "template.local.env" file.
+  source ./local.env
+  echo
+  echo "------------------------------------[[[[ Robot Framework Mobile Web Test Example ]]]]------------------------------------"
+  echo
+  echo "This will run two different mobile browsers in parallel."
+  echo
+  rm -rf ./RobotFramework/.pabotsuitenames
+  rm -rf ./RobotFramework/Workshop-Part-Three/pabot_results
+  #pabot --verbose --processes 3 -d ./Workshop-Examples/Workshop-Part-Three/ ./tests-desktop-firefox/*1.robot ./tests-desktop-safari/*1.robot ./tests-desktop-chrome/*1.robot && open ./results/log.html
+  pabot --verbose --processes 3 --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
+  #robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --include Smoke_Tests --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
+  exit
+fi
+
+if [ "$1" == "Appium-Web-Browser-Setup" ]; then
+  path=$(pwd)
+  npm install -g appium --chromedriver_version="2.44"
+  rm -rf $path/Workshop-Examples/Shared-Resources/appium_output_log.txt
+  rm -rf $path/Workshop-Examples/Shared-Resources/appium_server_PID*.txt
+  rm -rf $path/Workshop-Examples/Shared-Resources/android_emulator_PID.txt
+  echo "------------------------------------[[[[ Appium Web Browser Setup ]]]]------------------------------------"
+  echo
+  echo "Appium and Chromedriver will be logged here in appium_log.txt --> $path"
+  echo
+  #"$HOME"/Library/Android/sdk/emulator/emulator -avd Nexus_5X_API_28_x86 -netdelay none -netspeed full > $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/android_emulator_PID.txt
+  #"$HOME"/Library/Android/sdk/emulator/emulator -avd Nexus_6_API_23 -netdelay none -netspeed full > $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $!> $path/Workshop-Examples/Shared-Resources/android_emulator_PID.txt
+  "$HOME"/Library/Android/sdk/emulator/emulator -avd Nexus_4_API_26 -netdelay none -netspeed full > $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/android_emulator_PID.txt
+  sleep 3s &&
+  appium -p 4723 --webdriveragent-port 8109 >> $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/appium_server_PID1.txt &
+  appium -p 4724 -bp 5724 >> $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/appium_server_PID2.txt &
+  echo
+  echo
+  APPIUM_SERVER_PID1=$(cat ./Workshop-Examples/Shared-Resources/appium_server_PID1.txt)
+  APPIUM_SERVER_PID2=$(cat ./Workshop-Examples/Shared-Resources/appium_server_PID2.txt)
+  ANDROID_EMULATOR_PID=$(cat ./Workshop-Examples/Shared-Resources/android_emulator_PID.txt)
+  echo "Starting Appium Server One on PID $APPIUM_SERVER_PID1"
+  echo "Starting Appium Server Two on PID $APPIUM_SERVER_PID2"
+  echo "Starting Android Emulator on PID $ANDROID_EMULATOR_PID"
+fi
+
+if [ "$1" == "Appium-Web-Browser-Teardown" ]; then
+  APPIUM_SERVER_PID1=$(cat ./Workshop-Examples/Shared-Resources/appium_server_PID1.txt)
+  APPIUM_SERVER_PID2=$(cat ./Workshop-Examples/Shared-Resources/appium_server_PID2.txt)
+  ANDROID_EMULATOR_PID=$(cat ./Workshop-Examples/Shared-Resources/android_emulator_PID.txt)
+  echo "------------------------------------[[[[ Appium Web Browser Teardown ]]]]------------------------------------"
+  echo
+  echo "The following will clean up all instances of Appium that are running on a specific PID."
+  echo
+  adb kill-server
+  kill -s 9 $APPIUM_SERVER_PID1
+  kill -s 9 $APPIUM_SERVER_PID2
+  kill -s 9 $ANDROID_EMULATOR_PID
+  ##--> Uncomment the following 4 lines only if you absolutely need to use them.
+  pgrep node | xargs kill
+  pgrep xcode | xargs kill
+  pgrep chromedriver | xargs kill
+  pgrep emulator | xargs kill
+  echo "Stopping Appium Server One on PID $APPIUM_SERVER_PID1"
+  echo "Stopping Appium Server Two on PID $APPIUM_SERVER_PID2"
+  echo "Stopping Android Emulator on PID $ANDROID_EMULATOR_PID"
+  echo
+  echo "Appium clean up should definitely be finished by now. It should be ready to be started again."
+  echo "Run the following if you are not sure... ps -A | grep appium"
+  echo
+  ps -A | grep appium
+fi
+
 usage_explanation() {
   echo
   echo

@@ -5,6 +5,7 @@ TIMESTAMP=$(date)
 
 
 if [ "$1" == "Build-Images-Teardown-Old-Docker-Containers" ]; then
+  # Before running this step you need to manually create your own ".env" file using the provided "template.env" file.
   source ./.env
   echo
   echo "------------------------------------[[[[ Build Images And Teardown Old Docker Containers ]]]]------------------------------------"
@@ -14,8 +15,9 @@ if [ "$1" == "Build-Images-Teardown-Old-Docker-Containers" ]; then
   docker-compose -f docker-compose.yml down
   docker-compose -f docker-compose.yml rm -f
   docker-compose -f docker-compose.yml build
-  docker stop $(docker ps -a -q) > /dev/null 2>&1 &&
-  docker rm $(docker ps -a -q) > /dev/null 2>&1
+  docker stop $(docker ps -a -q) 2> /dev/null &&
+  docker rm $(docker ps -a -q) 2> /dev/null &&
+  docker image prune -y
   TIMESTAMP2=$(date)
   echo "This build ended on $TIMESTAMP2."
 fi
@@ -297,6 +299,25 @@ if [ "$1" == "Remote-Test-Process-Triggered-By-A-Webhook-Docker-Example" ]; then
   docker-compose -f docker-compose.yml build > /dev/null 2>&1
   clear
   docker-compose run --publish 9080:9080 docker-test-runner-webhook
+  TIMESTAMP2=$(date)
+  echo "This test run ended on $TIMESTAMP2."
+fi
+
+if [ "$1" == "Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example" ]; then
+  # Before running this step you need to manually create your own ".env" file using the provided "template.env" file.
+  source ./.env
+  echo
+  echo "------------------------------------[[[[ Run A Remote Selenium Process - Part Two - Webhook Triggered Example ]]]]------------------------------------"
+  echo
+  echo "This Docker Container will run various tools combined with Robot Framework. This run started on $TIMESTAMP."
+  echo
+  ## The following file removal command for '.pabotsuitenames' prevents this error when running several different PaBot Docker examples...
+  ## [ ERROR ] Suite 'Robot Framework test run with Requests Library in parallel' contains no tests in suite
+  rm -rf ./RobotFramework/.pabotsuitenames
+  rm -rf ./RobotFramework/Workshop-Part-Three/pabot_results
+  docker-compose -f docker-compose.yml build > /dev/null 2>&1
+  clear
+  docker-compose run --publish 9088:9088 docker-selenium-runner-webhook
   TIMESTAMP2=$(date)
   echo "This test run ended on $TIMESTAMP2."
 fi

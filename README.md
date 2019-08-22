@@ -43,7 +43,7 @@ Before the presentation, please run the following on your machine.
 git clone https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019.git
 cd ./Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019
 ```
-Set up an `.env` file using the provided `template.env` file. After setting up your `.env` file you can run the following, but it will require Docker on your machine.
+Set up `.env` and `local.env` files using the provided `template.env` and `template.local.env` files. After setting up your `.env` and `local.env` files you can run the following, but it will require Docker on your machine.
 ```
 ./start-specific-docker-example-workflows-for-workshop.sh Build-Images-Teardown-Old-Docker-Containers
 ```
@@ -86,6 +86,26 @@ Part Three of the presentations covers the following dashboards.
 - https://robocon2019-workshop-dashboard.herokuapp.com/
 - https://robocon2019-sbtm-dashboard.herokuapp.com/
 - https://joshua-gorospe-qa-dashboard2.herokuapp.com/
+
+The following additional examples are for future webinars and workshops. Some of these examples require Appium, iOS Simulators, and Android Emulators to be installed.
+```
+./start-specific-docker-example-workflows-for-workshop.sh Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example
+./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Desktop-Web-Test-Example
+./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Setup
+./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Teardown
+./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Mobile-Web-Test-Example
+```
+
+Use the following information to help set up the basic Appium requirements:
+- https://appiumpro.com/editions/4
+- http://testnblog.com/appium-up-running-with-robot-framework/
+- http://testnblog.com/how-to-setup-android-virtual-devicesavdemulatorfor-android-test-automation/
+- http://testnblog.com/ios-automation-with-appium-1-6-robot-framework/
+- https://blog.kmkonline.co.id/setting-appium-with-multiple-ios-devices-444fe7f234e1
+- https://www.linkedin.com/pulse/iphone-automation-using-robot-framework-cerosh-jacob?trk=related_artice_iPhone%20automation%20using%20Robot%20Framework_article-card_title
+- https://robotframework.org/
+
+After installing Appium try running ``appium-doctor``. If any warnings show up please follow the instructions.
 
 ***
 

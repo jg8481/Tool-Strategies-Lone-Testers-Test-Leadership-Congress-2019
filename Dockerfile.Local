@@ -10,8 +10,7 @@ USER root
 # Customize sources for apt-get
 RUN  echo "deb http://deb.debian.org/debian jessie main contrib non-free\n" > /etc/apt/sources.list \
   && echo "deb http://deb.debian.org/debian jessie-updates main contrib non-free\n" >> /etc/apt/sources.list \
-  && echo "deb http://security.debian.org/ jessie/updates main contrib non-free\n" >> /etc/apt/sources.list \
-  && echo "deb http://ftp.debian.org/debian jessie-backports main\n" >> /etc/apt/sources.list
+  && echo "deb http://security.debian.org/ jessie/updates main contrib non-free\n" >> /etc/apt/sources.list
 
 # No interactive frontend during docker build
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -39,6 +38,7 @@ RUN apt-get update --fix-missing -y \
   && python3 -m pip install robotframework \
   && pip3 install requests \
   && pip3 install -U robotframework-requests \
+  && pip3 install --upgrade robotframework-seleniumlibrary \
   && pip3 install pyyaml \
   && apt-get clean -y \
   && apt-get update --fix-missing -y \

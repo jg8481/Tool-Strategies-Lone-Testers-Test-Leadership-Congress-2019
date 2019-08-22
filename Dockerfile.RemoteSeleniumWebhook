@@ -1,0 +1,113 @@
+FROM ubuntu:bionic
+MAINTAINER Joshua Gorospe <joshua.gorospe@gmail.com>
+
+# Update and install numerous dependencies
+RUN apt-get update && apt-get install -y \
+    fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 \
+    libnspr4 libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 \
+    curl unzip wget xvfb
+
+# Install Python 3, update pip3, and install all Robot Framework libraries
+RUN apt-get update --fix-missing -y \
+  && apt-get install python3 -y \
+  && apt-get install python3-pip -y \
+  && python3 -m pip install pip --upgrade \
+  && python3 -m pip install wheel \
+  && python3 -m pip install robotframework \
+  && pip3 install --upgrade robotframework-seleniumlibrary \
+  && pip3 install pyyaml \
+  && apt-get clean -y \
+  && apt-get update --fix-missing -y \
+  && apt-get install build-essential libssl-dev libffi-dev -y \
+  && pip3 install -U robotframework-pabot
+
+# Install Firefox
+RUN FIREFOX=firefox-setup.tar.bz2 && \
+    apt-get purge firefox && \
+    wget -O $FIREFOX "https://download.mozilla.org/?product=firefox-latest&os=linux64" && \
+    tar xjf $FIREFOX -C /opt/ && \
+    ln -s /opt/firefox/firefox /usr/bin/firefox && \
+    rm $FIREFOX
+
+# Install Geckodriver
+RUN GECKODRIVER=`curl https://github.com/mozilla/geckodriver/releases/latest | grep -Po 'v[0-9]+.[0-9]+.[0-9]+'` && \
+    wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER/geckodriver-$GECKODRIVER-linux64.tar.gz && \
+    tar -zxf geckodriver-$GECKODRIVER-linux64.tar.gz -C /usr/local/bin && \
+    chmod +x /usr/local/bin/geckodriver && \
+    rm geckodriver-$GECKODRIVER-linux64.tar.gz
+
+# Install Chromedriver
+RUN CHROMEDRIVER=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
+    wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER/chromedriver_linux64.zip && \
+    unzip chromedriver_linux64.zip -d /usr/bin && \
+    chmod +x /usr/bin/chromedriver && \
+    rm chromedriver_linux64.zip
+
+# Install Google-chrome
+RUN CHROME=google-chrome.deb && \
+    wget -O $CHROME "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" && \
+    dpkg -i $CHROME && \
+    apt-get install -y -f && \
+    rm $CHROME
+
+# Install Phantomjs
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+    tar -jxf phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+    cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
+    rm phantomjs-2.1.1-linux-x86_64.tar.bz2
+
+RUN apt-get update --fix-missing -y && apt-get install --no-install-recommends -y && apt-get -y upgrade \
+    apt-utils \
+    ca-certificates \
+    gcc \
+    make \
+    git \
+    git-core \
+    gettext \
+&& mv /usr/bin/envsubst /usr/local/sbin/envsubst
+
+RUN apt-get update && apt-get install --no-install-recommends -y
+RUN apt-get -y upgrade
+
+RUN git clone https://gitlab.com/akihe/radamsa.git && cd radamsa && make && make install
+
+# Install Newman, a Postman CLI tool
+RUN curl -sL https://deb.nodesource.com/setup_8.x --retry 2 | bash
+RUN apt-get install -y nodejs && npm install -g newman && npm install crapify -g && npm i newman && npm install --save newman-reporter-text
+
+# Includes minimal runtime used for executing non GUI Java programs
+RUN apt-get update && apt-get upgrade -y \
+ && apt-get install -y software-properties-common \
+  build-essential git \
+  openjdk-8-jre openjdk-8-jdk
+
+RUN curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq --retry 2 \
+  && chmod +x /usr/local/bin/jq \
+  && git clone https://github.com/course-hero/slacktee.git \
+  && chmod +x ./slacktee/install.sh \
+  && touch /root/.slacktee \
+  && bash ./slacktee/install.sh /usr/bin
+
+RUN curl -s https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz | tar -v -C /usr/local -xz
+ENV GOPATH /go
+ENV GOROOT /usr/local/go
+ENV PATH /usr/local/go/bin:/go/bin:/usr/local/bin:$PATH
+RUN go get github.com/adnanh/webhook
+
+# Check for new versions on http://graphwalker.github.io
+RUN wget http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.2.jar \
+  && cp graphwalker-cli-3.4.2.jar /usr/bin/ \
+  && chmod +x /usr/bin/graphwalker-cli-3.4.2.jar
+
+EXPOSE 9088
+
+ADD commands-running-inside-a-docker-container-webhook-selenium.sh /usr/local/bin/commands-running-inside-a-docker-container-webhook-selenium.sh
+RUN chmod +x /usr/local/bin/commands-running-inside-a-docker-container-webhook-selenium.sh
+ADD multiple-webhooks.json /etc/webhook/multiple-webhooks.json
+CMD ["webhook", "-port", "9088", "-verbose", "-hooks=/etc/webhook/multiple-webhooks.json", "-hotreload"]
+
+## You can trigger this container through the webhook by running the following from your terminal.
+## -> curl -i http://0.0.0.0:9088/hooks/robot-framework-remote-test-process-webhook-part2
+
+## You can also change various settings in the webhooks.json file (ex. the IP) using these parameters
+## -> https://github.com/adnanh/webhook/blob/master/docs/Webhook-Parameters.md

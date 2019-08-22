@@ -1,10 +1,18 @@
 [
   {
-    "id": "robot-framework-remote-test-process-webhook",
+    "id": "robot-framework-remote-test-process-webhook-part1",
     "response-message": "Test process successfully triggered.",
     "include-command-output-in-response": true,
     "include-command-output-in-response-on-error": true,
     "execute-command": "/usr/local/bin/commands-running-inside-a-docker-container-webhook.sh",
+    "command-working-directory": "/rfw"
+  },
+  {
+    "id": "robot-framework-remote-test-process-webhook-part2",
+    "response-message": "Test process successfully triggered.",
+    "include-command-output-in-response": true,
+    "include-command-output-in-response-on-error": true,
+    "execute-command": "/usr/local/bin/commands-running-inside-a-docker-container-webhook-selenium.sh",
     "command-working-directory": "/rfw"
   }
 ]
