@@ -11,7 +11,6 @@ Suite Teardown    Close All Applications
 Test Teardown     Trigger Only After Failure
 
 *** Variables ***
-${URL}      https://nodegoat.herokuapp.com
 ${TEST_SUITE_TIMEOUT}     2
 
 *** Test Cases ***
