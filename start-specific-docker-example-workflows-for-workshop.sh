@@ -17,7 +17,7 @@ if [ "$1" == "Build-Images-Teardown-Old-Docker-Containers" ]; then
   docker-compose -f docker-compose.yml build
   docker stop $(docker ps -a -q) 2> /dev/null &&
   docker rm $(docker ps -a -q) 2> /dev/null &&
-  docker image prune -y
+  docker image prune --force
   TIMESTAMP2=$(date)
   echo "This build ended on $TIMESTAMP2."
 fi
