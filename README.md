@@ -89,14 +89,21 @@ Part Three of the presentations covers the following dashboards.
 
 The following additional examples are for future webinars and workshops. Some of these examples require Appium, iOS Simulators, and Android Emulators to be installed.
 
-US Robot Framework Community Webinars - August 22, 2019 - Commands used to run the examples for this webinar.
-```
-./start-specific-docker-example-workflows-for-workshop.sh Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example
-./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Desktop-Web-Test-Example
-./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Setup
-./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Teardown
-./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Mobile-Web-Test-Example
-```
+[US Robot Framework Community Webinars](https://www.meetup.com/East-Coast-Robot-Framework-Users/events/263579734/) - August 22, 2019 
+- Commands used to run the examples for this webinar.
+  ```
+  ./start-specific-docker-example-workflows-for-workshop.sh Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Desktop-Web-Test-Example
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Setup
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Teardown
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Mobile-Web-Test-Example
+  ```
+- Scheduler examples that can be used on MacOS for running daily checks and monitoring processes in prod.
+  - https://alvinalexander.com/mac-os-x/launchd-examples-launchd-plist-file-examples-mac#a-first-mac-launchd-launchctl-example-a-launchd-plist-file
+  - https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/com.mac.scheduler.plist
+- Scheduler examples that can be used on other systems for running daily checks and monitoring processes in prod.
+  - https://alvinalexander.com/linux/unix-linux-crontab-every-minute-hour-day-syntax
+  - https://jenkins.io/doc/book/pipeline/syntax/#triggers
 
 Use the following information to help set up the basic Appium requirements:
 - https://appiumpro.com/editions/4
