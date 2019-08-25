@@ -88,6 +88,8 @@ Part Three of the presentations covers the following dashboards.
 - https://joshua-gorospe-qa-dashboard2.herokuapp.com/
 
 The following additional examples are for future webinars and workshops. Some of these examples require Appium, iOS Simulators, and Android Emulators to be installed.
+
+US Robot Framework Community Webinars - August 22, 2019 - Commands used to run the examples for this webinar.
 ```
 ./start-specific-docker-example-workflows-for-workshop.sh Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example
 ./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Desktop-Web-Test-Example
@@ -121,6 +123,9 @@ This presentation is based on a workshop that was done at RoboCon 2019 in Finlan
 I also wrote an article on Medium describing the gist of the hybrid-manual-automated approach covered in the presentation.
 - https://ixn.intersection.com/how-machine-learning-can-assist-testers-f42ce28e4792
 
+Additional slides for future presentations and webinars that used the tool examples in this Test Leadership Congress 2019 repo as a template.
+- [US Robot Framework Community Webinars - August 22, 2019 - Test_Tool_Strategies_For_Lone_Testers.pdf](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Workshop-Presentations-And-Videos/Tool_Strategies_For_Mobile_And_Desktop_Browsers.pdf)
+
 ***
 
 ## Big thank you to the following people and groups.
@@ -138,6 +143,7 @@ I also wrote an article on Medium describing the gist of the hybrid-manual-autom
 - Mikko Korpela
 - Bryan Oakley
 - Shiva Prasad Adirala
+- Tatu Aalto
 - The Docker development team
 - The Graphwalker development team
 - The entire Robot Framework community and its contributors
