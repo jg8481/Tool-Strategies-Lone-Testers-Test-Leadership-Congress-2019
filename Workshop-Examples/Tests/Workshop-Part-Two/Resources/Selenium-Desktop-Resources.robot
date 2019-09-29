@@ -18,7 +18,7 @@ Click Sign Up Link
 
 Check The Sign Up Page
     Set Selenium Implicit Wait    ${SELENIUM_IMPLICIT_WAIT}
-    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1 sec    Page Should Contain    information    0.5s
+    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1 sec    Wait Until Page Contains    information    0.5s
     Set Selenium Implicit Wait    ${SELENIUM_IMPLICIT_WAIT}
     Sleep    2s
     Capture Page Screenshot

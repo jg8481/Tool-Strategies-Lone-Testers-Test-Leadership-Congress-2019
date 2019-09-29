@@ -37,7 +37,7 @@ Open Firefox Browser To Specified URL
     Run Keyword And Ignore Error    Close All Browsers
     Open Browser    ${URL}    ${BROWSER}
     Set Selenium Implicit Wait    ${SELENIUM_IMPLICIT_WAIT}
-    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1s    Page Should Contain    Password    0.25s
+    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1s    Wait Until Page Contains    Password    0.25s
     Set Selenium Implicit Wait    ${SELENIUM_IMPLICIT_WAIT}
     Sleep    2s
     Capture Page Screenshot
@@ -49,7 +49,7 @@ Click Sign Up Link
 
 Check The Sign Up Page
     Set Selenium Implicit Wait    ${SELENIUM_IMPLICIT_WAIT}
-    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1s    Page Should Contain    information    0.5s
+    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1s    Wait Until Page Contains    information    0.5s
     Set Selenium Implicit Wait    ${SELENIUM_IMPLICIT_WAIT}
     Sleep    2s
     Capture Page Screenshot
