@@ -176,14 +176,15 @@ fi
 
 if [ "$1" == "Robot-Framework-Desktop-Web-Test-Example" ]; then
   # Before running this step you need to manually create your own "local.env" file using the provided "template.local.env" file.
+  # If you have a private Slack acount, please take this chance to create a .slacktee config file in the Shared-Resources folder using the template.slacktee example.
   source ./local.env
   echo
   echo "------------------------------------[[[[ Robot Framework Desktop Web Test Example ]]]]------------------------------------"
   echo
   echo "This will run three different desktop browsers in parallel."
   echo
-  rm -rf ./RobotFramework/.pabotsuitenames
-  rm -rf ./RobotFramework/Workshop-Part-Three/pabot_results
+  rm -rf ./Workshop-Examples/.pabotsuitenames
+  rm -rf ./Workshop-Examples/Workshop-Part-Three/pabot_results
   pip install webdrivermanager > /dev/null 2>&1
   webdrivermanager firefox chrome --linkpath /usr/local/bin > /dev/null 2>&1
   pabot --verbose --processes 3 --report NONE --log desktop-web-browser-log.html --output desktop-web-browser-output.xml -N "Robot Framework Desktop Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Firefox* ./Workshop-Examples/Tests/Workshop-Part-Two/Desktop-Example-Safari*
@@ -192,14 +193,15 @@ fi
 
 if [ "$1" == "Robot-Framework-Mobile-Web-Test-Example" ]; then
   # Before running this step you need to manually create your own "local.env" file using the provided "template.local.env" file.
+  # If you have a private Slack acount, please take this chance to create a .slacktee config file in the Shared-Resources folder using the template.slacktee example.
   source ./local.env
   echo
   echo "------------------------------------[[[[ Robot Framework Mobile Web Test Example ]]]]------------------------------------"
   echo
   echo "This will run two different mobile browsers in parallel."
   echo
-  rm -rf ./RobotFramework/.pabotsuitenames
-  rm -rf ./RobotFramework/Workshop-Part-Three/pabot_results
+  rm -rf ./Workshop-Examples/.pabotsuitenames
+  rm -rf ./Workshop-Examples/Workshop-Part-Three/pabot_results
   #pabot --verbose --processes 3 -d ./Workshop-Examples/Workshop-Part-Three/ ./tests-desktop-firefox/*1.robot ./tests-desktop-safari/*1.robot ./tests-desktop-chrome/*1.robot && open ./results/log.html
   pabot --verbose --processes 3 --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
   #robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --include Smoke_Tests --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
