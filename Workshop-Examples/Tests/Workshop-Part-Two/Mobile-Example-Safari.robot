@@ -60,5 +60,5 @@ Send Short Message Through Slack And Email For Mobile Browser Check
     ##
     ## The folowing keyword will demonstrate slacktee...
     [Arguments]    ${TEST_NAME}    ${TEST_ENVIRONMENT}
-    Run Process    echo "The ${TEST_NAME} failed in the ${TEST_ENVIRONMENT} environment." | slacktee.sh -i :nerd_face: --plain-text --config /rfw/Shared-Resources/.slacktee    shell=True    timeout=20s    on_timeout=continue
+    Run Process    echo "The ${TEST_NAME} failed in the ${TEST_ENVIRONMENT} environment." | slacktee.sh -i :nerd_face: --plain-text --config ${EXECDIR}/Workshop-Examples/Shared-Resources/.slacktee    shell=True    timeout=20s    on_timeout=continue
     Send Email Notification    ## You might want to include these in the email message -> ${TEST_NAME}    ${TEST_ENVIRONMENT}
