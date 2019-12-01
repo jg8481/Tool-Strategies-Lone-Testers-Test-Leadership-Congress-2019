@@ -2,7 +2,7 @@
 
 ## General Information
 
-This repo contains all of the examples that will be covered in the "Test tool strategies for lone testers" presentation. More information about this Test Leadership Congress 2019 presentation can be found here... https://testleadershipcongress2019.sched.com/event/O5Zg/test-tool-strategies-for-lone-testers
+This [repo](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019) contains all of the examples that will be covered in the "Test tool strategies for lone testers" presentation. More information about this Test Leadership Congress 2019 presentation can be found here... https://testleadershipcongress2019.sched.com/event/O5Zg/test-tool-strategies-for-lone-testers
 
 The following are the basic technical requirements to run the examples during the presentation.
 - Docker CE
@@ -89,7 +89,7 @@ Part Three of the presentations covers the following dashboards.
 
 The following additional examples are for future webinars and workshops. Some of these examples require Appium, iOS Simulators, and Android Emulators to be installed.
 
-[US Robot Framework Community Webinars](https://www.meetup.com/East-Coast-Robot-Framework-Users/events/263579734/) - August 22, 2019 
+[US Robot Framework Community Webinars](https://www.meetup.com/East-Coast-Robot-Framework-Users/events/263579734/) - August 22, 2019
 - Commands used to run the examples for this webinar.
   ```
   ./start-specific-docker-example-workflows-for-workshop.sh Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example
