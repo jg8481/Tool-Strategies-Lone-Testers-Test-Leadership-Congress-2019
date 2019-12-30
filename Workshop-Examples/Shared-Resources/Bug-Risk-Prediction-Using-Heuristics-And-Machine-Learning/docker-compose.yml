@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  bug-risk-prediction-machine-learning-runner:
+    build:
+      context: .
+      dockerfile: "Dockerfile.GitRisky"
+    volumes:
+      - "./Bug-Risk-Prediction-Docker-Container:/rfw"
+    environment:
+      ##Example #1, remove this comment to use it or copy the URL.## - TARGET_GITHUB_REPO_URL=https://github.com/OWASP/OWASPWebGoatPHP
+      ##Example #2, remove this comment to use it or copy the URL.## - TARGET_GITHUB_REPO_URL=https://github.com/OWASP/igoat
+      ##Example #3, remove this comment to use it or copy the URL.## - TARGET_GITHUB_REPO_URL=https://github.com/jerryhoff/WebGoat.NET
+      ##Example #4, remove this comment to use it or copy the URL.## - TARGET_GITHUB_REPO_URL=https://github.com/OWASP/Serverless-Goat
+      - TARGET_GITHUB_REPO_URL=https://github.com/OWASP/OWASPWebGoatPHP
+    container_name: bug-risk-prediction-machine-learning-runner
+

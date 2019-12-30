@@ -1,0 +1,32 @@
+FROM python:3.5-jessie
+MAINTAINER Joshua Gorospe <joshua.gorospe@gmail.com>
+
+# No interactive frontend during Docker build
+ENV DEBIAN_FRONTEND=noninteractive \
+    DEBCONF_NONINTERACTIVE_SEEN=true
+
+#==============
+# Install apt-get dependencies
+#==============
+RUN apt-get update \
+  && apt-get install -y apt-utils
+
+#==============
+# Install other Docker test container dependencies
+#==============
+RUN apt-get update && apt-get install --no-install-recommends -y \
+  && apt-get install -y ca-certificates \
+  && apt-get install -y mercurial \
+  && apt-get install -y git-core \
+  && apt-get clean \
+  && apt-get update --fix-missing
+
+#==============
+# Install Python 3 Packages
+#==============
+RUN pip install gitrisky
+
+COPY commands-running-inside-a-docker-container.sh /usr/local/bin/commands-running-inside-a-docker-container.sh
+RUN chmod +x /usr/local/bin/commands-running-inside-a-docker-container.sh
+
+CMD ["commands-running-inside-a-docker-container.sh"]
