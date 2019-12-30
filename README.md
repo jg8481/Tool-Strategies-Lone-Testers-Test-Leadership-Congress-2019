@@ -119,6 +119,8 @@ After installing Appium try running ``appium-doctor``. If any warnings show up p
 [RoboCon 2020 Workshop](https://robocon.io/#strategies-for-creating-your-own-conversational-test-assistant-with-robot-framework-and-other-tools) - January 14, 2020
 - Commands used to run the example for this webinar.
   ```
+  git clone https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019.git
+  cd Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/Workshop-Examples/Shared-Resources/Bug-Risk-Prediction-Using-Heuristics-And-Machine-Learning
   ./start-bug-risk-prediction-docker-container.sh
   ```
 
