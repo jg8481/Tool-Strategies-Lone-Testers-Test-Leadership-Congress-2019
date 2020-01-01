@@ -3,7 +3,7 @@
 
 GIT_LOG_HISTORY_AMOUNT=500
 export GIT_LOG_HISTORY_AMOUNT
-
+TIMESTAMP1=$(date)
 rm -rf ./rfw/Target-GitHub-Repo
 echo "The following GitHub Repo will be cloned and analyzed --> $TARGET_GITHUB_REPO_URL"
 git clone "$TARGET_GITHUB_REPO_URL".git ./rfw/Target-GitHub-Repo &&
