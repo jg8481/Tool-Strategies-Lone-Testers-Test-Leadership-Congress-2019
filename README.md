@@ -117,7 +117,7 @@ Use the following information to help set up the basic Appium requirements:
 After installing Appium try running ``appium-doctor``. If any warnings show up please follow the instructions.
 
 [RoboCon 2020 Workshop](https://robocon.io/#strategies-for-creating-your-own-conversational-test-assistant-with-robot-framework-and-other-tools) - January 14, 2020
-- Commands used to run the example for this webinar.
+- Commands used to run the example for this workshop.
   ```
   git clone https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019.git
   cd Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/Workshop-Examples/Shared-Resources/Bug-Risk-Prediction-Using-Heuristics-And-Machine-Learning
