@@ -1,4 +1,4 @@
-FROM python:3.5-jessie
+FROM python:3.6-slim-stretch
 MAINTAINER Joshua Gorospe <joshua.gorospe@gmail.com>
 
 USER root
@@ -8,9 +8,7 @@ USER root
 #COPY ./Workshop-Examples /rfw
 
 # Customize sources for apt-get
-RUN  echo "deb http://deb.debian.org/debian jessie main contrib non-free\n" > /etc/apt/sources.list \
-  && echo "deb http://deb.debian.org/debian jessie-updates main contrib non-free\n" >> /etc/apt/sources.list \
-  && echo "deb http://security.debian.org/ jessie/updates main contrib non-free\n" >> /etc/apt/sources.list
+RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 
 # No interactive frontend during docker build
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -25,6 +23,11 @@ RUN apt-get update --fix-missing -y && apt-get install --no-install-recommends -
     git-core \
     gettext \
 && mv /usr/bin/envsubst /usr/local/sbin/envsubst
+
+RUN apt-get update && \
+ apt-get -y upgrade && \
+ mkdir -p /usr/share/man/man1 && \
+ apt-get -y install openjdk-11-jre-headless
 
 RUN apt-get update && apt-get install --no-install-recommends -y
 RUN apt-get -y upgrade
@@ -53,19 +56,8 @@ RUN apt-get install -y \
 RUN git clone https://gitlab.com/akihe/radamsa.git && cd radamsa && make && make install
 
 # Install Newman, a Postman CLI tool
-RUN curl -sL https://deb.nodesource.com/setup_8.x --retry 2 | bash
+RUN curl -sL https://deb.nodesource.com/setup_10.x --retry 2 | bash
 RUN apt-get install -y nodejs && npm install -g newman && npm install crapify -g && npm i newman && npm install --save newman-reporter-text
-
-# Includes minimal runtime used for executing non GUI Java programs
-RUN apt-get -y update \
-  && apt-get -y install \
-    ca-certificates-java \
-  && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-RUN apt-get -y update \
-  && apt-get -y install \
-    openjdk-7-jre-headless \
-  && sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' \
-    ./usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security
 
 RUN curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq --retry 2 \
   && chmod +x /usr/local/bin/jq \
@@ -75,9 +67,9 @@ RUN curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq -
   && bash ./slacktee/install.sh /usr/bin
 
 # Check for new versions on http://graphwalker.github.io
-RUN wget http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.2.jar \
-  && cp graphwalker-cli-3.4.2.jar /usr/bin/ \
-  && chmod +x /usr/bin/graphwalker-cli-3.4.2.jar
+RUN wget https://github.com/GraphWalker/graphwalker-project/releases/download/4.1.0/graphwalker-cli-4.1.0.jar \
+  && cp graphwalker-cli-4.1.0.jar /usr/bin/ \
+  && chmod +x /usr/bin/graphwalker-cli-4.1.0.jar
 
 EXPOSE 9000
 
