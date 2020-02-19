@@ -3,7 +3,7 @@ MAINTAINER Joshua Gorospe <joshua.gorospe@gmail.com>
 
 USER root
 
-# Un-comment the following two lines if you are not running this container in Amazon ECS or in Kubernetes.
+# Un-comment the following two lines if you are running this container in Amazon ECS or in Kubernetes.
 #RUN mkdir /rfw
 #COPY ./Workshop-Examples /rfw
 
