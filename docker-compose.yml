@@ -71,3 +71,25 @@ services:
     ports:
       - "9088:9088"
     network_mode: "bridge"
+
+  docker-kali-linux-test-runner:
+    build:
+      context: .
+      dockerfile: "Dockerfile.KaliLinux"
+    volumes:
+      - "./Workshop-Examples:/rfw"
+    command: -inMemory
+    network_mode: "bridge"
+
+  docker-owasp-zap-test-runner:
+    build:
+      context: .
+      dockerfile: "Dockerfile.OWASPZap"
+    volumes:
+      - "./Workshop-Examples:/rfw"
+    ports:
+      - "8080:8080"
+      - "8090:8090"
+    command: -inMemory
+    network_mode: "bridge"
+

@@ -202,6 +202,10 @@ if [ "$1" == "Robot-Framework-Mobile-Web-Test-Example" ]; then
   echo
   rm -rf ./Workshop-Examples/.pabotsuitenames
   rm -rf ./Workshop-Examples/Workshop-Part-Three/pabot_results
+  pip install virtualenv --user
+  virtualenv -p python3 venv
+  source venv/bin/activate
+  pip install -r ./Workshop-Examples/Tests/Workshop-Part-Two/Resources/requirements.txt
   #pabot --verbose --processes 3 -d ./Workshop-Examples/Workshop-Part-Three/ ./tests-desktop-firefox/*1.robot ./tests-desktop-safari/*1.robot ./tests-desktop-chrome/*1.robot && open ./results/log.html
   pabot --verbose --processes 3 --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
   #robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --include Smoke_Tests --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*

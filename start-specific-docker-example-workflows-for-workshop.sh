@@ -322,6 +322,38 @@ if [ "$1" == "Remote-Selenium-Process-Triggered-By-A-Webhook-Docker-Example" ]; 
   echo "This test run ended on $TIMESTAMP2."
 fi
 
+if [ "$1" == "Run-Kali-Linux-Tests" ]; then
+  echo
+  echo "------------------------------------[[[[ Test Tool Docker Container - Part Two - Kali Linux Examples ]]]]------------------------------------"
+  echo
+  echo "This Docker Container will run various security and pentration tests on a target URL, using Kali Linux test tools combined with Robot Framework. This run started on $TIMESTAMP."
+  echo
+  docker-compose -f docker-compose.yml down
+  docker-compose -f docker-compose.yml rm -f
+  docker-compose -f docker-compose.yml build
+  docker-compose run docker-kali-linux-test-runner commands-running-inside-a-docker-container-security-penetration.sh Run-Kali-Linux-Tests
+  docker stop $(docker ps -a -q) &&
+  docker rm $(docker ps -a -q)
+  TIMESTAMP2=$(date)
+  echo "This test run ended on $TIMESTAMP2."
+fi
+
+if [ "$1" == "Run-OWASP-Zap-Tests" ]; then
+  echo
+  echo "------------------------------------[[[[ Test Tool Docker Container - Part Two - OWASP Zap Examples ]]]]------------------------------------"
+  echo
+  echo "This Docker Container will run various security and pentration tests on a target URL, using OWASP Zap proxy and scanners combined with Robot Framework. This run started on $TIMESTAMP."
+  echo
+  docker-compose -f docker-compose.yml down
+  docker-compose -f docker-compose.yml rm -f
+  docker-compose -f docker-compose.yml build
+  docker-compose run docker-owasp-zap-test-runner commands-running-inside-a-docker-container-security-penetration.sh Run-OWASP-Zap-Tests
+  docker stop $(docker ps -a -q) &&
+  docker rm $(docker ps -a -q)
+  TIMESTAMP2=$(date)
+  echo "This test run ended on $TIMESTAMP2."
+fi
+
 usage_explanation() {
   echo
   echo

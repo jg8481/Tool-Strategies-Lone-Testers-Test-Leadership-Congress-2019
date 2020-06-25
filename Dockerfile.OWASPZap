@@ -1,0 +1,34 @@
+FROM owasp/zap2docker-weekly
+MAINTAINER Joshua Gorospe <joshua.gorospe@gmail.com>
+
+USER zap
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN python3 -m pip install pip --upgrade --no-warn-script-location
+RUN python3 -m pip install robotframework --no-warn-script-location
+RUN python3 -m pip install --upgrade robotframework-seleniumlibrary --no-warn-script-location
+RUN python3 -m pip install webdrivermanager --no-warn-script-location
+
+USER root
+
+RUN apt-get -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
+RUN apt-get install -y curl
+RUN curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq && \
+  chmod a+x /usr/local/bin/jq
+
+ADD commands-running-inside-a-docker-container-security-penetration.sh /usr/local/bin/commands-running-inside-a-docker-container-security-penetration.sh
+RUN chmod a+x /usr/local/bin/commands-running-inside-a-docker-container-security-penetration.sh
+
+RUN chmod a+x /usr/bin/firefox
+RUN chmod a+x /usr/lib/firefox
+RUN chmod a+x /etc/firefox
+RUN chmod a+x /home/zap/.local/bin/webdrivermanager
+
+RUN /home/zap/.local/bin/webdrivermanager firefox --linkpath /usr/local/bin
+RUN chmod a+x /usr/local/share/WebDriverManager/gecko/v0.26.0/geckodriver-v0.26.0-linux64/geckodriver
+RUN chmod a+x /usr/local/bin/geckodriver
+
+USER zap
+
+CMD ["commands-running-inside-a-docker-container-security-penetration.sh"]

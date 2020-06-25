@@ -1,0 +1,33 @@
+FROM kalilinux/kali-rolling
+MAINTAINER Joshua Gorospe <joshua.gorospe@gmail.com>
+
+RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list && \
+echo "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get -y update && apt-get -y dist-upgrade && apt-get clean
+
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    ca-certificates \
+    mercurial \
+    dnsutils \
+    systemd \
+    git-core
+
+RUN apt-get install python3 -y
+RUN apt-get install python3-dev -y
+RUN apt-get install python3-pip -y
+RUN python3 -m pip install pip --upgrade
+RUN python3 -m pip install wheel
+RUN python3 -m pip install robotframework
+RUN python3 -m pip install --upgrade robotframework-seleniumlibrary
+RUN git clone https://github.com/vulnersCom/nmap-vulners /usr/share/nmap/scripts/vulners
+
+RUN apt-get -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
+
+RUN apt-get update && apt-get install --no-install-recommends -y kali-tools-top10
+
+ADD commands-running-inside-a-docker-container-security-penetration.sh /usr/local/bin/commands-running-inside-a-docker-container-security-penetration.sh
+RUN chmod +x /usr/local/bin/commands-running-inside-a-docker-container-security-penetration.sh
+
+CMD ["commands-running-inside-a-docker-container-security-penetration.sh"]

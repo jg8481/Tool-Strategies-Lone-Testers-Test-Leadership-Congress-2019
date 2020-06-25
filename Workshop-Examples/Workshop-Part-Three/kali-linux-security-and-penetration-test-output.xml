@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.8.3 on linux)" generated="20200625 16:33:47.159" rpa="false">
+<suite id="s1" name="Kali Linux Security And Penetration Tests" source="/rfw/Tests/Workshop-Part-Two/Kali-Linux-Security-And-Penetration-Tests.robot">
+<kw name="Generate Nmap XML Target File And Start Metasploit Database" library="Security-And-Penetration-Test-Resources" type="setup">
+<kw name="Run Nmap Scan To Generate XML Target File" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>nodegoat.herokuapp.com</arg>
+</arguments>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml</arg>
+</arguments>
+<msg timestamp="20200625 16:33:47.423" level="INFO" html="yes">File '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" starttime="20200625 16:33:47.421" endtime="20200625 16:33:47.423"></status>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<doc>Runs the given command in the system and returns the output.</doc>
+<arguments>
+<arg>nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml "${TARGET_URL}"</arg>
+</arguments>
+<msg timestamp="20200625 16:33:47.427" level="INFO">Running command 'nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml "nodegoat.herokuapp.com" 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20200625 16:33:47.423" endtime="20200625 16:34:16.888"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>${GLOBAL_RETRY_AMOUNT}x</arg>
+<arg>4s</arg>
+<arg>Check Metasploit XML File Contents</arg>
+</arguments>
+<kw name="Check Metasploit XML File Contents" library="Security-And-Penetration-Test-Resources">
+<kw name="File Should Exist" library="OperatingSystem">
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.893" level="INFO" html="yes">File '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml&lt;/a&gt;' exists.</msg>
+<status status="PASS" starttime="20200625 16:34:16.889" endtime="20200625 16:34:16.893"></status>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml</arg>
+</arguments>
+<assign>
+<var>${METASPLOIT_XML_FILE_CONTENTS}</var>
+</assign>
+<msg timestamp="20200625 16:34:16.894" level="INFO" html="yes">Getting file '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml&lt;/a&gt;'.</msg>
+<msg timestamp="20200625 16:34:16.897" level="INFO">${METASPLOIT_XML_FILE_CONTENTS} = &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE nmaprun&gt;
+&lt;?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?&gt;
+&lt;!-- Nmap 7.80 scan initiated Thu Jun 25 16:33:47 2020 as: nm...</msg>
+<status status="PASS" starttime="20200625 16:34:16.893" endtime="20200625 16:34:16.897"></status>
+</kw>
+<kw name="File Should Not Be Empty" library="OperatingSystem">
+<doc>Fails if the specified directory is empty.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.898" level="INFO" html="yes">File '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml&lt;/a&gt;' contains 13479 bytes.</msg>
+<status status="PASS" starttime="20200625 16:34:16.897" endtime="20200625 16:34:16.898"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${METASPLOIT_XML_FILE_CONTENTS}</arg>
+<arg>finished</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.899" endtime="20200625 16:34:16.899"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${METASPLOIT_XML_FILE_CONTENTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.900" level="INFO">${METASPLOIT_XML_FILE_CONTENTS} = &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE nmaprun&gt;
+&lt;?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?&gt;
+&lt;!-- Nmap 7.80 scan initiated Thu Jun 25 16:33:47 2020 as: nm...</msg>
+<status status="PASS" starttime="20200625 16:34:16.899" endtime="20200625 16:34:16.900"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:16.889" endtime="20200625 16:34:16.900"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:16.888" endtime="20200625 16:34:16.900"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.900" endtime="20200625 16:34:16.901"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.901" endtime="20200625 16:34:16.901"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Nmap XML File has been generated and will be used as a Target File imported into the Metasploit Database.</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.901" endtime="20200625 16:34:16.902"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${METASPLOIT_XML_FILE_CONTENTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.903" level="INFO">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE nmaprun&gt;
+&lt;?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?&gt;
+&lt;!-- Nmap 7.80 scan initiated Thu Jun 25 16:33:47 2020 as: nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml nodegoat.herokuapp.com --&gt;
+&lt;nmaprun scanner="nmap" args="nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml nodegoat.herokuapp.com" start="1593102827" startstr="Thu Jun 25 16:33:47 2020" version="7.80" xmloutputversion="1.04"&gt;
+&lt;scaninfo type="syn" protocol="tcp" numservices="1000" services="1,3-4,6-7,9,13,17,19-26,30,32-33,37,42-43,49,53,70,79-85,88-90,99-100,106,109-111,113,119,125,135,139,143-144,146,161,163,179,199,211-212,222,254-256,259,264,280,301,306,311,340,366,389,406-407,416-417,425,427,443-445,458,464-465,481,497,500,512-515,524,541,543-545,548,554-555,563,587,593,616-617,625,631,636,646,648,666-668,683,687,691,700,705,711,714,720,722,726,749,765,777,783,787,800-801,808,843,873,880,888,898,900-903,911-912,981,987,990,992-993,995,999-1002,1007,1009-1011,1021-1100,1102,1104-1108,1110-1114,1117,1119,1121-1124,1126,1130-1132,1137-1138,1141,1145,1147-1149,1151-1152,1154,1163-1166,1169,1174-1175,1183,1185-1187,1192,1198-1199,1201,1213,1216-1218,1233-1234,1236,1244,1247-1248,1259,1271-1272,1277,1287,1296,1300-1301,1309-1311,1322,1328,1334,1352,1417,1433-1434,1443,1455,1461,1494,1500-1501,1503,1521,1524,1533,1556,1580,1583,1594,1600,1641,1658,1666,1687-1688,1700,1717-1721,1723,1755,1761,1782-1783,1801,1805,1812,1839-1840,1862-1864,1875,1900,1914,1935,1947,1971-1972,1974,1984,1998-2010,2013,2020-2022,2030,2033-2035,2038,2040-2043,2045-2049,2065,2068,2099-2100,2103,2105-2107,2111,2119,2121,2126,2135,2144,2160-2161,2170,2179,2190-2191,2196,2200,2222,2251,2260,2288,2301,2323,2366,2381-2383,2393-2394,2399,2401,2492,2500,2522,2525,2557,2601-2602,2604-2605,2607-2608,2638,2701-2702,2710,2717-2718,2725,2800,2809,2811,2869,2875,2909-2910,2920,2967-2968,2998,3000-3001,3003,3005-3007,3011,3013,3017,3030-3031,3052,3071,3077,3128,3168,3211,3221,3260-3261,3268-3269,3283,3300-3301,3306,3322-3325,3333,3351,3367,3369-3372,3389-3390,3404,3476,3493,3517,3527,3546,3551,3580,3659,3689-3690,3703,3737,3766,3784,3800-3801,3809,3814,3826-3828,3851,3869,3871,3878,3880,3889,3905,3914,3918,3920,3945,3971,3986,3995,3998,4000-4006,4045,4111,4125-4126,4129,4224,4242,4279,4321,4343,4443-4446,4449,4550,4567,4662,4848,4899-4900,4998,5000-5004,5009,5030,5033,5050-5051,5054,5060-5061,5080,5087,5100-5102,5120,5190,5200,5214,5221-5222,5225-5226,5269,5280,5298,5357,5405,5414,5431-5432,5440,5500,5510,5544,5550,5555,5560,5566,5631,5633,5666,5678-5679,5718,5730,5800-5802,5810-5811,5815,5822,5825,5850,5859,5862,5877,5900-5904,5906-5907,5910-5911,5915,5922,5925,5950,5952,5959-5963,5987-5989,5998-6007,6009,6025,6059,6100-6101,6106,6112,6123,6129,6156,6346,6389,6502,6510,6543,6547,6565-6567,6580,6646,6666-6669,6689,6692,6699,6779,6788-6789,6792,6839,6881,6901,6969,7000-7002,7004,7007,7019,7025,7070,7100,7103,7106,7200-7201,7402,7435,7443,7496,7512,7625,7627,7676,7741,7777-7778,7800,7911,7920-7921,7937-7938,7999-8002,8007-8011,8021-8022,8031,8042,8045,8080-8090,8093,8099-8100,8180-8181,8192-8194,8200,8222,8254,8290-8292,8300,8333,8383,8400,8402,8443,8500,8600,8649,8651-8652,8654,8701,8800,8873,8888,8899,8994,9000-9003,9009-9011,9040,9050,9071,9080-9081,9090-9091,9099-9103,9110-9111,9200,9207,9220,9290,9415,9418,9485,9500,9502-9503,9535,9575,9593-9595,9618,9666,9876-9878,9898,9900,9917,9929,9943-9944,9968,9998-10004,10009-10010,10012,10024-10025,10082,10180,10215,10243,10566,10616-10617,10621,10626,10628-10629,10778,11110-11111,11967,12000,12174,12265,12345,13456,13722,13782-13783,14000,14238,14441-14442,15000,15002-15004,15660,15742,16000-16001,16012,16016,16018,16080,16113,16992-16993,17877,17988,18040,18101,18988,19101,19283,19315,19350,19780,19801,19842,20000,20005,20031,20221-20222,20828,21571,22939,23502,24444,24800,25734-25735,26214,27000,27352-27353,27355-27356,27715,28201,30000,30718,30951,31038,31337,32768-32785,33354,33899,34571-34573,35500,38292,40193,40911,41511,42510,44176,44442-44443,44501,45100,48080,49152-49161,49163,49165,49167,49175-49176,49400,49999-50003,50006,50300,50389,50500,50636,50800,51103,51493,52673,52822,52848,52869,54045,54328,55055-55056,55555,55600,56737-56738,57294,57797,58080,60020,60443,61532,61900,62078,63331,64623,64680,65000,65129,65389"/&gt;
+&lt;verbose level="0"/&gt;
+&lt;debugging level="0"/&gt;
+&lt;host starttime="1593102828" endtime="1593102856"&gt;&lt;status state="up" reason="user-set" reason_ttl="0"/&gt;
+&lt;address addr="34.236.40.25" addrtype="ipv4"/&gt;
+&lt;hostnames&gt;
+&lt;hostname name="nodegoat.herokuapp.com" type="user"/&gt;
+&lt;hostname name="ec2-34-236-40-25.compute-1.amazonaws.com" type="PTR"/&gt;
+&lt;/hostnames&gt;
+&lt;ports&gt;&lt;extraports state="filtered" count="998"&gt;
+&lt;extrareasons reason="no-responses" count="998"/&gt;
+&lt;/extraports&gt;
+&lt;port protocol="tcp" portid="80"&gt;&lt;state state="open" reason="syn-ack" reason_ttl="37"/&gt;&lt;service name="http" product="Cowboy httpd" method="probed" conf="10"&gt;&lt;cpe&gt;cpe:/a:ninenines:cowboy&lt;/cpe&gt;&lt;/service&gt;&lt;script id="http-server-header" output="Cowboy"&gt;&lt;elem&gt;Cowboy&lt;/elem&gt;
+&lt;/script&gt;&lt;script id="http-title" output="OWASP Node Goat&amp;#xa;Requested resource was /login"&gt;&lt;elem key="title"&gt;OWASP Node Goat&lt;/elem&gt;
+&lt;elem key="redirect_url"&gt;/login&lt;/elem&gt;
+&lt;/script&gt;&lt;/port&gt;
+&lt;port protocol="tcp" portid="443"&gt;&lt;state state="open" reason="syn-ack" reason_ttl="37"/&gt;&lt;service name="http" product="Cowboy httpd" tunnel="ssl" method="probed" conf="10"&gt;&lt;cpe&gt;cpe:/a:ninenines:cowboy&lt;/cpe&gt;&lt;/service&gt;&lt;script id="http-server-header" output="Cowboy"&gt;&lt;elem&gt;Cowboy&lt;/elem&gt;
+&lt;/script&gt;&lt;script id="http-title" output="OWASP Node Goat&amp;#xa;Requested resource was /login"&gt;&lt;elem key="title"&gt;OWASP Node Goat&lt;/elem&gt;
+&lt;elem key="redirect_url"&gt;/login&lt;/elem&gt;
+&lt;/script&gt;&lt;script id="ssl-cert" output="Subject: commonName=*.herokuapp.com/organizationName=Heroku, Inc./stateOrProvinceName=California/countryName=US&amp;#xa;Subject Alternative Name: DNS:*.herokuapp.com, DNS:herokuapp.com&amp;#xa;Not valid before: 2020-06-15T00:00:00&amp;#xa;Not valid after:  2021-07-07T12:00:00"&gt;&lt;table key="subject"&gt;
+&lt;elem key="commonName"&gt;*.herokuapp.com&lt;/elem&gt;
+&lt;elem key="countryName"&gt;US&lt;/elem&gt;
+&lt;elem key="stateOrProvinceName"&gt;California&lt;/elem&gt;
+&lt;elem key="organizationName"&gt;Heroku, Inc.&lt;/elem&gt;
+&lt;elem key="localityName"&gt;San Francisco&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table key="issuer"&gt;
+&lt;elem key="commonName"&gt;DigiCert SHA2 High Assurance Server CA&lt;/elem&gt;
+&lt;elem key="organizationalUnitName"&gt;www.digicert.com&lt;/elem&gt;
+&lt;elem key="countryName"&gt;US&lt;/elem&gt;
+&lt;elem key="organizationName"&gt;DigiCert Inc&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table key="pubkey"&gt;
+&lt;elem key="bits"&gt;2048&lt;/elem&gt;
+&lt;elem key="type"&gt;rsa&lt;/elem&gt;
+&lt;elem key="modulus"&gt;userdata: 0x55bc3cd295b8&lt;/elem&gt;
+&lt;elem key="exponent"&gt;userdata: 0x55bc3cd1c0e8&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table key="extensions"&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;keyid:51:68:FF:90:AF:02:07:75:3C:CC:D9:65:64:62:A2:12:B8:59:72:3B&amp;#xa;&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Authority Key Identifier&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;8B:F5:13:D3:FC:FB:0A:AD:A0:AF:9F:6F:C2:42:C4:D8:47:4C:CB:E5&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Subject Key Identifier&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;DNS:*.herokuapp.com, DNS:herokuapp.com&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Subject Alternative Name&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;Digital Signature, Key Encipherment&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Key Usage&lt;/elem&gt;
+&lt;elem key="critical"&gt;true&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;TLS Web Server Authentication, TLS Web Client Authentication&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Extended Key Usage&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;&amp;#xa;Full Name:&amp;#xa;  URI:http://crl3.digicert.com/sha2-ha-server-g6.crl&amp;#xa;&amp;#xa;Full Name:&amp;#xa;  URI:http://crl4.digicert.com/sha2-ha-server-g6.crl&amp;#xa;&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 CRL Distribution Points&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;Policy: 2.16.840.1.114412.1.1&amp;#xa;  CPS: https://www.digicert.com/CPS&amp;#xa;Policy: 2.23.140.1.2.2&amp;#xa;&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Certificate Policies&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;OCSP - URI:http://ocsp.digicert.com&amp;#xa;CA Issuers - URI:http://cacerts.digicert.com/DigiCertSHA2HighAssuranceServerCA.crt&amp;#xa;&lt;/elem&gt;
+&lt;elem key="name"&gt;Authority Information Access&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;CA:FALSE&lt;/elem&gt;
+&lt;elem key="name"&gt;X509v3 Basic Constraints&lt;/elem&gt;
+&lt;elem key="critical"&gt;true&lt;/elem&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;elem key="value"&gt;Signed Certificate Timestamp:&amp;#xa;    Version   : v1 (0x0)&amp;#xa;    Log ID    : F6:5C:94:2F:D1:77:30:22:14:54:18:08:30:94:56:8E:&amp;#xa;                E3:4D:13:19:33:BF:DF:0C:2F:20:0B:CC:4E:F1:64:E3&amp;#xa;    Timestamp : Jun 15 17:44:19.033 2020 GMT&amp;#xa;    Extensions: none&amp;#xa;    Signature : ecdsa-with-SHA256&amp;#xa;                30:45:02:20:39:8A:E8:8C:54:92:F6:92:D9:5A:F0:F1:&amp;#xa;                C7:C2:DC:3D:FB:3B:1B:54:EA:DC:18:6B:1C:29:40:7C:&amp;#xa;                BA:1A:B0:E3:02:21:00:8F:79:3E:70:23:A5:78:4C:6C:&amp;#xa;                66:2C:C2:C8:4B:57:D7:5E:DD:4A:7A:FC:86:58:9E:EC:&amp;#xa;                D3:C8:F2:1D:1A:37:91&amp;#xa;Signed Certificate Timestamp:&amp;#xa;    Version   : v1 (0x0)&amp;#xa;    Log ID    : 5C:DC:43:92:FE:E6:AB:45:44:B1:5E:9A:D4:56:E6:10:&amp;#xa;                37:FB:D5:FA:47:DC:A1:73:94:B2:5E:E6:F6:C7:0E:CA&amp;#xa;    Timestamp : Jun 15 17:44:19.063 2020 GMT&amp;#xa;    Extensions: none&amp;#xa;    Signature : ecdsa-with-SHA256&amp;#xa;                30:45:02:21:00:B6:46:D0:D7:26:A0:16:70:A1:34:B1:&amp;#xa;                45:30:73:B3:64:1A:9C:D2:55:0A:E2:8B:15:E9:34:97:&amp;#xa;                7A:B1:7E:E6:37:02:20:4C:3D:D5:A0:04:FF:FA:A3:21:&amp;#xa;                43:78:82:8C:6C:8F:43:C2:92:52:8F:44:92:27:04:55:&amp;#xa;                65:48:28:88:72:E8:27&lt;/elem&gt;
+&lt;elem key="name"&gt;CT Precertificate SCTs&lt;/elem&gt;
+&lt;/table&gt;
+&lt;/table&gt;
+&lt;elem key="sig_algo"&gt;sha256WithRSAEncryption&lt;/elem&gt;
+&lt;table key="validity"&gt;
+&lt;elem key="notBefore"&gt;2020-06-15T00:00:00&lt;/elem&gt;
+&lt;elem key="notAfter"&gt;2021-07-07T12:00:00&lt;/elem&gt;
+&lt;/table&gt;
+&lt;elem key="md5"&gt;91a3722feda2e8693eeca524e838f561&lt;/elem&gt;
+&lt;elem key="sha1"&gt;94fcf6236c37d5e792783c0b5fad0ce49efd9ea8&lt;/elem&gt;
+&lt;elem key="pem"&gt;-&amp;#45;&amp;#45;&amp;#45;&amp;#45;BEGIN CERTIFICATE-&amp;#45;&amp;#45;&amp;#45;&amp;#45;&amp;#xa;MIIGZjCCBU6gAwIBAgIQDVfRCxEpKjxm383POui+ZTANBgkqhkiG9w0BAQsFADBw&amp;#xa;MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3&amp;#xa;d3cuZGlnaWNlcnQuY29tMS8wLQYDVQQDEyZEaWdpQ2VydCBTSEEyIEhpZ2ggQXNz&amp;#xa;dXJhbmNlIFNlcnZlciBDQTAeFw0yMDA2MTUwMDAwMDBaFw0yMTA3MDcxMjAwMDBa&amp;#xa;MGsxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T&amp;#xa;YW4gRnJhbmNpc2NvMRUwEwYDVQQKEwxIZXJva3UsIEluYy4xGDAWBgNVBAMMDyou&amp;#xa;aGVyb2t1YXBwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMnN&amp;#xa;1rH4ObYuY5NHb+xV4VV30Z+dxpkScWFWyi4yN86eTOA99A9FduC00UDgtMwaDD/r&amp;#xa;6LVftlaY0ymKKa4+O24PEH5MrqR919yJNS2i+llJ0xQHthlKsW9GHuyyeOi6ZpK7&amp;#xa;cPGuatR+Z5gwjGxPoMEyt1szMX8BUZpsH+/9SJ2zlC0pTm3P06QOZbkQEziQwtOW&amp;#xa;Pj7285ZZUGHCcfb/1dYjJpxUism8p9TAIZnW6UgZ487r612HFJYFfS3bCHnS4Jsk&amp;#xa;TsSUg7AuJz7Px46AAKuGJ8CoV9A1GHAq0ngFwph7i6tQIgAxSsniXHz94/JgZimj&amp;#xa;5rn10dbXU28TjpXQdYECAwEAAaOCAv8wggL7MB8GA1UdIwQYMBaAFFFo/5CvAgd1&amp;#xa;PMzZZWRiohK4WXI7MB0GA1UdDgQWBBSL9RPT/PsKraCvn2/CQsTYR0zL5TApBgNV&amp;#xa;HREEIjAggg8qLmhlcm9rdWFwcC5jb22CDWhlcm9rdWFwcC5jb20wDgYDVR0PAQH/&amp;#xa;BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjB1BgNVHR8EbjBs&amp;#xa;MDSgMqAwhi5odHRwOi8vY3JsMy5kaWdpY2VydC5jb20vc2hhMi1oYS1zZXJ2ZXIt&amp;#xa;ZzYuY3JsMDSgMqAwhi5odHRwOi8vY3JsNC5kaWdpY2VydC5jb20vc2hhMi1oYS1z&amp;#xa;ZXJ2ZXItZzYuY3JsMEwGA1UdIARFMEMwNwYJYIZIAYb9bAEBMCowKAYIKwYBBQUH&amp;#xa;AgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwCAYGZ4EMAQICMIGDBggr&amp;#xa;BgEFBQcBAQR3MHUwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNv&amp;#xa;bTBNBggrBgEFBQcwAoZBaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0RpZ2lD&amp;#xa;ZXJ0U0hBMkhpZ2hBc3N1cmFuY2VTZXJ2ZXJDQS5jcnQwDAYDVR0TAQH/BAIwADCC&amp;#xa;AQQGCisGAQQB1nkCBAIEgfUEgfIA8AB2APZclC/RdzAiFFQYCDCUVo7jTRMZM7/f&amp;#xa;DC8gC8xO8WTjAAABcrkU+VkAAAQDAEcwRQIgOYrojFSS9pLZWvDxx8LcPfs7G1Tq&amp;#xa;3BhrHClAfLoasOMCIQCPeT5wI6V4TGxmLMLIS1fXXt1KevyGWJ7s08jyHRo3kQB2&amp;#xa;AFzcQ5L+5qtFRLFemtRW5hA3+9X6R9yhc5SyXub2xw7KAAABcrkU+XcAAAQDAEcw&amp;#xa;RQIhALZG0NcmoBZwoTSxRTBzs2QanNJVCuKLFek0l3qxfuY3AiBMPdWgBP/6oyFD&amp;#xa;eIKMbI9DwpJSj0SSJwRVZUgoiHLoJzANBgkqhkiG9w0BAQsFAAOCAQEAaRSAbyG8&amp;#xa;kJqnb4l8gjFFAOojEZgFeqmaZHJQlsKLfxq6DcNvXmwDGQ/xDmi1GnzjE5wAsjlT&amp;#xa;bfAIxUwsPt0uJiMzw9lONcTAWRHd2c1CPrsz/pZivGRo/O560MAotgBta057W4zJ&amp;#xa;YUQiqVPUjjhg/5sM5K1ATR4VDqvV1NEWUlMoY1rQogzlFp1z56L4E1KPnXByI9mh&amp;#xa;igFuhOsnqa9EkDgQHmBl0YX07XJeGtgvNyvGTmamLkBLdB51ERvd0di6f2piWvOZ&amp;#xa;VElwmiwO/IhWSiotO6ZYnYXw2qUyDOeHSKHAXZPqGPoB94bGZB3OqbxYn2DkFiZx&amp;#xa;FVgTiv7/jzinqg==&amp;#xa;-&amp;#45;&amp;#45;&amp;#45;&amp;#45;END CERTIFICATE-&amp;#45;&amp;#45;&amp;#45;&amp;#45;&amp;#xa;&lt;/elem&gt;
+&lt;/script&gt;&lt;script id="ssl-date" output="TLS randomness does not represent time"&gt;&lt;/script&gt;&lt;/port&gt;
+&lt;/ports&gt;
+&lt;os&gt;&lt;portused state="open" proto="tcp" portid="80"/&gt;
+&lt;/os&gt;
+&lt;distance value="2"/&gt;
+&lt;tcpsequence index="136" difficulty="Good luck!" values="1AFE5237,1AFECB02,1AFEF09C,1AFE6502,1AFEDF07,1AFEC283"/&gt;
+&lt;ipidsequence class="Randomized" values="30C8,27C2,FC5F,EE03,A6BF,8FF"/&gt;
+&lt;tcptssequence class="none returned (unsupported)"/&gt;
+&lt;trace port="443" proto="tcp"&gt;
+&lt;hop ttl="1" ipaddr="172.17.0.1" rtt="0.13"/&gt;
+&lt;hop ttl="2" ipaddr="34.236.40.25" rtt="22.60" host="ec2-34-236-40-25.compute-1.amazonaws.com"/&gt;
+&lt;/trace&gt;
+&lt;times srtt="18020" rttvar="8623" to="100000"/&gt;
+&lt;/host&gt;
+&lt;runstats&gt;&lt;finished time="1593102856" timestr="Thu Jun 25 16:34:16 2020" elapsed="29.41" summary="Nmap done at Thu Jun 25 16:34:16 2020; 1 IP address (1 host up) scanned in 29.41 seconds" exit="success"/&gt;&lt;hosts up="1" down="0" total="1"/&gt;
+&lt;/runstats&gt;
+&lt;/nmaprun&gt;
+</msg>
+<status status="PASS" starttime="20200625 16:34:16.902" endtime="20200625 16:34:16.904"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.905" endtime="20200625 16:34:16.905"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:33:47.420" endtime="20200625 16:34:16.905"></status>
+</kw>
+<kw name="Run Dig DNS Lookup Utility Tool To Get Metasploit RHOSTS Target IP" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>nodegoat.herokuapp.com</arg>
+</arguments>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.908" level="INFO" html="yes">File '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" starttime="20200625 16:34:16.906" endtime="20200625 16:34:16.908"></status>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<doc>Runs the given command in the system and returns the output.</doc>
+<arguments>
+<arg>dig +short "${TARGET_URL}" | head -1 &gt; ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.911" level="INFO">Running command 'dig +short "nodegoat.herokuapp.com" | head -1 &gt; /rfw//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt'.</msg>
+<status status="PASS" starttime="20200625 16:34:16.909" endtime="20200625 16:34:16.941"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>${GLOBAL_RETRY_AMOUNT}x</arg>
+<arg>4s</arg>
+<arg>Check Metasploit RHOSTS Target IP File Contents</arg>
+</arguments>
+<kw name="Check Metasploit RHOSTS Target IP File Contents" library="Security-And-Penetration-Test-Resources">
+<kw name="File Should Exist" library="OperatingSystem">
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.946" level="INFO" html="yes">File '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt&lt;/a&gt;' exists.</msg>
+<status status="PASS" starttime="20200625 16:34:16.942" endtime="20200625 16:34:16.947"></status>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt</arg>
+</arguments>
+<assign>
+<var>${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS}</var>
+</assign>
+<msg timestamp="20200625 16:34:16.947" level="INFO" html="yes">Getting file '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20200625 16:34:16.951" level="INFO">${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS} = 34.236.40.25
+</msg>
+<status status="PASS" starttime="20200625 16:34:16.947" endtime="20200625 16:34:16.951"></status>
+</kw>
+<kw name="File Should Not Be Empty" library="OperatingSystem">
+<doc>Fails if the specified directory is empty.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.952" level="INFO" html="yes">File '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt&lt;/a&gt;' contains 13 bytes.</msg>
+<status status="PASS" starttime="20200625 16:34:16.951" endtime="20200625 16:34:16.952"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS}</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.953" level="INFO">34.236.40.25
+</msg>
+<status status="PASS" starttime="20200625 16:34:16.952" endtime="20200625 16:34:16.953"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS}</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.954" level="INFO">${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS} = 34.236.40.25
+</msg>
+<status status="PASS" starttime="20200625 16:34:16.953" endtime="20200625 16:34:16.954"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:16.942" endtime="20200625 16:34:16.954"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:16.941" endtime="20200625 16:34:16.954"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.954" endtime="20200625 16:34:16.954"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.954" endtime="20200625 16:34:16.955"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Metasploit RHOSTS IP Target is set for tests that are not using the Metasploit Database. This is the IP...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.955" endtime="20200625 16:34:16.956"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS}</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.956" endtime="20200625 16:34:16.957"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:16.957" endtime="20200625 16:34:16.957"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:16.905" endtime="20200625 16:34:16.957"></status>
+</kw>
+<kw name="Start Metasploit Database And Import Nmap XML Target File" library="Security-And-Penetration-Test-Resources">
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>service postgresql start &amp;&gt;/dev/null</arg>
+<arg>shell=True</arg>
+<arg>timeout=30s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:16.958" level="INFO">Starting process:
+service postgresql start &amp;&gt;/dev/null</msg>
+<msg timestamp="20200625 16:34:16.964" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:34:19.320" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:16.958" endtime="20200625 16:34:19.320"></status>
+</kw>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>msfdb init &amp;&gt;/dev/null</arg>
+<arg>shell=True</arg>
+<arg>timeout=20s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:19.321" level="INFO">Starting process:
+msfdb init &amp;&gt;/dev/null</msg>
+<msg timestamp="20200625 16:34:19.326" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:34:27.357" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:19.321" endtime="20200625 16:34:27.357"></status>
+</kw>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>msfconsole -q -x "db_import /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml; hosts; exit"</arg>
+<arg>shell=True</arg>
+<arg>timeout=30s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:27.358" level="INFO">Starting process:
+msfconsole -q -x "db_import /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml; hosts; exit"</msg>
+<msg timestamp="20200625 16:34:27.363" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:34:37.305" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:27.358" endtime="20200625 16:34:37.305"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:16.958" endtime="20200625 16:34:37.306"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:33:47.420" endtime="20200625 16:34:37.306"></status>
+</kw>
+<test id="s1-t1" name="KALI LINUX TEST 1 - Check that the expected ports are open after running a verbose Nmap port scan on the target URL.">
+<kw name="Run Verbose Nmap Scan On A Target">
+<kw name="Run Nmap Scan With Arguments And Check Results" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>-v</arg>
+<arg>nodegoat.herokuapp.com</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>nmap "${NMAP_SCANNER_TYPE}" "${TARGET_URL}"</arg>
+<arg>alias=nmap_custom_scanner</arg>
+<arg>shell=True</arg>
+<arg>timeout=4min</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:37.312" level="INFO">Starting process:
+nmap "-v" "nodegoat.herokuapp.com"</msg>
+<msg timestamp="20200625 16:34:37.318" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:34:42.073" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:37.311" endtime="20200625 16:34:42.074"></status>
+</kw>
+<kw name="Get Process Result" library="Process">
+<doc>Returns the specified `result object` or some of its attributes.</doc>
+<arguments>
+<arg>nmap_custom_scanner</arg>
+<arg>stdout=true</arg>
+</arguments>
+<assign>
+<var>${NMAP_SCANNER_RESULTS}</var>
+</assign>
+<msg timestamp="20200625 16:34:42.075" level="INFO">${NMAP_SCANNER_RESULTS} = Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-25 16:34 UTC
+Initiating Ping Scan at 16:34
+Scanning nodegoat.herokuapp.com (34.236.40.25) [4 ports]
+Completed Ping Scan at 16:34, 0.02s elapsed (1 to...</msg>
+<status status="PASS" starttime="20200625 16:34:42.074" endtime="20200625 16:34:42.075"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${NMAP_SCANNER_RESULTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:34:42.076" level="INFO">Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-25 16:34 UTC
+Initiating Ping Scan at 16:34
+Scanning nodegoat.herokuapp.com (34.236.40.25) [4 ports]
+Completed Ping Scan at 16:34, 0.02s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 16:34
+Completed Parallel DNS resolution of 1 host. at 16:34, 0.00s elapsed
+Initiating SYN Stealth Scan at 16:34
+Scanning nodegoat.herokuapp.com (34.236.40.25) [1000 ports]
+Discovered open port 80/tcp on 34.236.40.25
+Discovered open port 443/tcp on 34.236.40.25
+Completed SYN Stealth Scan at 16:34, 4.58s elapsed (1000 total ports)
+Nmap scan report for nodegoat.herokuapp.com (34.236.40.25)
+Host is up (0.0048s latency).
+Other addresses for nodegoat.herokuapp.com (not scanned): 54.152.6.249 54.159.198.173 54.83.133.132 18.235.131.250 52.21.209.244 52.206.38.202 52.202.156.180
+rDNS record for 34.236.40.25: ec2-34-236-40-25.compute-1.amazonaws.com
+Not shown: 998 filtered ports
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 4.68 seconds
+           Raw packets sent: 2004 (88.144KB) | Rcvd: 9 (368B)</msg>
+<status status="PASS" starttime="20200625 16:34:42.076" endtime="20200625 16:34:42.077"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${NMAP_SCANNER_RESULTS}</arg>
+<arg>80/tcp</arg>
+<arg>open</arg>
+<arg>http</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:42.077" endtime="20200625 16:34:42.078"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${NMAP_SCANNER_RESULTS}</arg>
+<arg>443/tcp open</arg>
+<arg>https</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:42.078" endtime="20200625 16:34:42.078"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:37.310" endtime="20200625 16:34:42.079"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:37.309" endtime="20200625 16:34:42.079"></status>
+</kw>
+<tags>
+<tag>Kali_Linux_Security_And_Penetration_Tests</tag>
+<tag>Nmap_Scan_Tests</tag>
+</tags>
+<status status="PASS" starttime="20200625 16:34:37.306" endtime="20200625 16:34:42.080" critical="yes"></status>
+</test>
+<test id="s1-t2" name="KALI LINUX TEST 2 - Check that the provided port and target URL do not have any vulnerabilities detected through the Nmap NSE scripts.">
+<kw name="Run Nmap Vulnerability Scan On A Specific Port And Target">
+<kw name="Run Nmap Vulnerability Scan With Arguments And Check Results" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>80</arg>
+<arg>nodegoat.herokuapp.com</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>nmap --script-updatedb</arg>
+<arg>shell=True</arg>
+<arg>timeout=2min</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:42.087" level="INFO">Starting process:
+nmap --script-updatedb</msg>
+<msg timestamp="20200625 16:34:42.097" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:34:42.700" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:42.087" endtime="20200625 16:34:42.701"></status>
+</kw>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>nmap -sV -Pn "${TARGET_URL}" --script\=vulners/vulners.nse -p"${NMAP_TARGET_PORT}"</arg>
+<arg>alias=nmap_custom_vulnerability_scanner</arg>
+<arg>shell=True</arg>
+<arg>timeout=4min</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:42.702" level="INFO">Starting process:
+nmap -sV -Pn "nodegoat.herokuapp.com" --script=vulners/vulners.nse -p"80"</msg>
+<msg timestamp="20200625 16:34:42.707" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:34:49.583" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:42.701" endtime="20200625 16:34:49.584"></status>
+</kw>
+<kw name="Get Process Result" library="Process">
+<doc>Returns the specified `result object` or some of its attributes.</doc>
+<arguments>
+<arg>nmap_custom_vulnerability_scanner</arg>
+<arg>stdout=true</arg>
+</arguments>
+<assign>
+<var>${NMAP_VULNERABILITY_SCANNER_RESULTS}</var>
+</assign>
+<msg timestamp="20200625 16:34:49.585" level="INFO">${NMAP_VULNERABILITY_SCANNER_RESULTS} = Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-25 16:34 UTC
+Nmap scan report for nodegoat.herokuapp.com (34.236.40.25)
+Host is up (0.021s latency).
+Other addresses for nodegoat.herokuapp.com (not ...</msg>
+<status status="PASS" starttime="20200625 16:34:49.584" endtime="20200625 16:34:49.585"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${NMAP_VULNERABILITY_SCANNER_RESULTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:34:49.585" level="INFO">Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-25 16:34 UTC
+Nmap scan report for nodegoat.herokuapp.com (34.236.40.25)
+Host is up (0.021s latency).
+Other addresses for nodegoat.herokuapp.com (not scanned): 54.152.6.249 54.159.198.173 54.83.133.132 18.235.131.250 52.21.209.244 52.206.38.202 52.202.156.180
+rDNS record for 34.236.40.25: ec2-34-236-40-25.compute-1.amazonaws.com
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Cowboy httpd
+|_http-server-header: Cowboy
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 6.80 seconds</msg>
+<status status="PASS" starttime="20200625 16:34:49.585" endtime="20200625 16:34:49.586"></status>
+</kw>
+<kw name="Should Not Contain" library="BuiltIn">
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<arguments>
+<arg>${NMAP_VULNERABILITY_SCANNER_RESULTS}</arg>
+<arg>cve</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:49.586" endtime="20200625 16:34:49.586"></status>
+</kw>
+<kw name="Should Not Contain" library="BuiltIn">
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<arguments>
+<arg>${NMAP_VULNERABILITY_SCANNER_RESULTS}</arg>
+<arg>CVE</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:49.587" endtime="20200625 16:34:49.587"></status>
+</kw>
+<kw name="Should Not Contain" library="BuiltIn">
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<arguments>
+<arg>${NMAP_VULNERABILITY_SCANNER_RESULTS}</arg>
+<arg>vulners</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:34:49.587" endtime="20200625 16:34:49.588"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:42.086" endtime="20200625 16:34:49.588"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:42.085" endtime="20200625 16:34:49.588"></status>
+</kw>
+<tags>
+<tag>Kali_Linux_Security_And_Penetration_Tests</tag>
+<tag>Nmap_Scan_Tests</tag>
+</tags>
+<status status="PASS" starttime="20200625 16:34:42.083" endtime="20200625 16:34:49.588" critical="yes"></status>
+</test>
+<test id="s1-t3" name="KALI LINUX TEST 3 - Check that the target URL does not have any Server Message Block Version vulnerabilities after running a Metasploit scan.">
+<kw name="Run Metasploit Framework Server Message Block Version Vulnerability Scan On A Target">
+<kw name="Run Metasploit Framework With Arguments And Check Results" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>auxiliary/scanner/smb/smb_version</arg>
+<arg>10</arg>
+<arg>nodegoat.herokuapp.com</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>msfconsole -q -x 'use ${METASPLOIT_FRAMEWORK_MODULE}; set RHOSTS ${METASPLOIT_RHOSTS_FILE_CONTENTS_IP_ADDRESS}; set THREADS ${METASPLOIT_FRAMEWORK_THREADS_AMOUNT}; run; exit'</arg>
+<arg>alias=metasploit_framework</arg>
+<arg>shell=True</arg>
+<arg>timeout=4min</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:34:49.592" level="INFO">Starting process:
+msfconsole -q -x 'use auxiliary/scanner/smb/smb_version; set RHOSTS 34.236.40.25
+; set THREADS 10; run; exit'</msg>
+<msg timestamp="20200625 16:34:49.597" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:35:13.875" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:34:49.592" endtime="20200625 16:35:13.875"></status>
+</kw>
+<kw name="Get Process Result" library="Process">
+<doc>Returns the specified `result object` or some of its attributes.</doc>
+<arguments>
+<arg>metasploit_framework</arg>
+<arg>stdout=true</arg>
+</arguments>
+<assign>
+<var>${METASPLOIT_FRAMEWORK_RESULTS}</var>
+</assign>
+<msg timestamp="20200625 16:35:13.877" level="INFO">${METASPLOIT_FRAMEWORK_RESULTS} = [0m[0mRHOSTS =&gt; 34.236.40.25
+[0mTHREADS =&gt; 10
+[0m[1m[34m[*][0m 34.236.40.25:445      - Scanned 1 of 1 hosts (100% complete)
+[1m[34m[*][0m Auxiliary module execution completed
+[0m</msg>
+<status status="PASS" starttime="20200625 16:35:13.876" endtime="20200625 16:35:13.877"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${METASPLOIT_FRAMEWORK_RESULTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:35:13.877" level="INFO">[0m[0mRHOSTS =&gt; 34.236.40.25
+[0mTHREADS =&gt; 10
+[0m[1m[34m[*][0m 34.236.40.25:445      - Scanned 1 of 1 hosts (100% complete)
+[1m[34m[*][0m Auxiliary module execution completed
+[0m</msg>
+<status status="PASS" starttime="20200625 16:35:13.877" endtime="20200625 16:35:13.877"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${METASPLOIT_FRAMEWORK_RESULTS}</arg>
+<arg>Auxiliary module execution completed</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:13.878" endtime="20200625 16:35:13.878"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:13.878" endtime="20200625 16:35:13.878"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:13.878" endtime="20200625 16:35:13.879"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>All Metasploit automation results should be checked manually even if the results show PASS.</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:13.879" endtime="20200625 16:35:13.880"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:13.881" endtime="20200625 16:35:13.881"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>All Metasploit automation results should be checked manually even if the results show PASS.</arg>
+</arguments>
+<msg timestamp="20200625 16:35:13.882" level="INFO">All Metasploit automation results should be checked manually even if the results show PASS.</msg>
+<status status="PASS" starttime="20200625 16:35:13.882" endtime="20200625 16:35:13.882"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:49.591" endtime="20200625 16:35:13.882"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:34:49.591" endtime="20200625 16:35:13.883"></status>
+</kw>
+<tags>
+<tag>Kali_Linux_Security_And_Penetration_Tests</tag>
+<tag>Metasploit_Scan_Tests</tag>
+</tags>
+<status status="PASS" starttime="20200625 16:34:49.590" endtime="20200625 16:35:13.883" critical="yes"></status>
+</test>
+<test id="s1-t4" name="KALI LINUX TEST 4 - Check that the target URL does not have any NAT Port Mapping Protocol vulnerabilities after running a Metasploit scan.">
+<kw name="Run Metasploit Framework NAT Port Mapping Protocol Vulnerability Scan On A Target">
+<kw name="Run Target XML Metasploit Framework With Arguments And Check Results" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>auxiliary/scanner/natpmp/natpmp_portscan</arg>
+<arg>10</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>msfconsole -q -x 'use ${METASPLOIT_FRAMEWORK_MODULE}; hosts -R; set THREADS ${METASPLOIT_FRAMEWORK_THREADS_AMOUNT}; run; exit'</arg>
+<arg>alias=target_xml_metasploit_framework</arg>
+<arg>shell=True</arg>
+<arg>timeout=4min</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:35:13.887" level="INFO">Starting process:
+msfconsole -q -x 'use auxiliary/scanner/natpmp/natpmp_portscan; hosts -R; set THREADS 10; run; exit'</msg>
+<msg timestamp="20200625 16:35:13.892" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:35:22.806" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:35:13.886" endtime="20200625 16:35:22.807"></status>
+</kw>
+<kw name="Get Process Result" library="Process">
+<doc>Returns the specified `result object` or some of its attributes.</doc>
+<arguments>
+<arg>target_xml_metasploit_framework</arg>
+<arg>stdout=true</arg>
+</arguments>
+<assign>
+<var>${TARGET_XML_METASPLOIT_FRAMEWORK_RESULTS}</var>
+</assign>
+<msg timestamp="20200625 16:35:22.809" level="INFO">${TARGET_XML_METASPLOIT_FRAMEWORK_RESULTS} = [0m[0m
+Hosts
+=====
+
+address       mac  name                                      os_name  os_flavor  os_sp  purpose  info  comments
+-------       ---  ----                                      -----...</msg>
+<status status="PASS" starttime="20200625 16:35:22.808" endtime="20200625 16:35:22.811"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${TARGET_XML_METASPLOIT_FRAMEWORK_RESULTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:35:22.812" level="INFO">[0m[0m
+Hosts
+=====
+
+address       mac  name                                      os_name  os_flavor  os_sp  purpose  info  comments
+-------       ---  ----                                      -------  ---------  -----  -------  ----  --------
+34.236.40.25       ec2-34-236-40-25.compute-1.amazonaws.com  Unknown                    device         
+
+RHOSTS =&gt; 34.236.40.25
+
+[0mTHREADS =&gt; 10
+[0m[1m[34m[*][0m Scanned 1 of 1 hosts (100% complete)
+[1m[34m[*][0m Auxiliary module execution completed
+[0m</msg>
+<status status="PASS" starttime="20200625 16:35:22.811" endtime="20200625 16:35:22.812"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${TARGET_XML_METASPLOIT_FRAMEWORK_RESULTS}</arg>
+<arg>Auxiliary module execution completed</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:22.813" endtime="20200625 16:35:22.813"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:22.814" endtime="20200625 16:35:22.814"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:22.814" endtime="20200625 16:35:22.815"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>All Metasploit automation results should be checked manually even if the results show PASS.</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:22.815" endtime="20200625 16:35:22.815"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:22.816" endtime="20200625 16:35:22.816"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>All Metasploit automation results should be checked manually even if the results show PASS.</arg>
+</arguments>
+<msg timestamp="20200625 16:35:22.817" level="INFO">All Metasploit automation results should be checked manually even if the results show PASS.</msg>
+<status status="PASS" starttime="20200625 16:35:22.816" endtime="20200625 16:35:22.817"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:35:13.886" endtime="20200625 16:35:22.817"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:35:13.885" endtime="20200625 16:35:22.818"></status>
+</kw>
+<tags>
+<tag>Kali_Linux_Security_And_Penetration_Tests</tag>
+<tag>Metasploit_Scan_Tests</tag>
+</tags>
+<status status="PASS" starttime="20200625 16:35:13.884" endtime="20200625 16:35:22.818" critical="yes"></status>
+</test>
+<test id="s1-t5" name="KALI LINUX TEST 5 - Check that the target URL does not have any SQL injection vulnerabilities after running a Sqlmap scan using the Space2Comment Tamper Script option.">
+<kw name="Run Sqlmap Space2Comment Tamper Script On A Target">
+<kw name="Run Sqlmap Scan With Arguments And Check Results" library="Security-And-Penetration-Test-Resources">
+<arguments>
+<arg>space2comment</arg>
+<arg>nodegoat.herokuapp.com</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>sqlmap --batch --tamper\="${SQLMAP_SCANNER_TYPE}" -u http://"${TARGET_URL}"</arg>
+<arg>alias=sqlmap_custom_scanner</arg>
+<arg>shell=True</arg>
+<arg>timeout=4min</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20200625 16:35:22.822" level="INFO">Starting process:
+sqlmap --batch --tamper="space2comment" -u http://"nodegoat.herokuapp.com"</msg>
+<msg timestamp="20200625 16:35:22.828" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20200625 16:35:24.039" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20200625 16:35:22.821" endtime="20200625 16:35:24.039"></status>
+</kw>
+<kw name="Get Process Result" library="Process">
+<doc>Returns the specified `result object` or some of its attributes.</doc>
+<arguments>
+<arg>sqlmap_custom_scanner</arg>
+<arg>stdout=true</arg>
+</arguments>
+<assign>
+<var>${SQLMAP_SCANNER_RESULTS}</var>
+</assign>
+<msg timestamp="20200625 16:35:24.041" level="INFO">${SQLMAP_SCANNER_RESULTS} =         ___
+       __H__
+ ___ ___["]_____ ___ ___  {1.4.6#stable}
+|_ -| . ["]     | .'| . |
+|___|_  [(]_|_|_|__,|  _|
+      |_|V...       |_|   http://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap...</msg>
+<status status="PASS" starttime="20200625 16:35:24.040" endtime="20200625 16:35:24.041"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SQLMAP_SCANNER_RESULTS}</arg>
+</arguments>
+<msg timestamp="20200625 16:35:24.041" level="INFO">        ___
+       __H__
+ ___ ___["]_____ ___ ___  {1.4.6#stable}
+|_ -| . ["]     | .'| . |
+|___|_  [(]_|_|_|__,|  _|
+      |_|V...       |_|   http://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 16:35:23 /2020-06-25/
+
+[?1049h[22;0;0t[1;24r(B[m[4l[?7h[24;1H[?1049l[23;0;0t[?1l&gt;[16:35:23] [INFO] loading tamper module 'space2comment'
+[16:35:23] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://nodegoat.herokuapp.com:80/login'. Do you want to follow? [Y/n] Y
+you have not declared cookie(s), while server wants to set its own ('connect.sid=s%3AwEb530_...2FvrROwcv0'). Do you want to use those [Y/n] Y
+[16:35:23] [INFO] checking if the target is protected by some kind of WAF/IPS
+[16:35:23] [INFO] testing if the target URL content is stable
+[16:35:23] [CRITICAL] no parameter(s) found for testing in the provided data (e.g. GET parameter 'id' in 'www.site.com/index.php?id=1'). You are advised to rerun with '--forms --crawl=2'
+
+[*] ending @ 16:35:23 /2020-06-25/
+</msg>
+<status status="PASS" starttime="20200625 16:35:24.041" endtime="20200625 16:35:24.042"></status>
+</kw>
+<kw name="Should Not Contain" library="BuiltIn">
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<arguments>
+<arg>${SQLMAP_SCANNER_RESULTS}</arg>
+<arg>sqlmap identified the following injection points</arg>
+</arguments>
+<status status="PASS" starttime="20200625 16:35:24.042" endtime="20200625 16:35:24.042"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:35:22.821" endtime="20200625 16:35:24.042"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:35:22.820" endtime="20200625 16:35:24.042"></status>
+</kw>
+<tags>
+<tag>Kali_Linux_Security_And_Penetration_Tests</tag>
+<tag>Sqlmap_Scan_Tests</tag>
+</tags>
+<status status="PASS" starttime="20200625 16:35:22.819" endtime="20200625 16:35:24.043" critical="yes"></status>
+</test>
+<kw name="Clean Up Metasploit Files And Terminate Processes" library="Security-And-Penetration-Test-Resources" type="teardown">
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml</arg>
+</arguments>
+<msg timestamp="20200625 16:35:24.050" level="INFO" html="yes">Removed file '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20200625 16:35:24.046" endtime="20200625 16:35:24.050"></status>
+</kw>
+<kw name="Remove File" library="OperatingSystem">
+<doc>Removes a file with the given path.</doc>
+<arguments>
+<arg>${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt</arg>
+</arguments>
+<msg timestamp="20200625 16:35:24.052" level="INFO" html="yes">Removed file '&lt;a href="file:///rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt"&gt;/rfw/Tests/Workshop-Part-Two/Resources/metasploit-rhosts-ip.txt&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20200625 16:35:24.050" endtime="20200625 16:35:24.053"></status>
+</kw>
+<kw name="Terminate All Processes" library="Process">
+<doc>Terminates all still running processes started by this library.</doc>
+<status status="PASS" starttime="20200625 16:35:24.053" endtime="20200625 16:35:24.053"></status>
+</kw>
+<status status="PASS" starttime="20200625 16:35:24.046" endtime="20200625 16:35:24.053"></status>
+</kw>
+<doc>Automation tools that will check security of target application by scanning for possible vulnerabilities.</doc>
+<status status="PASS" starttime="20200625 16:33:47.162" endtime="20200625 16:35:24.053"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0">Critical Tests</stat>
+<stat pass="5" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="5" fail="0">Kali_Linux_Security_And_Penetration_Tests</stat>
+<stat pass="2" fail="0">Metasploit_Scan_Tests</stat>
+<stat pass="2" fail="0">Nmap_Scan_Tests</stat>
+<stat pass="1" fail="0">Sqlmap_Scan_Tests</stat>
+</tag>
+<suite>
+<stat pass="5" fail="0" id="s1" name="Kali Linux Security And Penetration Tests">Kali Linux Security And Penetration Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -4,6 +4,8 @@
 
 This [repo](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019) contains all of the examples that will be covered in the "Test tool strategies for lone testers" presentation. More information about this Test Leadership Congress 2019 presentation can be found here... https://testleadershipcongress2019.sched.com/event/O5Zg/test-tool-strategies-for-lone-testers
 
+This will be an ongoing project that I will keep working on. Any existing/new reusable examples, existing/new presentations, new approaches, or new tool experiments contained in this repo will be part of a [book that I am currently writing](https://leanpub.com/toolstrategiesforlonetesters).
+
 The following are the basic technical requirements to run the examples during the presentation.
 - Docker CE
   - OSX: https://docs.docker.com/docker-for-mac/install
@@ -72,6 +74,8 @@ There will be presentation slides explaining the following in more detail and I 
 ./start-specific-docker-example-workflows-for-workshop.sh Short-Graphwalker-Run-Workshop-Example
 ./start-specific-docker-example-workflows-for-workshop.sh Previous-Long-Graphwalker-Run-Workshop-Example
 ./start-specific-docker-example-workflows-for-workshop.sh Previous-Short-Graphwalker-Run-Workshop-Example
+./start-specific-docker-example-workflows-for-workshop.sh Run-Kali-Linux-Tests
+./start-specific-docker-example-workflows-for-workshop.sh Run-OWASP-Zap-Tests
 ./start-specific-local-machine-example-workflows-for-workshop.sh Hybrid-Tool-Desktop-Workshop-Example
 ./start-specific-local-machine-example-workflows-for-workshop.sh Hybrid-Tool-Desktop-Charles-Proxy-Workshop-Example
 ```
@@ -87,7 +91,9 @@ Part Three of the presentations covers the following dashboards.
 - https://robocon2019-sbtm-dashboard.herokuapp.com/
 - https://joshua-gorospe-qa-dashboard2.herokuapp.com/
 
-The following additional examples are for future webinars and workshops. Some of these examples require Appium, iOS Simulators, and Android Emulators to be installed.
+## Ongoing Work
+
+The following additional examples are for future webinars, workshops, and group meetups. Some of these examples require Appium, iOS Simulators, and Android Emulators to be installed.
 
 [US Robot Framework Community Webinars](https://www.meetup.com/East-Coast-Robot-Framework-Users/events/263579734/) - August 22, 2019
 - Commands used to run the examples for this webinar.
@@ -116,13 +122,26 @@ Use the following information to help set up the basic Appium requirements:
 
 After installing Appium try running ``appium-doctor``. If any warnings show up please follow the instructions.
 
-[RoboCon 2020 Workshop](https://robocon.io/#strategies-for-creating-your-own-conversational-test-assistant-with-robot-framework-and-other-tools) - January 14, 2020
+[RoboCon 2020 Workshop - Strategies for creating your own conversational test assistant with Robot Framework and other tools](https://robocon.io/#strategies-for-creating-your-own-conversational-test-assistant-with-robot-framework-and-other-tools) - January 14, 2020
 - Commands used to run the example for this workshop.
   ```
   git clone https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019.git
   cd Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/Workshop-Examples/Shared-Resources/Bug-Risk-Prediction-Using-Heuristics-And-Machine-Learning
   ./start-bug-risk-prediction-docker-container.sh
   ```
+- Here is a [recorded demonstration](https://www.youtube.com/watch?v=oo11OlAaWWA&feature=youtu.be) of the conversational test assistant used in this workshop.
+
+Upcoming 2020/2021 workshop or webinar - Combining Robot Framework and Docker with security and penetration testing tools
+- I created the following working examples for upcoming workshops or webinars that covers experiments with security and penetration test tools.
+  ```
+  # The following new Robot Framework .robot files have been added...
+  # Kali-Linux-Security-And-Penetration-Tests.robot
+  # OWASP-Zap-Security-And-Penetration-Tests.robot
+  # You can try them out by running the following commands...
+  ./start-specific-docker-example-workflows-for-workshop.sh Run-Kali-Linux-Tests
+  ./start-specific-docker-example-workflows-for-workshop.sh Run-OWASP-Zap-Tests
+  ```
+- These examples will probably change and evolve as I attempt to combine them with other tools such as Graphwalker and possibly Appium...
 
 ***
 
@@ -131,7 +150,7 @@ Slides for the presentation and additional videos of content that was not covere
 - [Demonstration_Of_Appium_Desktop_Code_Generator_Robot_Framework_Example.mp4](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Workshop-Presentations-And-Videos/Demonstration_Of_Appium_Desktop_Code_Generator_Robot_Framework_Example.mp4)
 - [Demonstration_Of_Charles_Proxy_With_Appium_Desktop_SBTM_Robot_Framework.mp4](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Workshop-Presentations-And-Videos/Demonstration_Of_Charles_Proxy_With_Appium_Desktop_SBTM_Robot_Framework.mp4)
 
-This presentation is based on a workshop that was done at RoboCon 2019 in Finland. More information can be found in the following.
+This "Test tool strategies for lone testers" presentation is based on a workshop that was done at RoboCon 2019 in Finland. More information can be found in the following.
 - https://robocon.io/#workshops
 - https://github.com/jg8481/Robot-Framework-Lone-Tester-Strategies-RoboCon-2019
 
