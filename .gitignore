@@ -35,3 +35,5 @@ Robot-Framework-Lone-Tester-Metrics-RoboCon-2019
 *.jpg
 *.png
 *.DS_Store
+*geckodriver.log
+Workshop-Examples/geckodriver.log
