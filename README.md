@@ -131,8 +131,8 @@ After installing Appium try running ``appium-doctor``. If any warnings show up p
   ```
 - Here is a [recorded demonstration](https://www.youtube.com/watch?v=oo11OlAaWWA&feature=youtu.be) of the conversational test assistant used in this workshop.
 
-Upcoming 2020/2021 workshop or webinar - Combining Robot Framework and Docker with security and penetration testing tools
-- I created the following working examples for upcoming workshops or webinars that covers experiments with security and penetration test tools.
+Upcoming 2020/2021 workshop or webinar - Combining Robot Framework and Docker with security and penetration test tools
+- I created the following working examples for upcoming workshops or webinars. They will cover tool experiments for security and penetration testing.
   ```
   # The following new Robot Framework .robot files have been added...
   # Kali-Linux-Security-And-Penetration-Tests.robot
