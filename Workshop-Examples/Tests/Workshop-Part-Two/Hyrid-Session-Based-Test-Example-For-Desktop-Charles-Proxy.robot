@@ -20,7 +20,7 @@ SESSION-BASED TEST NOTES - DESKTOP (OR LAPTOP) : Perform a time boxed deep inves
     ...               The GitHub PR that was tested is... https://github.com/your_github/repo/pull/${PULL_REQUEST_NUMBER}
     ...               The Jira Task that was tested is... https://your-organization.atlassian.net/browse/${JIRA_TASK_NUMBER}
     Perform Session Based Test And Gather Notes    ${SESSION_CHARTER}    ${FUNCTIONAL_AREAS_COVERED}    ${TASK_BREAKDOWN}
-    [Tags]    Hybrid_Manual_Automated_Desktop_SBTM_Test
+    [Tags]    Hybrid_Manual_Automated_Desktop_SBTM_Test    Charles_Proxy
 
 *** Keywords ***
 

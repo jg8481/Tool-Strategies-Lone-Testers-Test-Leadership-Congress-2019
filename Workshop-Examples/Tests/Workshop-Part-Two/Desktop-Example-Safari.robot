@@ -20,11 +20,11 @@ ${SELENIUM_IMPLICIT_WAIT}    10
 *** Test Cases ***
 
 Go to the sign up page from the login page.
-    [Tags]    Desktop Safari
+    [Tags]    Desktop_Safari
     Click Sign Up Link
 
 Quickly check that the sign up page loaded.
-    [Tags]    Desktop Safari
+    [Tags]    Desktop_Safari
     Check The Sign Up Page
     #Check The Sign Up Page Demonstrate Failure
 

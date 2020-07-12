@@ -15,11 +15,11 @@ ${SELENIUM_IMPLICIT_WAIT}    3
 *** Test Cases ***
 
 Go to the sign up page from the login page.
-    [Tags]    Desktop Chrome
+    [Tags]    Desktop_Chrome
     Click Sign Up Link
 
 Quickly check that the sign up page loaded.
-    [Tags]    Desktop Chrome
+    [Tags]    Desktop_Chrome
     Check The Sign Up Page
 
 *** Keywords ***

@@ -16,12 +16,12 @@ ${TEST_SUITE_TIMEOUT}    1
 *** Test Cases ***
 
 Go to the sign up page from the login page.
-    [Tags]    Desktop Firefox
+    [Tags]    Desktop_Firefox
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     Click Sign Up Link
 
 Quickly check that the sign up page loaded.
-    [Tags]    Desktop Firefox
+    [Tags]    Desktop_Firefox
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     Check The Sign Up Page
 

@@ -1,10 +1,10 @@
 *** Settings ***
 
-Library           AppiumLibrary
+Library           AppiumLibrary    run_on_failure=No Operation
 
 *** Variables ***
 
-${PLATFORM_VERSION_IOS}    12.2
+${PLATFORM_VERSION_IOS}    13.5
 ${IOS_AUTOMATION_NAME}    XCUITest
 ${PLATFORM_NAME_IOS}    iOS
 
@@ -20,7 +20,11 @@ Set Up Chrome In Android
     [Arguments]     ${PARALLEL_APPIUM_REMOTE_URL}    ${DEVICE_NAME_ANDROID}     ${PARALLEL_APPIUM_PORT}
     Open Application    ${PARALLEL_APPIUM_REMOTE_URL}    platformName=${PLATFORM_NAME_ANDROID}    deviceName=${DEVICE_NAME_ANDROID}    PORT=${PARALLEL_APPIUM_PORT}    automationName=${ANDROID_AUTOMATION_NAME}    browserName=Chrome    newCommandTimeout=3600
     Go To Url    %{APP_URL}
-    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1 sec    Wait Until Page Contains    Password    0.5s
+## The following line is commented out because of this new Chromedriver related problem...
+## On July 10, 2020 started getting the following Chromedriver error after updating Android emulators.
+## -> WebDriverException: Message: An unknown server-side error occurred while processing the command. Original error: chrome not reachable
+#
+#    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1 sec    Wait Until Page Contains    Password    0.5s
     Sleep    1s
 
 Set Up Safari In IOS
@@ -31,6 +35,19 @@ Set Up Safari In IOS
     Go To Url    %{APP_URL}
     Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1 sec    Wait Until Page Contains    Password    0.5s
     Sleep    1s
+
+Set Up Safari In IOS After Starting Charles Proxy
+    [Timeout]    4 minutes
+    [Arguments]     ${PARALLEL_APPIUM_REMOTE_URL}    ${DEVICE_NAME_IOS}    ${PARALLEL_APPIUM_PORT}    ${PARALLEL_APPIUM_WDALOCALPORT}    ${CHARLES_PROXY_APPIUM_EXAMPLE_URL}
+    Run Process    ps aux | grep Charles     alias=charles_proxy_mac_os_status    shell=True    timeout=20s    on_timeout=continue
+    ${CHARLES_PROXY_MAC_OS_STATUS}=   	Get Process Result    charles_proxy_mac_os_status    stdout=true
+    Log    ${CHARLES_PROXY_MAC_OS_STATUS}
+    Should Contain    ${CHARLES_PROXY_MAC_OS_STATUS}    Charles.app
+    Run Keyword And Ignore Error    Open Application    ${PARALLEL_APPIUM_REMOTE_URL}    platformName=${PLATFORM_NAME_IOS}    platformVersion=${PLATFORM_VERSION_IOS}    devicetype=simulator
+    ...    deviceName=${DEVICE_NAME_IOS}    PORT=${PARALLEL_APPIUM_PORT}    WDALOCALPORT=${PARALLEL_APPIUM_WDALOCALPORT}    automationName=${IOS_AUTOMATION_NAME}     startIWDP=true
+    ...    browserName=Safari     bundleid=com.apple.mobilesafari
+    Go To Url    ${CHARLES_PROXY_APPIUM_EXAMPLE_URL}
+    Sleep    4s
 
 Click Sign Up Link
     Sleep    2s

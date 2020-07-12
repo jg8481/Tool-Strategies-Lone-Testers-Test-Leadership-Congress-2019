@@ -11,18 +11,18 @@ Suite Teardown    Close All Applications
 Test Teardown     Trigger Only After Failure
 
 *** Variables ***
-${TEST_SUITE_TIMEOUT}     2
+${TEST_SUITE_TIMEOUT}     4
 
 *** Test Cases ***
 
 Go to the sign up page from the login page.
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
-    [Tags]    Mobile Safari
+    [Tags]    Mobile_Safari
     Click Sign Up Link
 
 Quickly check that the sign up page loaded.
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
-    [Tags]    Mobile Safari
+    [Tags]    Mobile_Safari
     Check The Sign Up Page
     #Check The Sign Up Page Demonstrate Failure
 

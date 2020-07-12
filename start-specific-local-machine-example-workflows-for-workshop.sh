@@ -200,21 +200,43 @@ if [ "$1" == "Robot-Framework-Mobile-Web-Test-Example" ]; then
   echo
   echo "This will run two different mobile browsers in parallel."
   echo
+  echo "ATTENTION: This example requires Python 3."
+  echo
   rm -rf ./Workshop-Examples/.pabotsuitenames
   rm -rf ./Workshop-Examples/Workshop-Part-Three/pabot_results
-  pip install virtualenv --user
-  virtualenv -p python3 venv
+  pip3 install virtualenv --user > /dev/null 2>&1
+  virtualenv -p python3 venv > /dev/null 2>&1
   source venv/bin/activate
-  pip install -r ./Workshop-Examples/Tests/Workshop-Part-Two/Resources/requirements.txt
-  #pabot --verbose --processes 3 -d ./Workshop-Examples/Workshop-Part-Three/ ./tests-desktop-firefox/*1.robot ./tests-desktop-safari/*1.robot ./tests-desktop-chrome/*1.robot && open ./results/log.html
+  pip3 install -r ./Workshop-Examples/Tests/Workshop-Part-Two/Resources/requirements.txt > /dev/null 2>&1
   pabot --verbose --processes 3 --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
-  #robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --include Smoke_Tests --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
+  #pabot --verbose --processes 3 --dryrun --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --variable PARALLEL_APPIUM_REMOTE_URL2:${PARALLEL_APPIUM_REMOTE_URL2} --report NONE --log mobile-web-browser-log.html --output mobile-web-browser-output.xml -N "Robot Framework Mobile Web Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Chrome* ./Workshop-Examples/Tests/Workshop-Part-Two/Mobile-Example-Safari*
+  exit
+fi
+
+if [ "$1" == "Robot-Framework-Charles-Proxy-Desktop-And-Mobile-Browser-Test-Example" ]; then
+  # Before running this step you need to manually create your own "local.env" file using the provided "template.local.env" file.
+  # If you have a private Slack acount, please take this chance to create a .slacktee config file in the Shared-Resources folder using the template.slacktee example.
+  source ./local.env
+  echo
+  echo "------------------------------------[[[[ Robot Framework Charles Proxy Desktop And Mobile Browser Test Example ]]]]------------------------------------"
+  echo
+  echo "This will run Robot Framework, Appium, and Selenium while performing a Charles Proxy Session Recording."
+  echo
+  echo "ATTENTION: This example requires Python 3."
+  echo
+  pip3 install virtualenv --user > /dev/null 2>&1
+  virtualenv -p python3 venv > /dev/null 2>&1
+  source venv/bin/activate
+  pip3 install -r ./Workshop-Examples/Tests/Workshop-Part-Two/Resources/requirements.txt > /dev/null 2>&1
+  webdrivermanager firefox --linkpath /usr/local/bin > /dev/null 2>&1
+  robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --report NONE --log charles-proxy-desktop-mobile-web-browser-log.html --output charles-proxy-desktop-mobile-web-browser-output.xml -N "Robot Framework Charles Proxy Desktop And Mobile Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Charles-Proxy-*
+  #robot --dryrun --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --report NONE --log charles-proxy-desktop-mobile-web-browser-log.html --output charles-proxy-desktop-mobile-web-browser-output.xml -N "Robot Framework Charles Proxy Desktop And Mobile Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Charles-Proxy-*
   exit
 fi
 
 if [ "$1" == "Appium-Web-Browser-Setup" ]; then
   path=$(pwd)
-  npm install -g appium --chromedriver_version="2.44"
+  npm install -g appium
   rm -rf $path/Workshop-Examples/Shared-Resources/appium_output_log.txt
   rm -rf $path/Workshop-Examples/Shared-Resources/appium_server_PID*.txt
   rm -rf $path/Workshop-Examples/Shared-Resources/android_emulator_PID.txt
@@ -227,7 +249,7 @@ if [ "$1" == "Appium-Web-Browser-Setup" ]; then
   "$HOME"/Library/Android/sdk/emulator/emulator -avd Nexus_4_API_26 -netdelay none -netspeed full > $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/android_emulator_PID.txt
   sleep 3s &&
   appium -p 4723 --webdriveragent-port 8109 >> $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/appium_server_PID1.txt &
-  appium -p 4724 -bp 5724 >> $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/appium_server_PID2.txt &
+  appium -p 4724 -bp 5724 --allow-insecure chromedriver_autodownload >> $path/Workshop-Examples/Shared-Resources/appium_output_log.txt 2>&1 & echo $! > $path/Workshop-Examples/Shared-Resources/appium_server_PID2.txt &
   echo
   echo
   APPIUM_SERVER_PID1=$(cat ./Workshop-Examples/Shared-Resources/appium_server_PID1.txt)

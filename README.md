@@ -131,10 +131,10 @@ After installing Appium try running ``appium-doctor``. If any warnings show up p
   ```
 - Here is a [recorded demonstration](https://www.youtube.com/watch?v=oo11OlAaWWA&feature=youtu.be) of the conversational test assistant used in this workshop.
 
-Upcoming 2020/2021 workshop or webinar - Combining Robot Framework and Docker with security and penetration test tools
-- I created the following working examples for upcoming workshops or webinars. They will cover tool experiments for security and penetration testing.
+Upcoming workshop or webinar - Combining Robot Framework and Docker with security and penetration test tools
+- The following will cover tool experiments for security and penetration testing.
   ```
-  # The following new Robot Framework .robot files have been added...
+  # New Robot Framework .robot files have been added...
   # Kali-Linux-Security-And-Penetration-Tests.robot
   # OWASP-Zap-Security-And-Penetration-Tests.robot
   # You can try them out by running the following commands...
@@ -143,6 +143,25 @@ Upcoming 2020/2021 workshop or webinar - Combining Robot Framework and Docker wi
   ```
 - These examples will probably change and evolve as I attempt to combine them with other tools such as Graphwalker and possibly Appium...
 
+Upcoming workshop or webinar - Combining Robot Framework automation with a web debugging proxy
+- The following will cover tool experiments for combining mobile and desktop automation with the web debugging proxy Charles Proxy.
+  ```
+  # New Robot Framework .robot files have been added...
+  # Charles-Proxy-Desktop-Example.robot
+  # Charles-Proxy-Mobile-Example.robot
+  # You can try them out by running the following commands...
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Setup
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Charles-Proxy-Desktop-And-Mobile-Browser-Test-Example
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Teardown
+  ```
+- These examples utilize a `CharlesProxyExample.py` library and `com.xk72.generic.charles.config` file. Both require Charles Proxy to be properly installed on a MacOS machine and a valid Charles Proxy license key. More documentation about how to set it up can found [here](https://www.charlesproxy.com/documentation/).
+- The `com.xk72.generic.charles.config` file needs to have these filled in, otherwise Charles Proxy will not work headlessly (without the UI).
+  ```
+  <registrationConfiguration>
+    <name>PUT YOUR NAME HERE</name>
+    <key>PUT YOUR CHARLES PROXY LICENSE KEY HERE</key>
+  </registrationConfiguration>
+  ```
 ***
 
 Slides for the presentation and additional videos of content that was not covered in the Test Leadership Congress 2019 conference recordings can be found in this repo.
