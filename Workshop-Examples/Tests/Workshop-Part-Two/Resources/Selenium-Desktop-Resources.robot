@@ -24,7 +24,7 @@ Check The Sign Up Page
     Sleep    2s
     Capture Page Screenshot
 
-Set Up Firefox Browser MacOS After Starting Charles Proxy
+Set Up Firefox In MacOS After Starting Charles Proxy
     [Timeout]    4 minutes
     [Arguments]    ${CHARLES_PROXY_SELENIUM_EXAMPLE_URL}    ${CHARLES_PROXY_SELENIUM_BROWSER}
     Run Process    ps aux | grep Charles     alias=charles_proxy_mac_os_status    shell=True    timeout=20s    on_timeout=continue
