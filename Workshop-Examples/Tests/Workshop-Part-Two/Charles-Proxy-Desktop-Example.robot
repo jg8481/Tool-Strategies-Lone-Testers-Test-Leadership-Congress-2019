@@ -45,7 +45,7 @@ Terminate Charles Proxy Sessions And Clean Up
     Remove File    ${PATH}//Workshop-Examples//Tests//Workshop-Part-Two//Resources//jq-filter-output.txt
 
 Open The Firefox Browser In MacOS After Starting Charles Proxy
-    Run Keyword And Ignore Error    Set Up Firefox Browser MacOS After Starting Charles Proxy    ${CHARLES_PROXY_SELENIUM_EXAMPLE_URL}    ${CHARLES_PROXY_SELENIUM_BROWSER}
+    Run Keyword And Ignore Error    Set Up Firefox In MacOS After Starting Charles Proxy    ${CHARLES_PROXY_SELENIUM_EXAMPLE_URL}    ${CHARLES_PROXY_SELENIUM_BROWSER}
 
 Check Charles Proxy JSON Session File Recording
     Run JQ Select Command And Check Results    nodegoat.herokuapp.com
