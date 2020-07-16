@@ -14,7 +14,7 @@ ${CHARLES_PROXY_APPIUM_EXAMPLE_URL}    http://nodegoat.herokuapp.com/login
 
 *** Test Cases ***
 
-Go to the OWASP Node Goat home page in an iOS mobile browser while Charles Proxy is recording a session, and check the JSON session file.
+CHARLES PROXY MOBILE TEST - Go to the OWASP Node Goat home page in an iOS mobile browser while Charles Proxy is recording a session, and check the JSON session file.
     [Tags]    Mobile_Safari    Charles_Proxy    Charles_Proxy_IOS
     [Setup]    Start Charles Proxy For Mobile Browser
     Open The Safari Browser In IOS After Starting Charles Proxy

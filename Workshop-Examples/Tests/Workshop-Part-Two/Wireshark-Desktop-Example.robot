@@ -14,25 +14,25 @@ ${WIRESHARK_SELENIUM_BROWSER}    Firefox
 
 *** Test Cases ***
 
-Go to a YouTube page in a MacOS desktop browser while Wireshark is capturing packets on WiFi, then check the Loopback Interface.
+WIRESHARK DESKTOP TEST 1 - Go to a YouTube page in a MacOS desktop browser while Wireshark is capturing packets on WiFi, then check the Loopback Interface.
     [Tags]    Desktop_Firefox    Wireshark    Wireshark_MacOS
     [Setup]    Navigate To Website Using Firefox Then Run Wireshark
     Run Wireshark Live Packet Capture For Loopback Interface Lo0 And Check The Output
     [Teardown]    Close Browser And Terminate Wireshark Processes
 
-Go to a YouTube page in a MacOS desktop browser while Wireshark is capturing packets on WiFi, then save it to a packet capture file.
+WIRESHARK DESKTOP TEST 2 - Go to a YouTube page in a MacOS desktop browser while Wireshark is capturing packets on WiFi, then save it to a packet capture file.
     [Tags]    Desktop_Firefox    Wireshark    Wireshark_MacOS
     [Setup]    Navigate To Website Using Firefox Then Run Wireshark
     Run Wireshark For WiFi Interface En0 And Create Packet Capture File
     [Teardown]    Close Browser And Terminate Wireshark Processes
 
-Go to a YouTube page in a MacOS desktop browser while Wireshark is capturing packets, then run a Lua script to analyze the results.
+WIRESHARK DESKTOP TEST 3 - Go to a YouTube page in a MacOS desktop browser while Wireshark is capturing packets, then run a Lua script to analyze the results.
     [Tags]    Desktop_Firefox    Wireshark    Wireshark_MacOS
     [Setup]    Navigate To Website Using Firefox Then Run Wireshark
     Run Wireshark Lua Script And Check The Output
     [Teardown]    Close Browser And Terminate Wireshark Processes
 
-Decrypt a packet capture file with a wireshark-sslkeys.log file, then check the output.
+WIRESHARK DESKTOP TEST 4 - Decrypt a packet capture file with a wireshark-sslkeys.log file, then check the output.
     [Tags]    Desktop_Firefox    Wireshark    Wireshark_MacOS
     Run Wireshark To Decrypt Captured SSL Traffic And Check The Output
     [Teardown]    Terminate Wireshark Processes Multiple Times

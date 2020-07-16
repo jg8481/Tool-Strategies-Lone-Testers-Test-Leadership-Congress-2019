@@ -15,12 +15,12 @@ ${TEST_SUITE_TIMEOUT}     4
 
 *** Test Cases ***
 
-Go to the sign up page from the login page.
+MOBILE SAFARI TEST 1 - Go to the sign up page from the login page.
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     [Tags]    Mobile_Safari
     Click Sign Up Link
 
-Quickly check that the sign up page loaded.
+MOBILE SAFARI TEST 2 - Quickly check that the sign up page loaded.
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     [Tags]    Mobile_Safari
     Check The Sign Up Page

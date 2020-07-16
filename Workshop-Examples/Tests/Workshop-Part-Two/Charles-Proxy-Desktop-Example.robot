@@ -14,7 +14,7 @@ ${CHARLES_PROXY_SELENIUM_BROWSER}    Firefox
 
 *** Test Cases ***
 
-Go to the OWASP Node Goat home page in a MacOS desktop browser while Charles Proxy is recording a session and check the JSON session file.
+CHARLES PROXY DESKTOP TEST - Go to the OWASP Node Goat home page in a MacOS desktop browser while Charles Proxy is recording a session and check the JSON session file.
     [Tags]    Desktop_Firefox    Charles_Proxy    Charles_Proxy_MacOS
     [Setup]    Start Charles Proxy For Desktop Browser
     Open The Firefox Browser In MacOS After Starting Charles Proxy

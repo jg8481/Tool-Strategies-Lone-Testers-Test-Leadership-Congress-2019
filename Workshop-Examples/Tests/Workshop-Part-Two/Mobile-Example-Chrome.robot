@@ -21,7 +21,7 @@ Suite Teardown    Close All Applications
 
 *** Test Cases ***
 
-Go to the login page.
+MOBILE CHROME TEST - Go to the login page.
     [Tags]    Mobile_Chrome
     Run Keyword And Ignore Error    Open The Chrome Browser In Android
 
@@ -29,7 +29,7 @@ Go to the login page.
 ## On July 10, 2020 started getting the following Chromedriver error after updating Android emulators.
 ## -> WebDriverException: Message: An unknown server-side error occurred while processing the command. Original error: chrome not reachable
 #
-#Go to the sign up page from the login page.
+#MOBILE CHROME TEST 1 - Go to the sign up page from the login page.
 #    [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
 #    [Tags]    Mobile_Chrome
 #    Run Keyword And Continue On Failure    Click Sign Up Link
@@ -39,7 +39,7 @@ Go to the login page.
 ## On July 10, 2020 started getting the following Chromedriver error after updating Android emulators.
 ## -> WebDriverException: Message: An unknown server-side error occurred while processing the command. Original error: chrome not reachable
 #
-#Quickly check that the sign up page loaded.
+#MOBILE CHROME TEST 2 - Quickly check that the sign up page loaded.
 #    [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
 #    [Tags]    Mobile_Chrome
 #    Run Keyword And Continue On Failure    Check The Sign Up Page
