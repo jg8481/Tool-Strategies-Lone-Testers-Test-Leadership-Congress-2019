@@ -34,3 +34,21 @@ Set Up Firefox In MacOS After Starting Charles Proxy
     Start Process    sleep 30s && killall firefox-bin    shell=True
     Run Keyword And Ignore Error    Open Browser    ${CHARLES_PROXY_SELENIUM_EXAMPLE_URL}    ${CHARLES_PROXY_SELENIUM_BROWSER}
     Sleep    4s
+
+Set Up Firefox In MacOS Before Starting Wireshark
+    [Timeout]    4 minutes
+    [Arguments]    ${WIRESHARK_SELENIUM_EXAMPLE_URL}    ${WIRESHARK_SELENIUM_BROWSER}
+    Run Process    ps aux | grep "[t]shark"     alias=wireshark_mac_os_status    shell=True    timeout=20s    on_timeout=continue
+    ${WIRESHARK_MAC_OS_STATUS}=   	Get Process Result    wireshark_mac_os_status    stdout=true
+    Log    ${WIRESHARK_MAC_OS_STATUS}
+    Should Not Contain    ${WIRESHARK_MAC_OS_STATUS}    tshark
+    Run Keyword And Ignore Error    Open Browser    ${WIRESHARK_SELENIUM_EXAMPLE_URL}    ${WIRESHARK_SELENIUM_BROWSER}
+    Sleep    4s
+
+Stop Any Running Android Emulators And Related Processes On MacOS
+    Run Keyword And Ignore Error    Run    ANDROID_EMULATOR_PID=$(cat ./Workshop-Examples/Shared-Resources/android_emulator_PID.txt) && kill -s 9 $ANDROID_EMULATOR_PID
+    Run Keyword And Ignore Error    Run    pgrep emulator | xargs kill
+    Run Keyword And Ignore Error    Run    pgrep avd | xargs kill
+    Run Keyword And Ignore Error    Run    adb kill-server
+    Run Keyword And Ignore Error    Run    killall qemu-system-i386
+    Run Keyword And Ignore Error    Run    killall adb
