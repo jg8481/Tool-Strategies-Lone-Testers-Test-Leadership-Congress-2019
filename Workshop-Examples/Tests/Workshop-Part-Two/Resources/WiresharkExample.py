@@ -7,7 +7,7 @@ import subprocess
 # The "Wireshark Lua Script" keyword below is based on Lua examples found here -> https://www.wireshark.org/docs/wsdg_html_chunked/wsluarm.html
 #
 # Also here are steps for manually setting up your own SSLKEYLOGFILE in MacOS. More information can be found here for multiple operating systems. ->
-# export SSLKEYLOGFILE="/Users/jgorospe/Documents/wireshark-sslkeys.log"
+# export SSLKEYLOGFILE="/path/to/your/wireshark-sslkeys.log"
 # Open a Terminal window and run the following to check the environment variable...
 # echo $SSLKEYLOGFILE
 # Then open a Firefox browser from the Terminal. More information can be found here for multiple operating systems. -> https://developer.mozilla.org/en-US/docs/Mozilla/Command_Line_Options
