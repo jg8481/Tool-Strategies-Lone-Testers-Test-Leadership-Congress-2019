@@ -162,6 +162,20 @@ Upcoming workshop or webinar - Combining Robot Framework automation with a web d
     <key>PUT YOUR CHARLES PROXY LICENSE KEY HERE</key>
   </registrationConfiguration>
   ```
+
+Upcoming workshop or webinar - Combining Robot Framework automation with a network packet analyzer
+- The following will cover tool experiments for combining mobile and desktop automation with the network packet analyzer Wireshark.
+  ```
+  # New Robot Framework .robot files have been added...
+  # Wireshark-Desktop-Example.robot
+  # Wireshark-Mobile-Example.robot
+  # You can try them out by running the following commands...
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Setup
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Wireshark-Desktop-And-Mobile-Browser-Test-Example
+  ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Teardown
+  ```
+- These examples utilize a `WiresharkExample.py` library, `wireshark-sslkeys.log` file, and `wireshark_lua_script.lua` script. All of these require Wireshark to be properly installed on a MacOS machine. More documentation about how to set it up can be found [here](https://www.wireshark.org/#learnWS).
+- A `wireshark-sslkeys.log` file is provided. If you need to create your own, [this article](https://www.comparitech.com/net-admin/decrypt-ssl-with-wireshark/) and [this Wireshark documentation](https://wiki.wireshark.org/TLS?action=show&redirect=SSL) are both very helpful guides.
 ***
 
 Slides for the presentation and additional videos of content that was not covered in the Test Leadership Congress 2019 conference recordings can be found in this repo.
