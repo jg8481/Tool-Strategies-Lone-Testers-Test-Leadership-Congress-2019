@@ -37,7 +37,6 @@ class WiresharkExample:
         current_working_directory = os.getcwd()
         lua_script_file_path = os.path.join(current_working_directory, "Workshop-Examples", "Tests", "Workshop-Part-Two", "Resources", filename)
         lua_script_output = subprocess.run(['tshark', '-X', 'lua_script:' + lua_script_file_path, '-c ' + amount], stdout=subprocess.PIPE)
-        print(lua_script_file_path)
         return lua_script_output.stdout
 
     def wireshark_decrypt_captured_ssl_traffic(self, filename: str, amount: str):
@@ -45,7 +44,6 @@ class WiresharkExample:
         packet_capture_output_file_path = os.path.join(current_working_directory, "Workshop-Examples", "Tests", "Workshop-Part-Two", "Resources", filename)
         tls_ssl_key_log_file_path = os.path.join(current_working_directory, "Workshop-Examples", "Tests", "Workshop-Part-Two", "Resources", "wireshark-sslkeys.log")
         tls_ssl_traffic_decrypted_output = subprocess.run(['tshark', '-nr' + packet_capture_output_file_path, '-o', 'tls.keylog_file:' + tls_ssl_key_log_file_path, '-c ' + amount], stdout=subprocess.PIPE)
-        print(tls_ssl_key_log_file_path)
         return tls_ssl_traffic_decrypted_output.stdout
 
     def terminate_all_wireshark_processes(self):
