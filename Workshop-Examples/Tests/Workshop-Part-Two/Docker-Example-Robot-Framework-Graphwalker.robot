@@ -8,7 +8,7 @@ Library           Collections
 Library           Process
 Library           RequestsLibrary
 
-Resource          ${EXECDIR}//Shared-Resources//SharedKeywordsAndListeners.robot
+Resource          ${EXECDIR}//Shared-Resources//Shared-Keywords-And-Listeners.robot
 
 Test Teardown     Trigger Only After Failure
 Suite Teardown    Remove File    ${PATH}//testlog-check-response-after-using-radamsa-on-the-json*.txt

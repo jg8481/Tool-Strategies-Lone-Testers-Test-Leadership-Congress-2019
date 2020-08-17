@@ -1,12 +1,12 @@
 *** Settings ***
 
-Documentation     Part Two of the Python Library example has been enhanced by using the SharedKeywordsAndListeners.robot resource file to add 2 types of Robot Framework listeners and a team notification keyword.
+Documentation     Part Two of the Python Library example has been enhanced by using the Shared-Keywords-And-Listeners.robot resource file to add 2 types of Robot Framework listeners and a team notification keyword.
 ...               Also added the "--randomize all" option in the commands-running-inside-a-docker-container.sh script, and will demonstrate the use of the "--rerunfailedsuites" option.
 
 Library           Collections
 Library           ${EXECDIR}//Tests//Workshop-Part-Two//Resources//DockerExample.py
 
-Resource          ${EXECDIR}//Shared-Resources//SharedKeywordsAndListeners.robot
+Resource          ${EXECDIR}//Shared-Resources//Shared-Keywords-And-Listeners.robot
 Test Teardown     Trigger Only After Failure
 
 *** Test Cases ***

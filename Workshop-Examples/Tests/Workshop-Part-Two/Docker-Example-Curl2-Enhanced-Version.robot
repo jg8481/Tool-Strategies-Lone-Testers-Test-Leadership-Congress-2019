@@ -1,11 +1,11 @@
 *** Settings ***
 
-Documentation     Part Two of the cURL examples has been enhanced by using the SharedKeywordsAndListeners.robot resource file to add randomly generated malformed data to a test through the "Create Random Malformed Test Data With Radamsa" keyword.
+Documentation     Part Two of the cURL examples has been enhanced by using the Shared-Keywords-And-Listeners.robot resource file to add randomly generated malformed data to a test through the "Create Random Malformed Test Data With Radamsa" keyword.
 ...               This keyword turns the cURL examples into an API fuzz testing tool that can run in serial or in parallel.
 
 Library           Process
 
-Resource          ${EXECDIR}//Shared-Resources//SharedKeywordsAndListeners.robot
+Resource          ${EXECDIR}//Shared-Resources//Shared-Keywords-And-Listeners.robot
 
 Suite Teardown    Remove File    ${PATH}//testlog-check-response-after-using-radamsa-on-the-json2.txt
 

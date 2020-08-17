@@ -154,7 +154,7 @@ Upcoming workshop or webinar - Combining Robot Framework automation with a web d
   ./start-specific-local-machine-example-workflows-for-workshop.sh Robot-Framework-Charles-Proxy-Desktop-And-Mobile-Browser-Test-Example
   ./start-specific-local-machine-example-workflows-for-workshop.sh Appium-Web-Browser-Teardown
   ```
-- These examples utilize a `CharlesProxyExample.py` library, a `com.xk72.generic.charles.config` file, and the [jq](https://stedolan.github.io/jq/) JSON processing tool. The examples require both jq and Charles Proxy to be properly installed on a MacOS machine, and a valid Charles Proxy license key. More documentation about how to set up Charles Proxy can found [here](https://www.charlesproxy.com/documentation/).
+- These examples utilize a `CharlesProxyExample.py` library, a `com.xk72.generic.charles.config` file, and the [jq](https://stedolan.github.io/jq/) JSON processing tool. The examples require both jq and Charles Proxy to be properly installed on a MacOS machine, and a valid Charles Proxy license key. More documentation about how to set up Charles Proxy can be found [here](https://www.charlesproxy.com/documentation/).
 - The `com.xk72.generic.charles.config` file needs to have these filled in, otherwise Charles Proxy will not work headlessly (without the UI).
   ```
   <registrationConfiguration>

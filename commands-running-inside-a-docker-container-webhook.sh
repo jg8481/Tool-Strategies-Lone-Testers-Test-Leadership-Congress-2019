@@ -16,7 +16,7 @@ cd /rfw
 envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
 echo
 echo
-echo "The following will do a parallel run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the SharedKeywordsAndListeners.robot resource file."
+echo "The following will do a parallel run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
 echo
 echo
 pabot --verbose --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --randomize all --report NONE --output python-library-part-two-parallel-output-webhook-triggered.xml --log python-library-part-two-parallel-run-webhook-triggered.html -N "Robot Framework test run with user-created Python Library in parallel" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Python-Library*.robot &&
@@ -47,13 +47,13 @@ echo
 ## ********************************************************************************
 ## ********************************************************************************
 echo
-echo "The following will do a serial run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the SharedKeywordsAndListeners.robot resource file."
+echo "The following will do a serial run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
 echo
 echo
 robot --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --randomize all --report NONE --output python-library-part-two-serial-output-webhook-triggered.xml --log python-library-part-two-serial-run-webhook-triggered.html -N "Robot Framework test run with user-created Python Library one test at a time in serial random order" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Python-Library*.robot &&
 echo
 echo
-echo "At this point the Robot Framework test reruns will be triggered. They will fail again (as intended) and more Slack notifications will be sent out through the SharedKeywordsAndListeners.robot resource file."
+echo "At this point the Robot Framework test reruns will be triggered. They will fail again (as intended) and more Slack notifications will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
 echo
 echo
 robot --nostatusrc --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --rerunfailedsuites /rfw/Workshop-Part-Three/python-library-part-two-serial-output-webhook-triggered.xml --report NONE --output rerun-python-library-part-two-serial-output-webhook-triggered.xml --log python-library-part-two-serial-run-webhook-triggered.html -N "Robot Framework test run with user-created Python Library one test at a time in serial random order" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Python-Library*.robot &&

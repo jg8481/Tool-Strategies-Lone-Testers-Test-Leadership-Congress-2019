@@ -1,13 +1,13 @@
 *** Settings ***
 
-Documentation     Part Two of the robotframework-requests library examples has been enhanced by using the SharedKeywordsAndListeners.robot resource file to add randomly generated data to a test through the "Create Various Random Test Data With The String Library" keyword.
+Documentation     Part Two of the robotframework-requests library examples has been enhanced by using the Shared-Keywords-And-Listeners.robot resource file to add randomly generated data to a test through the "Create Various Random Test Data With The String Library" keyword.
 ...               This keyword turns the robotframework-requests library examples into an API fuzz testing tool that can run in serial or in parallel.
 
 Library          Collections
 Library          OperatingSystem
 Library          RequestsLibrary
 
-Resource                      ${EXECDIR}//Shared-Resources//SharedKeywordsAndListeners.robot
+Resource                      ${EXECDIR}//Shared-Resources//Shared-Keywords-And-Listeners.robot
 
 *** Variables ***
 ${PATH}    ${EXECDIR}//Tests//Workshop-Part-Two//Resources

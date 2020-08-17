@@ -1,12 +1,12 @@
 *** Settings ***
 
-Documentation     Part Two of the Postman Newman example has been enhanced by using the SharedKeywordsAndListeners.robot resource file to add 2 types of Robot Framework listeners and a team notification keyword.
+Documentation     Part Two of the Postman Newman example has been enhanced by using the Shared-Keywords-And-Listeners.robot resource file to add 2 types of Robot Framework listeners and a team notification keyword.
 ...               Also added the "--randomize tests" option in the commands-running-inside-a-docker-container.sh script, and will demonstrate the use of the "--rerunfailedsuites".
 
 Library           OperatingSystem
 Library           Process
 
-Resource          ${EXECDIR}//Shared-Resources//SharedKeywordsAndListeners.robot
+Resource          ${EXECDIR}//Shared-Resources//Shared-Keywords-And-Listeners.robot
 
 Test Teardown     Trigger Only After Failure
 

@@ -161,13 +161,13 @@ if [ "$1" == "Postman-Newman-Part-Two-Listeners-Randomized-Test-Execution-Failur
   envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
   echo
   echo
-  echo "The following will run the Docker-Example-Postman-Newman-Enhanced-Version.robot file that now utilizes 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize tests' option. A test will fail, then a Slack notification will be sent out through the SharedKeywordsAndListeners.robot resource file."
+  echo "The following will run the Docker-Example-Postman-Newman-Enhanced-Version.robot file that now utilizes 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize tests' option. A test will fail, then a Slack notification will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
   echo
   echo
   robot --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --randomize tests --report NONE --output postman-newman-part-two-serial-output.xml --log postman-newman-part-two-serial-run.html -N "Robot Framework test run with a Postman Newman Collection running one Postman Folder at a time in serial random order" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Postman-Newman-Enhanced-Version.robot &&
   echo
   echo
-  echo "At this point the Robot Framework test rerun will be triggered. It will fail again (as intended) and another Slack notification will be sent out through the SharedKeywordsAndListeners.robot resource file."
+  echo "At this point the Robot Framework test rerun will be triggered. It will fail again (as intended) and another Slack notification will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
   echo
   echo
   robot --nostatusrc --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --rerunfailedsuites /rfw/Workshop-Part-Three/postman-newman-part-two-serial-output.xml --report NONE --output rerun-postman-newman-part-two-serial-output.xml --log postman-newman-part-two-serial-run.html -N "Robot Framework test run with a Postman Newman Collection running one Postman Folder at a time in serial random order" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Postman-Newman-Enhanced-Version.robot &&
@@ -193,7 +193,7 @@ if [ "$1" == "Python-Library-Part-Two-Listeners-Randomized-Test-And-Suite-Execut
   envsubst < ./Shared-Resources/template.slacktee > ./Shared-Resources/.slacktee
   echo
   echo
-  echo "The following will do a parallel run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the SharedKeywordsAndListeners.robot resource file."
+  echo "The following will do a parallel run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
   echo
   echo
   pabot --verbose --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --randomize all --report NONE --output python-library-part-two-parallel-output.xml --log python-library-part-two-parallel-run.html -N "Robot Framework test run with user-created Python Library in parallel" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Python-Library*.robot &&
@@ -224,13 +224,13 @@ if [ "$1" == "Python-Library-Part-Two-Listeners-Randomized-Test-And-Suite-Execut
   ## ********************************************************************************
   ## ********************************************************************************
   echo
-  echo "The following will do a serial run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the SharedKeywordsAndListeners.robot resource file."
+  echo "The following will do a serial run of the Docker-Example-Python-Library1-Enhanced-Version.robot and Docker-Example-Python-Library2-Enhanced-Version.robot files, and utilize 2 types of Robot Framework listeners and a team notification keyword. This test is also triggered in random order using the '--randomize all' option. Tests will fail, then Slack notifications will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
   echo
   echo
   robot --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --randomize all --report NONE --output python-library-part-two-serial-output.xml --log python-library-part-two-serial-run.html -N "Robot Framework test run with user-created Python Library one test at a time in serial random order" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Python-Library*.robot &&
   echo
   echo
-  echo "At this point the Robot Framework test reruns will be triggered. They will fail again (as intended) and more Slack notifications will be sent out through the SharedKeywordsAndListeners.robot resource file."
+  echo "At this point the Robot Framework test reruns will be triggered. They will fail again (as intended) and more Slack notifications will be sent out through the Shared-Keywords-And-Listeners.robot resource file."
   echo
   echo
   robot --nostatusrc --variable TEST_ENVIRONMENT:${TEST_ENVIRONMENT} --rerunfailedsuites /rfw/Workshop-Part-Three/python-library-part-two-serial-output.xml --report NONE --output rerun-python-library-part-two-serial-output.xml --log python-library-part-two-serial-run.html -N "Robot Framework test run with user-created Python Library one test at a time in serial random order" -d ./Workshop-Part-Three ./Tests/Workshop-Part-Two/Docker-Example-Python-Library*.robot &&
