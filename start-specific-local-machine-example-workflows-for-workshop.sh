@@ -245,14 +245,20 @@ if [ "$1" == "Robot-Framework-Wireshark-Desktop-And-Mobile-Browser-Test-Example"
   echo
   echo "ATTENTION: This example requires Python 3."
   echo
+  echo "The following have been temporariliy removed from the requirements.txt in the Resources folder because of issues found in both Webdrivermanager Pyshark."
+  echo "webdrivermanager>=0.8.0"
+  echo "pyshark>=0.4.2.11"
+  echo
+  echo "Please manually install Firefox geckdriver."
+  echo
   killall tshark > /dev/null 2>&1
   pip3 install virtualenv --user > /dev/null 2>&1
   virtualenv -p python3 venv > /dev/null 2>&1
   source venv/bin/activate
   pip3 install -r ./Workshop-Examples/Tests/Workshop-Part-Two/Resources/requirements.txt > /dev/null 2>&1
-  webdrivermanager firefox --linkpath /usr/local/bin > /dev/null 2>&1
-  robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --report NONE --log wireshark-desktop-mobile-web-browser-log.html --output wireshark-desktop-mobile-web-browser-output.xml -N "Robot Framework Wireshark Desktop And Mobile Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Wireshark-*
-  #robot --dryrun --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --report NONE --log wireshark-desktop-mobile-web-browser-log.html --output wireshark-desktop-mobile-web-browser-output.xml -N "Robot Framework Wireshark Desktop And Mobile Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Wireshark-*
+  #webdrivermanager firefox --linkpath /usr/local/bin > /dev/null 2>&1
+  robot --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --report NONE --log wireshark-desktop-mobile-web-browser-log.html --output wireshark-desktop-mobile-web-browser-output.xml -N "Robot Framework Wireshark Desktop And Mobile Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Wireshark-Desktop*
+  #robot --dryrun --variable PARALLEL_APPIUM_REMOTE_URL1:${PARALLEL_APPIUM_REMOTE_URL1} --report NONE --log wireshark-desktop-mobile-web-browser-log.html --output wireshark-desktop-mobile-web-browser-output.xml -N "Robot Framework Wireshark Desktop And Mobile Browser Test Run" -d ./Workshop-Examples/Workshop-Part-Three/ ./Workshop-Examples/Tests/Workshop-Part-Two/Wireshark-Desktop*
   killall tshark > /dev/null 2>&1
   exit
 fi
