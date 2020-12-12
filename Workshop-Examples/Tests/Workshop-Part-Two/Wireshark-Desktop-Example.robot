@@ -82,4 +82,3 @@ Navigate To Website Using Firefox Then Run Wireshark
 Close Browser And Terminate Wireshark Processes
     Close All Browsers
     Run Keyword And Ignore Error    Terminate Wireshark Processes Multiple Times
-

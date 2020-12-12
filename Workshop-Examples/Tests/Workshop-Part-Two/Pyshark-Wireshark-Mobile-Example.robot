@@ -85,4 +85,3 @@ Navigate To Website Using Safari Then Run Wireshark
 Close Applications And Terminate Wireshark Processes
     Close All Applications
     Run Keyword And Ignore Error    Terminate Wireshark Processes Multiple Times
-
