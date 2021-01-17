@@ -8,6 +8,8 @@ Library          Process
 Suite Setup    Stop Any Running Android Emulators And Related Processes On MacOS
 
 *** Variables ***
+
+${RETRY_AMOUNT}    10
 ${PATH}    ${EXECDIR}
 ${WIRESHARK_SELENIUM_EXAMPLE_URL}    https://www.youtube.com/watch?v=wBhY5Z2RoqQ&feature=youtu.be&autoplay=1
 ${WIRESHARK_SELENIUM_BROWSER}    Firefox
@@ -81,6 +83,7 @@ Terminate Wireshark Processes Multiple Times
 Open The Firefox Browser In MacOS After Wireshark Clean Up
     [Timeout]    1 minute
     Run Keyword And Ignore Error    Set Up Firefox In MacOS Before Starting Wireshark    ${WIRESHARK_SELENIUM_EXAMPLE_URL}    ${WIRESHARK_SELENIUM_BROWSER}
+    Wait Until Keyword Succeeds   ${RETRY_AMOUNT}x    0.1s    Wait Until Page Contains    Comments    0.5s
 
 Navigate To Website Using Firefox Then Run Wireshark
     Terminate Wireshark Processes Multiple Times
