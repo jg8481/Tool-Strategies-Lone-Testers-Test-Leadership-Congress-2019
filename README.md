@@ -176,6 +176,19 @@ Upcoming workshop or webinar - Combining Robot Framework automation with a netwo
   ```
 - These examples utilize a `WiresharkExample.py` library, `wireshark-sslkeys.log` file, and `wireshark_lua_script.lua` script. All of these require Wireshark to be properly installed on a MacOS machine. More documentation about how to set it up can be found [here](https://www.wireshark.org/#learnWS).
 - A `wireshark-sslkeys.log` file is provided. If you need to create your own, [this article](https://www.comparitech.com/net-admin/decrypt-ssl-with-wireshark/) and [this Wireshark documentation](https://wiki.wireshark.org/TLS?action=show&redirect=SSL) are both very helpful guides.
+
+Upcoming workshop or webinar - Combining Robot Framework RPA automation with multiple machines running cryptocurrency mining software.
+- The following will cover tool experiments for combining Robot Framework RPA, SSHLibrary, PaBot, and Slack notifications to provide monitoring and alerts.
+  ```
+  # New Robot Framework .robot files have been added in General-Purpose-RPA-Toolkits in the Shared Resources...
+  # Docker-SSH-Checker-Crypto-Mining-Machine1.robot
+  # Docker-SSH-Checker-Crypto-Mining-Machine2.robot
+  # You can try them out by running the following commands in General-Purpose-RPA-Toolkits...
+  ./start-docker-rpa-workflows-from-bash.sh Build-Images-Teardown-Old-Docker-Containers
+  ./start-docker-rpa-workflows-from-bash.sh RPA-Crypto-Mining-Machines-Parallel-Checker
+  ```
+- These examples require two virtual machines to connect through SSH.
+- Please use the provided `template.rpa.env` file to set up the examples.  
 ***
 
 Slides for the presentation and additional videos of content that was not covered in the Test Leadership Congress 2019 conference recordings can be found in this repo.

@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Rebot 3.2.2 (Python 3.6.10 on linux)" generated="20210123 17:52:01.900" rpa="true">
+<suite id="s1" name="Robot Framework task runner - Checking crypto mining machine" source="/rfw/Tasks/Crypto-Mining-Machines-Checker">
+<suite id="s1-s1" name="Docker-SSH-Checker-Crypto-Mining-Machine1" source="/rfw/Tasks/Crypto-Mining-Machines-Checker/Docker-SSH-Checker-Crypto-Mining-Machine1.robot">
+<test id="s1-s1-t1" name="Check first target crypto mining machine and send a Slack notification.">
+<kw name="Connect To Crypto Mining Machine One" type="setup">
+<kw name="Open Connection" library="SSHLibrary">
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<arguments>
+<arg>%{SSH_HOST1}</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:51:58.719" endtime="20210123 17:51:58.720"></status>
+</kw>
+<kw name="Login" library="SSHLibrary">
+<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
+<arguments>
+<arg>%{SSH_USERNAME1}</arg>
+<arg>%{SSH_PASSWORD1}</arg>
+</arguments>
+<msg timestamp="20210123 17:51:58.722" level="INFO">Logging into '172.16.177.128:22' as 'ubuntu'.</msg>
+<msg timestamp="20210123 17:52:01.021" level="INFO">Read output: Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.8.0-38-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+
+202 updates can be installed immediately.
+0 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+Last login: Wed Jan 20 21:09:16 2021 from 172.16.177.1
+ubuntu@ubuntu:~$</msg>
+<status status="PASS" starttime="20210123 17:51:58.721" endtime="20210123 17:52:01.021"></status>
+</kw>
+<timeout value="2 minutes"></timeout>
+<status status="PASS" starttime="20210123 17:51:58.717" endtime="20210123 17:52:01.021"></status>
+</kw>
+<kw name="Run Checks On Mining Machine One And Send Slack Messages">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Check Remote Mining Machine One For Ethminer</arg>
+<arg>echo; echo; top -n 1 -b | head -12</arg>
+</arguments>
+<kw name="Check Remote Mining Machine One For Ethminer">
+<arguments>
+<arg>echo; echo; top -n 1 -b | head -12</arg>
+</arguments>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${MACHINE_ONE_STATUS_CHECK}</arg>
+<arg>WARNING: Problems detected!!! Check this machine!!!</arg>
+</arguments>
+<msg timestamp="20210123 17:52:01.024" level="INFO">${MACHINE_ONE_STATUS_CHECK} = WARNING: Problems detected!!! Check this machine!!!</msg>
+<status status="PASS" starttime="20210123 17:52:01.023" endtime="20210123 17:52:01.024"></status>
+</kw>
+<kw name="Execute Command" library="SSHLibrary">
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<arguments>
+<arg>${MACHINE_ONE_PROCESS}</arg>
+</arguments>
+<assign>
+<var>${MACHINE_ONE_PROCESS_OUTPUT}</var>
+</assign>
+<msg timestamp="20210123 17:52:01.025" level="INFO">Executing command 'echo; echo; top -n 1 -b | head -12'.</msg>
+<msg timestamp="20210123 17:52:01.208" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20210123 17:52:01.209" level="INFO">${MACHINE_ONE_PROCESS_OUTPUT} = 
+
+top - 09:52:01 up 55 min,  1 user,  load average: 0.24, 0.05, 0.02
+Tasks: 281 total,   1 running, 280 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  5.9 us,  0.0 sy,  0.0 ni, 94.1 id,  0.0 wa,  0.0 hi,...</msg>
+<status status="PASS" starttime="20210123 17:52:01.024" endtime="20210123 17:52:01.209"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${MACHINE_ONE_PROCESS_OUTPUT}</arg>
+</arguments>
+<msg timestamp="20210123 17:52:01.210" level="INFO">Length is 841</msg>
+<status status="PASS" starttime="20210123 17:52:01.209" endtime="20210123 17:52:01.210"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${MACHINE_ONE_PROCESS_OUTPUT}</arg>
+<arg>USER</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.210" endtime="20210123 17:52:01.211"></status>
+</kw>
+<kw name="Execute Command" library="SSHLibrary">
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<arguments>
+<arg>./ethminer -v</arg>
+</arguments>
+<assign>
+<var>${MACHINE_ONE_MINER_OUTPUT}</var>
+</assign>
+<msg timestamp="20210123 17:52:01.212" level="INFO">Executing command './ethminer -v'.</msg>
+<msg timestamp="20210123 17:52:01.246" level="INFO">Command exited with return code 2.</msg>
+<msg timestamp="20210123 17:52:01.247" level="INFO">${MACHINE_ONE_MINER_OUTPUT} = 
+
+ethminer 0.18.0
+Build: linux/release/gnu</msg>
+<status status="PASS" starttime="20210123 17:52:01.211" endtime="20210123 17:52:01.247"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${MACHINE_ONE_MINER_OUTPUT}</arg>
+<arg>linux/release/gnu</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.247" endtime="20210123 17:52:01.248"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.248" endtime="20210123 17:52:01.250"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.250" endtime="20210123 17:52:01.252"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.252" endtime="20210123 17:52:01.254"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.254" endtime="20210123 17:52:01.256"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Mining machine tool output.</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.256" endtime="20210123 17:52:01.258"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MACHINE_ONE_MINER_OUTPUT}</arg>
+</arguments>
+<msg timestamp="20210123 17:52:01.258" level="INFO">
+
+ethminer 0.18.0
+Build: linux/release/gnu</msg>
+<status status="PASS" starttime="20210123 17:52:01.258" endtime="20210123 17:52:01.259"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${MACHINE_ONE_MINER_OUTPUT}</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.259" endtime="20210123 17:52:01.261"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.261" endtime="20210123 17:52:01.263"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.263" endtime="20210123 17:52:01.265"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.266" endtime="20210123 17:52:01.268"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.268" endtime="20210123 17:52:01.270"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Mining machine CPU, Memory, User and Process information.</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.272" endtime="20210123 17:52:01.274"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MACHINE_ONE_PROCESS_OUTPUT}</arg>
+</arguments>
+<msg timestamp="20210123 17:52:01.277" level="INFO">
+
+top - 09:52:01 up 55 min,  1 user,  load average: 0.24, 0.05, 0.02
+Tasks: 281 total,   1 running, 280 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  5.9 us,  0.0 sy,  0.0 ni, 94.1 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3907.0 total,   2749.4 free,    568.4 used,    589.2 buff/cache
+MiB Swap:    923.3 total,    923.3 free,      0.0 used.   3095.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1777 ubuntu    20   0   12004   3948   3236 R   6.2   0.1   0:00.01 top
+      1 root      20   0  167700  11704   8572 S   0.0   0.3   0:03.29 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.04 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+</msg>
+<status status="PASS" starttime="20210123 17:52:01.275" endtime="20210123 17:52:01.277"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${MACHINE_ONE_PROCESS_OUTPUT}</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.277" endtime="20210123 17:52:01.279"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.279" endtime="20210123 17:52:01.281"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.281" endtime="20210123 17:52:01.283"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.283" endtime="20210123 17:52:01.285"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:01.285" endtime="20210123 17:52:01.288"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${MACHINE_ONE_STATUS_CHECK}</arg>
+<arg>SUCCESS: All checks passed. Let's make money! ^_^</arg>
+</arguments>
+<msg timestamp="20210123 17:52:01.289" level="INFO">${MACHINE_ONE_STATUS_CHECK} = SUCCESS: All checks passed. Let's make money! ^_^</msg>
+<status status="PASS" starttime="20210123 17:52:01.288" endtime="20210123 17:52:01.289"></status>
+</kw>
+<timeout value="1 minute"></timeout>
+<status status="PASS" starttime="20210123 17:52:01.022" endtime="20210123 17:52:01.289"></status>
+</kw>
+<status status="PASS" starttime="20210123 17:52:01.022" endtime="20210123 17:52:01.289"></status>
+</kw>
+<kw name="Check Mining Machine One Status And Send Slack Notification">
+<arguments>
+<arg>Ethereum</arg>
+<arg>ethminer</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>echo "Machine One is mining ${CRYPTOCURRENCY_NAME} and is running ${CRYPTO_MINING_TOOL}. It was checked and this is the current status --&gt; ${MACHINE_ONE_STATUS_CHECK} " | slacktee.sh -i :nerd_face: --plain-text --config /rfw/Tasks/Crypto-Mining-Machines-Checker/.slacktee</arg>
+<arg>shell=True</arg>
+<arg>timeout=20s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20210123 17:52:01.291" level="INFO">Starting process:
+echo "Machine One is mining Ethereum and is running ethminer. It was checked and this is the current status --&gt; SUCCESS: All checks passed. Let's make money! ^_^ " | slacktee.sh -i :nerd_face: --plain-text --config /rfw/Tasks/Crypto-Mining-Machines-Checker/.slacktee</msg>
+<msg timestamp="20210123 17:52:01.294" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20210123 17:52:01.496" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20210123 17:52:01.290" endtime="20210123 17:52:01.497"></status>
+</kw>
+<status status="PASS" starttime="20210123 17:52:01.289" endtime="20210123 17:52:01.497"></status>
+</kw>
+<status status="PASS" starttime="20210123 17:52:01.022" endtime="20210123 17:52:01.498"></status>
+</kw>
+<kw name="Close Connection" library="SSHLibrary" type="teardown">
+<doc>Closes the current connection.</doc>
+<status status="PASS" starttime="20210123 17:52:01.498" endtime="20210123 17:52:01.500"></status>
+</kw>
+<tags>
+<tag>Remote_Crypto_Mining_Machine_One</tag>
+<tag>Remote_Crypto_Mining_Machines</tag>
+</tags>
+<status status="PASS" starttime="20210123 17:51:58.714" endtime="20210123 17:52:01.500" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20210123 17:51:58.451" endtime="20210123 17:52:01.505"></status>
+</suite>
+<suite id="s1-s2" name="Docker-SSH-Checker-Crypto-Mining-Machine2" source="/rfw/Tasks/Crypto-Mining-Machines-Checker/Docker-SSH-Checker-Crypto-Mining-Machine2.robot">
+<test id="s1-s2-t1" name="Check second target crypto mining machine and send a Slack notification.">
+<kw name="Connect To Crypto Mining Machine Two" type="setup">
+<kw name="Open Connection" library="SSHLibrary">
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<arguments>
+<arg>%{SSH_HOST2}</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:51:58.709" endtime="20210123 17:51:58.711"></status>
+</kw>
+<kw name="Login" library="SSHLibrary">
+<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
+<arguments>
+<arg>%{SSH_USERNAME2}</arg>
+<arg>%{SSH_PASSWORD2}</arg>
+</arguments>
+<msg timestamp="20210123 17:51:58.712" level="INFO">Logging into '172.16.177.129:22' as 'ubuntu'.</msg>
+<msg timestamp="20210123 17:52:00.507" level="INFO">Read output: Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.8.0-38-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+26 updates can be installed immediately.
+0 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+Last login: Wed Jan 20 21:09:16 2021 from 172.16.177.1
+ubuntu@ubuntu:~$</msg>
+<status status="PASS" starttime="20210123 17:51:58.712" endtime="20210123 17:52:00.508"></status>
+</kw>
+<timeout value="2 minutes"></timeout>
+<status status="PASS" starttime="20210123 17:51:58.708" endtime="20210123 17:52:00.508"></status>
+</kw>
+<kw name="Run Checks On Mining Machine Two And Send Slack Messages">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Check Remote Mining Machine Two For Ethminer</arg>
+<arg>echo; echo; top -n 1 -b | head -12</arg>
+</arguments>
+<kw name="Check Remote Mining Machine Two For Ethminer">
+<arguments>
+<arg>echo; echo; top -n 1 -b | head -12</arg>
+</arguments>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${MACHINE_TWO_STATUS_CHECK}</arg>
+<arg>WARNING: Problems detected!!! Check this machine!!!</arg>
+</arguments>
+<msg timestamp="20210123 17:52:00.512" level="INFO">${MACHINE_TWO_STATUS_CHECK} = WARNING: Problems detected!!! Check this machine!!!</msg>
+<status status="PASS" starttime="20210123 17:52:00.511" endtime="20210123 17:52:00.512"></status>
+</kw>
+<kw name="Execute Command" library="SSHLibrary">
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<arguments>
+<arg>${MACHINE_TWO_PROCESS}</arg>
+</arguments>
+<assign>
+<var>${MACHINE_TWO_PROCESS_OUTPUT}</var>
+</assign>
+<msg timestamp="20210123 17:52:00.513" level="INFO">Executing command 'echo; echo; top -n 1 -b | head -12'.</msg>
+<msg timestamp="20210123 17:52:00.714" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20210123 17:52:00.714" level="INFO">${MACHINE_TWO_PROCESS_OUTPUT} = 
+
+top - 09:52:00 up  9:12,  2 users,  load average: 0.00, 0.00, 0.00
+Tasks: 287 total,   2 running, 285 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 30.6 us, 22.2 sy,  0.0 ni, 47.2 id,  0.0 wa,  0.0 hi,...</msg>
+<status status="PASS" starttime="20210123 17:52:00.512" endtime="20210123 17:52:00.714"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${MACHINE_TWO_PROCESS_OUTPUT}</arg>
+</arguments>
+<msg timestamp="20210123 17:52:00.715" level="INFO">Length is 846</msg>
+<status status="PASS" starttime="20210123 17:52:00.715" endtime="20210123 17:52:00.716"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${MACHINE_TWO_PROCESS_OUTPUT}</arg>
+<arg>USER</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.716" endtime="20210123 17:52:00.716"></status>
+</kw>
+<kw name="Execute Command" library="SSHLibrary">
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<arguments>
+<arg>./ethminer -v</arg>
+</arguments>
+<assign>
+<var>${MACHINE_TWO_MINER_OUTPUT}</var>
+</assign>
+<msg timestamp="20210123 17:52:00.717" level="INFO">Executing command './ethminer -v'.</msg>
+<msg timestamp="20210123 17:52:00.731" level="INFO">Command exited with return code 2.</msg>
+<msg timestamp="20210123 17:52:00.732" level="INFO">${MACHINE_TWO_MINER_OUTPUT} = 
+
+ethminer 0.18.0
+Build: linux/release/gnu</msg>
+<status status="PASS" starttime="20210123 17:52:00.717" endtime="20210123 17:52:00.732"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${MACHINE_TWO_MINER_OUTPUT}</arg>
+<arg>linux/release/gnu</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.732" endtime="20210123 17:52:00.733"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.733" endtime="20210123 17:52:00.735"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.735" endtime="20210123 17:52:00.737"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.737" endtime="20210123 17:52:00.738"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.739" endtime="20210123 17:52:00.740"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Mining machine tool output.</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.740" endtime="20210123 17:52:00.742"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MACHINE_TWO_MINER_OUTPUT}</arg>
+</arguments>
+<msg timestamp="20210123 17:52:00.743" level="INFO">
+
+ethminer 0.18.0
+Build: linux/release/gnu</msg>
+<status status="PASS" starttime="20210123 17:52:00.743" endtime="20210123 17:52:00.743"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${MACHINE_TWO_MINER_OUTPUT}</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.743" endtime="20210123 17:52:00.745"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.745" endtime="20210123 17:52:00.748"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.748" endtime="20210123 17:52:00.750"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.751" endtime="20210123 17:52:00.752"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.752" endtime="20210123 17:52:00.753"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Mining machine CPU, Memory, User and Process information.</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.755" endtime="20210123 17:52:00.757"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MACHINE_TWO_PROCESS_OUTPUT}</arg>
+</arguments>
+<msg timestamp="20210123 17:52:00.758" level="INFO">
+
+top - 09:52:00 up  9:12,  2 users,  load average: 0.00, 0.00, 0.00
+Tasks: 287 total,   2 running, 285 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 30.6 us, 22.2 sy,  0.0 ni, 47.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3907.0 total,   1958.0 free,    890.4 used,   1058.6 buff/cache
+MiB Swap:    923.3 total,    923.3 free,      0.0 used.   2763.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   9374 ubuntu    20   0  118892  91860  67588 R  76.5   2.3   0:00.22 check-n+
+      1 root      20   0  102360  11856   8548 S   0.0   0.3   0:06.25 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.07 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+</msg>
+<status status="PASS" starttime="20210123 17:52:00.757" endtime="20210123 17:52:00.758"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${MACHINE_TWO_PROCESS_OUTPUT}</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.758" endtime="20210123 17:52:00.761"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.761" endtime="20210123 17:52:00.762"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.762" endtime="20210123 17:52:00.764"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.764" endtime="20210123 17:52:00.766"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>...</arg>
+</arguments>
+<status status="PASS" starttime="20210123 17:52:00.766" endtime="20210123 17:52:00.767"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${MACHINE_TWO_STATUS_CHECK}</arg>
+<arg>SUCCESS: All checks passed. Let's make money! ^_^</arg>
+</arguments>
+<msg timestamp="20210123 17:52:00.768" level="INFO">${MACHINE_TWO_STATUS_CHECK} = SUCCESS: All checks passed. Let's make money! ^_^</msg>
+<status status="PASS" starttime="20210123 17:52:00.767" endtime="20210123 17:52:00.768"></status>
+</kw>
+<timeout value="1 minute"></timeout>
+<status status="PASS" starttime="20210123 17:52:00.509" endtime="20210123 17:52:00.768"></status>
+</kw>
+<status status="PASS" starttime="20210123 17:52:00.509" endtime="20210123 17:52:00.768"></status>
+</kw>
+<kw name="Check Mining Machine Two Status And Send Slack Notification">
+<arguments>
+<arg>Ethereum</arg>
+<arg>ethminer</arg>
+</arguments>
+<kw name="Run Process" library="Process">
+<doc>Runs a process and waits for it to complete.</doc>
+<arguments>
+<arg>echo "Machine Two is mining ${CRYPTOCURRENCY_NAME} and is running ${CRYPTO_MINING_TOOL}. It was checked and this is the current status --&gt; ${MACHINE_TWO_STATUS_CHECK} " | slacktee.sh -i :nerd_face: --plain-text --config /rfw/Tasks/Crypto-Mining-Machines-Checker/.slacktee</arg>
+<arg>shell=True</arg>
+<arg>timeout=20s</arg>
+<arg>on_timeout=continue</arg>
+</arguments>
+<msg timestamp="20210123 17:52:00.769" level="INFO">Starting process:
+echo "Machine Two is mining Ethereum and is running ethminer. It was checked and this is the current status --&gt; SUCCESS: All checks passed. Let's make money! ^_^ " | slacktee.sh -i :nerd_face: --plain-text --config /rfw/Tasks/Crypto-Mining-Machines-Checker/.slacktee</msg>
+<msg timestamp="20210123 17:52:00.775" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20210123 17:52:01.078" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20210123 17:52:00.769" endtime="20210123 17:52:01.079"></status>
+</kw>
+<status status="PASS" starttime="20210123 17:52:00.768" endtime="20210123 17:52:01.079"></status>
+</kw>
+<status status="PASS" starttime="20210123 17:52:00.508" endtime="20210123 17:52:01.080"></status>
+</kw>
+<kw name="Close Connection" library="SSHLibrary" type="teardown">
+<doc>Closes the current connection.</doc>
+<status status="PASS" starttime="20210123 17:52:01.081" endtime="20210123 17:52:01.083"></status>
+</kw>
+<tags>
+<tag>Remote_Crypto_Mining_Machines</tag>
+<tag>Remote_Crypto_Mining_Machine_Two</tag>
+</tags>
+<status status="PASS" starttime="20210123 17:51:58.704" endtime="20210123 17:52:01.083" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20210123 17:51:58.466" endtime="20210123 17:52:01.090"></status>
+</suite>
+<doc>[https://pabot.org/?ref=log|Pabot] result from 2 executions.</doc>
+<status status="PASS" starttime="20210123 17:51:58.315" endtime="20210123 17:52:01.514"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0">Critical Tasks</stat>
+<stat pass="2" fail="0">All Tasks</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">Remote_Crypto_Mining_Machine_One</stat>
+<stat pass="2" fail="0">Remote_Crypto_Mining_Machines</stat>
+<stat pass="1" fail="0">Remote_Crypto_Mining_Machine_Two</stat>
+</tag>
+<suite>
+<stat pass="2" fail="0" id="s1" name="Robot Framework task runner - Checking crypto mining machine">Robot Framework task runner - Checking crypto mining machine</stat>
+<stat pass="1" fail="0" id="s1-s1" name="Docker-SSH-Checker-Crypto-Mining-Machine1">Robot Framework task runner - Checking crypto mining machine.Docker-SSH-Checker-Crypto-Mining-Machine1</stat>
+<stat pass="1" fail="0" id="s1-s2" name="Docker-SSH-Checker-Crypto-Mining-Machine2">Robot Framework task runner - Checking crypto mining machine.Docker-SSH-Checker-Crypto-Mining-Machine2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

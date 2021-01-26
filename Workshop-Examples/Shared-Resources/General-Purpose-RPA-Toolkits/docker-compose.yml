@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+
+  docker-task-runner:
+    build:
+      context: .
+      dockerfile: "Dockerfile.RPA"
+    volumes:
+      - "./Monitoring:/rfw"
+    environment:
+      - webhook_url=${webhook_url}
+      - upload_token=${upload_token}
+      - channel=${channel}
+      - SSH_HOST1=${SSH_HOST1}
+      - SSH_USERNAME1=${SSH_USERNAME1}
+      - SSH_PASSWORD1=${SSH_PASSWORD1}
+      - SSH_HOST2=${SSH_HOST2}
+      - SSH_USERNAME2=${SSH_USERNAME2}
+      - SSH_PASSWORD2=${SSH_PASSWORD2}
+    command: -inMemory
+    network_mode: "bridge"

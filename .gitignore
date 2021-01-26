@@ -37,3 +37,4 @@ Robot-Framework-Lone-Tester-Metrics-RoboCon-2019
 *.DS_Store
 *geckodriver.log
 Workshop-Examples/geckodriver.log
+Workshop-Examples/Shared-Resources/General-Purpose-RPA-Toolkits/.rpa.env
