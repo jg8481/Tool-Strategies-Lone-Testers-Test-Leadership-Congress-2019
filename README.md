@@ -205,6 +205,7 @@ I also wrote an article on Medium describing the gist of the hybrid-manual-autom
 
 Additional slides for future presentations and webinars that used the tool examples in this Test Leadership Congress 2019 repo as a template.
 - [US Robot Framework Community Webinars - August 22, 2019 - Test_Tool_Strategies_For_Lone_Testers.pdf](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Workshop-Presentations-And-Videos/Tool_Strategies_For_Mobile_And_Desktop_Browsers.pdf)
+- [US Robot Framework Community Webinars - January 28, 2021 - Flexibility_Of_Keywords.pdf](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/blob/master/Workshop-Presentations-And-Videos/Flexibility_Of_Keywords.pdf)
 
 ***
 
