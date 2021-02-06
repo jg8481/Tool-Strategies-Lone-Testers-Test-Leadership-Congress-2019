@@ -245,7 +245,7 @@ if [ "$1" == "Robot-Framework-Wireshark-Desktop-And-Mobile-Browser-Test-Example"
   echo
   echo "ATTENTION: This example requires Python 3."
   echo
-  echo "The following have been temporariliy removed from the requirements.txt in the Resources folder because of issues found in both Webdrivermanager Pyshark."
+  echo "The following have been temporariliy removed from the requirements.txt in the Resources folder because of issues found in both Webdrivermanager and Pyshark."
   echo "webdrivermanager>=0.8.0"
   echo "pyshark>=0.4.2.11"
   echo
