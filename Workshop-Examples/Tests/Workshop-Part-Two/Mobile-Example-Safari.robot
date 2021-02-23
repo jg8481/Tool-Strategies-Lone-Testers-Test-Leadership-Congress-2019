@@ -31,7 +31,7 @@ MOBILE SAFARI TEST 2 - Quickly check that the sign up page loaded.
 Open The Safari Browser In IOS
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     Set Suite Variable    ${PARALLEL_APPIUM_REMOTE_URL}    %{PARALLEL_APPIUM_REMOTE_URL1}
-    Set Suite Variable    ${DEVICE_NAME_IOS}    %{DEVICE_NAME1_IOS}
+    Set Suite Variable    ${DEVICE_NAME_IOS}    %{DEVICE_NAME_IOS1}
     Set Suite Variable    ${PARALLEL_APPIUM_PORT}    %{PARALLEL_APPIUM_PORT1}
     Set Suite Variable    ${PARALLEL_APPIUM_WDALOCALPORT}     %{PARALLEL_APPIUM_WDALOCALPORT1}
     Should Not Be Empty     ${PARALLEL_APPIUM_REMOTE_URL}
