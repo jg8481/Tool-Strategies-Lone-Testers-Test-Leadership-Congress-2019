@@ -215,7 +215,7 @@ Additional slides for future presentations and webinars that used the tool examp
 - Ed Manlove
 - Antti Karjalainen
 - James Bach
-- Jonathon Bach
+- Jonathan Bach
 - Michael Bolton
 - Cem Kaner
 - Anders Dinsen
