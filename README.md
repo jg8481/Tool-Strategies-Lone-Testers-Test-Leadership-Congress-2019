@@ -2,7 +2,7 @@
 
 ## General Information
 
-This [repo](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019) contains all of the examples that will be covered in the ["Test tool strategies for lone testers" presentation](https://www.youtube.com/watch?v=cdG4qgyTSSk). More information about this Test Leadership Congress 2019 presentation can be found here... https://testleadershipcongress2019.sched.com/event/O5Zg/test-tool-strategies-for-lone-testers
+This [repo](https://github.com/jg8481/Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019) contains all of the examples that will be covered in the ["Test tool strategies for lone testers" presentation (click here to watch it on YouTube)](https://www.youtube.com/watch?v=cdG4qgyTSSk). More information about this Test Leadership Congress 2019 presentation can be found here... https://testleadershipcongress2019.sched.com/event/O5Zg/test-tool-strategies-for-lone-testers
 
 This will be an ongoing project that I will keep working on. Any existing/new reusable examples, existing/new presentations, new approaches, or new tool experiments contained in this repo will be part of a [book that I am currently writing](https://leanpub.com/toolstrategiesforlonetesters).
 
