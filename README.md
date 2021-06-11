@@ -129,7 +129,7 @@ After installing Appium try running ``appium-doctor``. If any warnings show up p
   cd Tool-Strategies-Lone-Testers-Test-Leadership-Congress-2019/Workshop-Examples/Shared-Resources/Bug-Risk-Prediction-Using-Heuristics-And-Machine-Learning
   ./start-bug-risk-prediction-docker-container.sh
   ```
-- Here is a [recorded demonstration](https://www.youtube.com/watch?v=oo11OlAaWWA&feature=youtu.be) of the conversational test assistant used in this workshop.
+- Here is a [recorded demonstration](https://www.youtube.com/watch?v=oo11OlAaWWA&feature=youtu.be) of the [conversational test assistant](https://github.com/jg8481/leon/tree/develop/packages/robotframework-test-assistant) used in this workshop.
 
 Upcoming workshop or webinar - Combining Robot Framework and Docker with security and penetration test tools
 - The following will cover tool experiments for security and penetration testing.
