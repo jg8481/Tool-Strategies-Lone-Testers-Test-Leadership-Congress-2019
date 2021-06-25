@@ -19,11 +19,11 @@ ${SELENIUM_IMPLICIT_WAIT}    10
 
 *** Test Cases ***
 
-DESKTOP SAFARI TEST 1 - Go to the sign up page from the login page.
+DESKTOP SAFARI TEST 1 : Go to the sign up page from the login page.
     [Tags]    Desktop_Safari
     Click Sign Up Link
 
-DESKTOP SAFARI TEST 2 - Quickly check that the sign up page loaded.
+DESKTOP SAFARI TEST 2 : Quickly check that the sign up page loaded.
     [Tags]    Desktop_Safari
     Check The Sign Up Page
     #Check The Sign Up Page Demonstrate Failure

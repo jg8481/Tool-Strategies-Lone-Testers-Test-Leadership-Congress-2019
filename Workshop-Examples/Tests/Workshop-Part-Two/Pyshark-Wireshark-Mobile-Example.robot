@@ -13,25 +13,25 @@ ${WIRESHARK_APPIUM_EXAMPLE_URL}    https://www.youtube.com
 
 *** Test Cases ***
 
-WIRESHARK MOBILE TEST 1 - Go to a YouTube page in an iOS mobile browser while Wireshark is capturing packets on WiFi, then save it to a packet capture file.
+WIRESHARK MOBILE TEST 1 : Go to a YouTube page in an iOS mobile browser while Wireshark is capturing packets on WiFi, then save it to a packet capture file.
     [Tags]    Mobile_Safari    Wireshark    Wireshark_IOS
     [Setup]    Navigate To Website Using Safari Then Run Wireshark
     Run Wireshark For WiFi Interface En0 And Create Packet Capture File
     [Teardown]    Close Applications And Terminate Wireshark Processes
 
-WIRESHARK MOBILE TEST 2 - Go to a YouTube page in an iOS mobile browser while Wireshark is capturing packets on WiFi, then check the Loopback Interface.
+WIRESHARK MOBILE TEST 2 : Go to a YouTube page in an iOS mobile browser while Wireshark is capturing packets on WiFi, then check the Loopback Interface.
     [Tags]    Mobile_Safari    Wireshark    Wireshark_IOS
     [Setup]    Navigate To Website Using Safari Then Run Wireshark
     Run Wireshark Live Packet Capture For Loopback Interface Lo0 And Check The Output
     [Teardown]    Close Applications And Terminate Wireshark Processes
 
-WIRESHARK MOBILE TEST 3 - Go to a YouTube page in an iOS mobile browser while Wireshark is capturing packets, then run a Lua script to analyze the results.
+WIRESHARK MOBILE TEST 3 : Go to a YouTube page in an iOS mobile browser while Wireshark is capturing packets, then run a Lua script to analyze the results.
     [Tags]    Mobile_Safari    Wireshark    Wireshark_IOS
     [Setup]    Navigate To Website Using Safari Then Run Wireshark
     Run Wireshark Lua Script And Check The Output
     [Teardown]    Close Applications And Terminate Wireshark Processes
 
-WIRESHARK MOBILE TEST 4 - Decrypt a packet capture file with a wireshark-sslkeys.log file, then check the output.
+WIRESHARK MOBILE TEST 4 : Decrypt a packet capture file with a wireshark-sslkeys.log file, then check the output.
     [Tags]    Mobile_Safari    Wireshark    Wireshark_IOS
     Run Wireshark To Decrypt Captured SSL Traffic And Check The Output
     [Teardown]    Terminate Wireshark Processes Multiple Times

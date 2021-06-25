@@ -15,12 +15,12 @@ ${TEST_SUITE_TIMEOUT}    1
 
 *** Test Cases ***
 
-DOCKER FIREFOX TEST 1 - Go to the sign up page from the login page.
+DOCKER FIREFOX TEST 1 : Go to the sign up page from the login page.
     [Tags]    Desktop_Firefox
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     Click Sign Up Link
 
-DOCKER FIREFOX TEST 2 - Quickly check that the sign up page loaded.
+DOCKER FIREFOX TEST 2 : Quickly check that the sign up page loaded.
     [Tags]    Desktop_Firefox
     [Timeout]    ${TEST_SUITE_TIMEOUT} minutes
     Check The Sign Up Page

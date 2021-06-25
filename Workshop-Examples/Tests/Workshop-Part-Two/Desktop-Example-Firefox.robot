@@ -14,11 +14,11 @@ ${SELENIUM_IMPLICIT_WAIT}    10
 
 *** Test Cases ***
 
-DESKTOP FIREFOX TEST 1 - Go to the sign up page from the login page.
+DESKTOP FIREFOX TEST 1 : Go to the sign up page from the login page.
     [Tags]    Desktop_Firefox
     Click Sign Up Link
 
-DESKTOP FIREFOX TEST 2 - Quickly check that the sign up page loaded.
+DESKTOP FIREFOX TEST 2 : Quickly check that the sign up page loaded.
     [Tags]    Desktop_Firefox
     Check The Sign Up Page
 
