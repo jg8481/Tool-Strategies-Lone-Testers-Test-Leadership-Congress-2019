@@ -135,6 +135,9 @@ Clean Up Proxy Log And Terminate Processes
 ### Kali Linux Docker Container Keywords ###
 
 Generate Nmap XML Target File And Start Metasploit Database
+    Run Keyword And Ignore Error    Run    apt-get update -y
+    Run Keyword And Ignore Error    Run    apt-get install tor -y
+    Run Keyword And Ignore Error    Run    apt-get install proxychains -y
     Run Nmap Scan To Generate XML Target File    nodegoat.herokuapp.com
     Run Dig DNS Lookup Utility Tool To Get Metasploit RHOSTS Target IP    nodegoat.herokuapp.com
     Start Metasploit Database And Import Nmap XML Target File
@@ -147,7 +150,7 @@ Start Metasploit Database And Import Nmap XML Target File
 Run Dig DNS Lookup Utility Tool To Get Metasploit RHOSTS Target IP
     [Arguments]    ${TARGET_URL}
     Remove File    ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt
-    Run    dig +short "${TARGET_URL}" | head -1 > ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt
+    Run    proxychains dig +short "${TARGET_URL}" | head -1 > ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt
     Wait Until Keyword Succeeds   ${GLOBAL_RETRY_AMOUNT}x    4s    Check Metasploit RHOSTS Target IP File Contents
     Log To Console    ...
     Log To Console    ...
@@ -165,7 +168,7 @@ Check Metasploit RHOSTS Target IP File Contents
 Run Nmap Scan To Generate XML Target File
     [Arguments]    ${TARGET_URL}
     Remove File    ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml
-    Run    nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml "${TARGET_URL}"
+    Run    proxychains nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml "${TARGET_URL}"
     Wait Until Keyword Succeeds   ${GLOBAL_RETRY_AMOUNT}x    4s    Check Metasploit XML File Contents
     Log To Console    ...
     Log To Console    ...
@@ -182,7 +185,7 @@ Check Metasploit XML File Contents
 
 Run Nmap Scan With Arguments And Check Results
     [Arguments]    ${NMAP_SCANNER_TYPE}    ${TARGET_URL}
-    Run Process    nmap "${NMAP_SCANNER_TYPE}" "${TARGET_URL}"    alias=nmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
+    Run Process    proxychains nmap "${NMAP_SCANNER_TYPE}" "${TARGET_URL}"    alias=nmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
     ${NMAP_SCANNER_RESULTS}=   	Get Process Result    nmap_custom_scanner    stdout=true
     Log    ${NMAP_SCANNER_RESULTS}
     Should Contain    ${NMAP_SCANNER_RESULTS}    80/tcp  open  http
@@ -190,8 +193,8 @@ Run Nmap Scan With Arguments And Check Results
 
 Run Nmap Vulnerability Scan With Arguments And Check Results
     [Arguments]    ${NMAP_TARGET_PORT}    ${TARGET_URL}
-    Run Process    nmap --script-updatedb 	  shell=True    timeout=2min    on_timeout=continue
-    Run Process    nmap -sV -Pn "${TARGET_URL}" --script\=vulners/vulners.nse -p"${NMAP_TARGET_PORT}"    alias=nmap_custom_vulnerability_scanner 	  shell=True    timeout=4min    on_timeout=continue
+    Run Process    proxychains nmap --script-updatedb 	  shell=True    timeout=2min    on_timeout=continue
+    Run Process    proxychains nmap -sV -Pn "${TARGET_URL}" --script\=vulners/vulners.nse -p"${NMAP_TARGET_PORT}"    alias=nmap_custom_vulnerability_scanner 	  shell=True    timeout=4min    on_timeout=continue
     ${NMAP_VULNERABILITY_SCANNER_RESULTS}=   	Get Process Result    nmap_custom_vulnerability_scanner    stdout=true
     Log    ${NMAP_VULNERABILITY_SCANNER_RESULTS}
     Should Not Contain    ${NMAP_VULNERABILITY_SCANNER_RESULTS}    cve
