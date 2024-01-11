@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation                 This is a resource file that will provide common shared Robot Framework resources for various security and penetration tests.
+Documentation                 This is a resource file that will provide common shared Robot Framework resources for various security and penetration tests. All keywords using the anonymization tools "proxychains" or "tor" are experimental and should be used from inside a Kali Linux VM instead of Docker.
 Library                       Collections
 Library                       OperatingSystem
 Library                       Process
@@ -138,6 +138,9 @@ Generate Nmap XML Target File And Start Metasploit Database
     Run Keyword And Ignore Error    Run    apt-get update -y
     Run Keyword And Ignore Error    Run    apt-get install tor -y
     Run Keyword And Ignore Error    Run    apt-get install proxychains -y
+    Run Keyword And Ignore Error    Run    systemctl stop tor
+    Run Keyword And Ignore Error    Run    systemctl start tor
+    Run Keyword And Ignore Error    Run    echo "socks5  127.0.0.1 9050" >> /etc/proxychains.conf
     Run Nmap Scan To Generate XML Target File    nodegoat.herokuapp.com
     Run Dig DNS Lookup Utility Tool To Get Metasploit RHOSTS Target IP    nodegoat.herokuapp.com
     Start Metasploit Database And Import Nmap XML Target File
@@ -150,6 +153,7 @@ Start Metasploit Database And Import Nmap XML Target File
 Run Dig DNS Lookup Utility Tool To Get Metasploit RHOSTS Target IP
     [Arguments]    ${TARGET_URL}
     Remove File    ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt
+    #Run    dig +short "${TARGET_URL}" | head -1 > ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt
     Run    proxychains dig +short "${TARGET_URL}" | head -1 > ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-rhosts-ip.txt
     Wait Until Keyword Succeeds   ${GLOBAL_RETRY_AMOUNT}x    4s    Check Metasploit RHOSTS Target IP File Contents
     Log To Console    ...
@@ -168,6 +172,7 @@ Check Metasploit RHOSTS Target IP File Contents
 Run Nmap Scan To Generate XML Target File
     [Arguments]    ${TARGET_URL}
     Remove File    ${PATH}//Tests//Workshop-Part-Two//Resources//metasploit-targets.xml
+    #Run    nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml "${TARGET_URL}"
     Run    proxychains nmap -Pn -sS -A -oX /rfw/Tests/Workshop-Part-Two/Resources/metasploit-targets.xml "${TARGET_URL}"
     Wait Until Keyword Succeeds   ${GLOBAL_RETRY_AMOUNT}x    4s    Check Metasploit XML File Contents
     Log To Console    ...
@@ -185,6 +190,7 @@ Check Metasploit XML File Contents
 
 Run Nmap Scan With Arguments And Check Results
     [Arguments]    ${NMAP_SCANNER_TYPE}    ${TARGET_URL}
+    #Run Process    nmap "${NMAP_SCANNER_TYPE}" "${TARGET_URL}"    alias=nmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
     Run Process    proxychains nmap "${NMAP_SCANNER_TYPE}" "${TARGET_URL}"    alias=nmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
     ${NMAP_SCANNER_RESULTS}=   	Get Process Result    nmap_custom_scanner    stdout=true
     Log    ${NMAP_SCANNER_RESULTS}
@@ -193,6 +199,8 @@ Run Nmap Scan With Arguments And Check Results
 
 Run Nmap Vulnerability Scan With Arguments And Check Results
     [Arguments]    ${NMAP_TARGET_PORT}    ${TARGET_URL}
+    #Run Process    nmap --script-updatedb 	  shell=True    timeout=2min    on_timeout=continue
+    #Run Process    nmap -sV -Pn "${TARGET_URL}" --script\=vulners/vulners.nse -p"${NMAP_TARGET_PORT}"    alias=nmap_custom_vulnerability_scanner 	  shell=True    timeout=4min    on_timeout=continue
     Run Process    proxychains nmap --script-updatedb 	  shell=True    timeout=2min    on_timeout=continue
     Run Process    proxychains nmap -sV -Pn "${TARGET_URL}" --script\=vulners/vulners.nse -p"${NMAP_TARGET_PORT}"    alias=nmap_custom_vulnerability_scanner 	  shell=True    timeout=4min    on_timeout=continue
     ${NMAP_VULNERABILITY_SCANNER_RESULTS}=   	Get Process Result    nmap_custom_vulnerability_scanner    stdout=true
@@ -227,7 +235,8 @@ Run Target XML Metasploit Framework With Arguments And Check Results
 
 Run Sqlmap Scan With Arguments And Check Results
     [Arguments]    ${SQLMAP_SCANNER_TYPE}    ${TARGET_URL}
-    Run Process    sqlmap --batch --tamper\="${SQLMAP_SCANNER_TYPE}" -u http://"${TARGET_URL}"    alias=sqlmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
+    #Run Process    sqlmap --batch --tamper\="${SQLMAP_SCANNER_TYPE}" -u http://"${TARGET_URL}"    alias=sqlmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
+    Run Process    sqlmap --batch --tamper\="${SQLMAP_SCANNER_TYPE}" -u http://"${TARGET_URL}" –tor –tor-type=SOCKS5    alias=sqlmap_custom_scanner 	  shell=True    timeout=4min    on_timeout=continue
     ${SQLMAP_SCANNER_RESULTS}=   	Get Process Result    sqlmap_custom_scanner    stdout=true
     Log    ${SQLMAP_SCANNER_RESULTS}
     Should Not Contain    ${SQLMAP_SCANNER_RESULTS}    sqlmap identified the following injection points
